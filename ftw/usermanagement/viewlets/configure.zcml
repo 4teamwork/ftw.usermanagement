@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ftw.notification.base">
+
+    <browser:viewletManager
+        name="ftw.usermanagement.befortablemanager"
+        provides="ftw.usermanagement.interfaces.IBeforTablerManager"
+        class="plone.app.viewletmanager.manager.OrderedViewletManager"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        permission="zope2.ManageUsers"/>
+        
+
+</configure>
