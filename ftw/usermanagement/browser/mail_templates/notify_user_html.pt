@@ -1,0 +1,53 @@
+<html i18n:domain="ftw.usermanagement">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title></title>
+  </head>
+  <body>
+    <p i18n:translate="text_usermanagement_mail_head_text">
+        Welcome 
+        <span tal:content="options/fullname" i18n:name="fullname" />
+    </p>
+    <p i18n:translate="text_usermanagemnt_mail_user_text">
+      You have been registered on the platform
+      <a tal:attributes="href here/portal_url" tal:content="options/site_title"
+         i18n:name="site_title"/>.
+    </p>
+    
+    <p i18n:translate="text_usermanagement_mail_username">
+    Your username is: 
+        <span tal:content="options/username"
+             i18n:name="username" />        
+    </p>
+
+    <p tal:condition="not: options/reset_pw" i18n:translate="text_usermanagement_mail_info">
+    You should have received or will receive your password in a separate mail
+    </p>
+
+    <p tal:condition="options/reset_pw" i18n:translate="text_usermanagement_mail_info_reset_pw">
+    Your password is: 
+    <span tal:content="options/pw"
+         i18n:name="pw" />
+    </p>
+    <p tal:condition="options/reset_pw">
+        <span i18n:translate="text_usermanagement_after_pw_reset">
+            You can change your password in your "My Account" section after logging in.
+        </span>
+        <br>
+        <span i18n:translate="text_usermanagement_after_pw_reset_url">
+            Or use this direct link 
+            <a tal:define="url string:${here/portal_url}/Members/${options/username}" 
+               tal:attributes="href url" tal:content="url" i18n:name="home_url" />
+            to your "My Account" section and click "Change password". 
+        </span>
+
+    </p>    
+    
+    <p i18n:translate="text_usermanagement_mail_comment">
+       If you have any questions, please contact:
+       <span tal:content="options/contact_email" i18n:name="contact_email" />
+    </p>
+
+
+  </body>
+</html>

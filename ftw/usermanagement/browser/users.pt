@@ -51,15 +51,21 @@
                         <td><input type="submit" name="add" value="Add member" i18n:attributes="value" /></td>
                     </tr>
                 </table>
-
                 <input tal:replace="structure context/@@authenticator/authenticator" /> 
             </form>
         </fieldset>
-
         <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
 
-        <div id="usertable" tal:content="structure view/render_table">table</div>
-
+        <form action="./user_management" method="POST">
+            <div id="usertable" tal:content="structure view/render_table">table</div>
+        
+        <div class="formControls">
+            <input tal:replace="structure context/@@authenticator/authenticator" /> 
+            <input type="submit" name="notify.users" value="Notify user" i18n:attributes="value" />
+            <input type="submit" name="notify.users.password" value="Notify user and reset password" i18n:attributes="value" />
+            <input type="submit" name="delete.user" value="Delete user" i18n:attributes="value" />
+        </div>
+        </form>
     </metal:content-core>
 </metal:content-core>
 

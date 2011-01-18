@@ -1,5 +1,6 @@
 jq(function(){
    
+   //Show a overlay with selected and available groups, per user
    function initGroupOverlay(){
        jq.ajaxSetup ({
            // Disable caching of AJAX responses
@@ -34,4 +35,9 @@ jq(function(){
        });
    }
    initGroupOverlay();
-});
+   
+   function deleteUsers(){
+       
+   }
+   
+}); 

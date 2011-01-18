@@ -49,4 +49,12 @@
         />
 
 
+    <!-- mail templates -->
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="usermanagament_notify_user"
+        permission="zope2.ManageUsers"
+        template="mail_templates/notify_user_html.pt"
+        />
+
 </configure>
