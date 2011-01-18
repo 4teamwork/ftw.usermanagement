@@ -7,6 +7,9 @@ from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryMultiAdapter, queryUtility
 
 
+def checkbox(item, value):
+     return '<input type="checkbox" name="groupids:list" value="%s" />' % \
+        item['group_id']
 
 class GroupManagement(BrowserView):
     """
@@ -14,6 +17,7 @@ class GroupManagement(BrowserView):
     """
 
     columns = (
+        {'transform': checkbox},
         {'column': 'group_title',
          'column_title': _(u'label_group_title', default='Title'), },
         {'column': 'group_id',
@@ -38,7 +42,12 @@ class GroupManagement(BrowserView):
 
         self.groupprefs = queryMultiAdapter((context, request),
                                          name=u'usergroup-groupprefs')
-        
+
+        groupids = self.request.get('groupids', [])
+        if self.request.get('delete.groups', False):
+            return self.delete_groups(groupids)
+
+
         
     def render_table(self):
         """Renders a table usfing ftw.table"""
@@ -86,4 +95,16 @@ class GroupManagement(BrowserView):
                 msg,
                 type="error")
         return self.template()
+
+    def delete_groups(self, groupids):
+        if groupids:
+            self.gtool.removeGroups(groupids)
+            msg = _(u'Group(s) deleted.')
+            
+            IStatusMessage(self.request).addStatusMessage(
+                msg,
+                type="info")
+        self.request.response.redirect(
+            self.context.absolute_url() + '/@@group_management')
         
+            

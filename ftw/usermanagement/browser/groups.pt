@@ -39,10 +39,18 @@
 
         <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
 
-        <div id="usertable" tal:content="structure view/render_table">table</div>
+        <form action="./group_management" method="POST">
+            <div id="usertable" tal:content="structure view/render_table">table</div>
+
+            <div class="formControls">
+                <input tal:replace="structure context/@@authenticator/authenticator" /> 
+                <input type="submit" name="delete.groups" value="Delete groups" i18n:attributes="value" />
+            </div>
+
+        </form>
 
     </metal:content-core>
-</metal:content-core>
+</metal:content-core>   
 
 </body>
 </html>

@@ -95,7 +95,17 @@ class UserManagement(BrowserView):
                 if user_groups:
                     user_groups = ', '.join(user_groups)
                 else:
-                    user_groups = _(u'no_group')
+                    if 0:
+                    # -- i18ndude hint --
+                        _(u'no_group',
+                          default=u'No Group',)
+                    # / -- i18ndude hint --
+                    # do not use translation messages - translate directly
+                    user_groups = translate(u'no_group',
+                                     domain='ftw.usermanagement',
+                                     context=self.request,
+                                     default=u'No Group')
+
                 group_link = '<a href="./user_membership?userid=%s">%s</a>' % \
                     (t.value, user_groups)
 
@@ -249,7 +259,8 @@ class UserManagement(BrowserView):
         email = member.getProperty('email')
         fullname = member.getProperty('fullname', userid)
         properties = getUtility(IPropertiesTool)
-        site_title = self.context.portal_url.getPortalObject().Title()
+        site_title = self.context.portal_url \
+            .getPortalObject().Title().decode('utf-8')
         contact_email = self.request.get(
             'contact.email',
             properties.email_from_address.decode)
@@ -293,7 +304,9 @@ class UserManagement(BrowserView):
         IStatusMessage(self.request).addStatusMessage(
             _(u'text_usermanagament_user_notified',
                 default=u"User ${fullname} (${email}) has been notified",
-                mapping={'fullname': fullname, 'email': email}),
+                mapping={
+                    'fullname': fullname.decode('utf-8'),
+                    'email': email.decode('utf-8')}),
             type='info')
 
     def get_subject(self, site_title):
