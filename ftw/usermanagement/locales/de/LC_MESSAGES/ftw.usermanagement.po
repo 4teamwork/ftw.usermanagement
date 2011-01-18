@@ -201,7 +201,7 @@ msgstr "Willkommen ${fullname}"
 #. Default: "You should have received or will receive your password in a separate mail"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:23
 msgid "text_usermanagement_mail_info"
-msgstr "Sie sollten über Ihr Passwort bereits erhalten."
+msgstr "Ihr Passwort sollten Sie bereits erhalten haben"
 
 #. Default: "Your password is: ${pw}"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:29

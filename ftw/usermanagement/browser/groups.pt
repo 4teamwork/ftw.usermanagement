@@ -6,7 +6,9 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ftw.usermanagement">
 <body>
+
 <metal:left fill-slot="column_two_slot" />    
+<metal:left fill-slot="column_one_slot" />    
     
 <metal:content-core fill-slot="main">
     <metal:content-core define-macro="main">

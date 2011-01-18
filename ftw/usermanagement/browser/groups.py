@@ -22,8 +22,9 @@ class GroupManagement(BrowserView):
          'column_title': _(u'label_group_title', default='Title'), },
         {'column': 'group_id',
          'column_title': _(u'label_group_id', default='Id'), },
-        {'column': 'group_members',
-         'column_title': _(u'label_group_members', default='Members'), },)
+        # {'column': 'group_members',
+        #  'column_title': _(u'label_group_members', default='Members'), }
+        )
 
 
     template = ViewPageTemplateFile('groups.pt')
