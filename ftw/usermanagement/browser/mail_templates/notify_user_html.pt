@@ -36,7 +36,8 @@
         <br>
         <span i18n:translate="text_usermanagement_after_pw_reset_url">
             Or use this direct link 
-            <a tal:define="url string:${here/portal_url}/Members/${options/username}" 
+            <a tal:define="homeid python:options['username'].replace('@', '-40');
+                           url string:${here/portal_url}/Members/${homeid}" 
                tal:attributes="href url" tal:content="url" i18n:name="home_url" />
             to your "My Account" section and click "Change password". 
         </span>
