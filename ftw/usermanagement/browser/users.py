@@ -85,7 +85,7 @@ class UserManagement(BrowserView):
             # convert to a dict for now, because ftw.table cannot hanndle
             # SimpleTerms
             for t in users_terms:
-                member = self.mtool.getMemberById(t.value)
+                member = self.mtool.getMemberById(t.token)
                 user_groups = []
                 for g in self.groups_by_member(member):
                     groupname = g.getId()
