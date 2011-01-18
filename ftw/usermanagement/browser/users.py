@@ -103,11 +103,11 @@ class UserManagement(BrowserView):
         username = email = self.request.get('email', '')
 
         if not email:
-            errors['email'] = _(u'label_missing_email')
+            errors['email'] = _(u'text_missing_email')
         if not firstname:
-            errors['firstname'] = _(u'label_missing_firstname')
+            errors['firstname'] = _(u'text_missing_firstname')
         if not lastname:
-            errors['lastname'] = _(u'label_missing_lastname')
+            errors['lastname'] = _(u'text_missing_lastname')
 
 
         # check if username is valid

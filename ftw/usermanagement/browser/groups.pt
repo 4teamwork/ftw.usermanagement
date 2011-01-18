@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ftw.usermanagement">
+<body>
+<metal:left fill-slot="column_two_slot" />    
+    
+<metal:content-core fill-slot="main">
+    <metal:content-core define-macro="main">
+
+        <h1 i18n:translate="">Group Management</h1>
+
+        <fieldset>
+            <legend i18n:translate="">Add a new Group</legend>
+            <div class="helpDescription" i18n:translate="help_add_group">
+                ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed
+            </div>
+            <form name="add_group_form" method="POST" 
+                  tal:attributes="action string: ./group_management">
+                <table class="addgrouptable">
+                    <tr>
+                        <th i18n:translate="">ID</th>
+                        <th i18n:translate="">Title</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="group_id" tal:attributes="value context/REQUEST/group_id|nothing"/></td>
+                        <td><input type="text" name="group_title" tal:attributes="value context/REQUEST/group_title|nothing"/></td>
+                        <td><input type="submit" name="add.group" value="Add group" i18n:attributes="value" /></td>
+                    </tr>
+                </table>
+
+                <input tal:replace="structure context/@@authenticator/authenticator" /> 
+            </form>
+        </fieldset>
+
+        <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
+
+        <div id="usertable" tal:content="structure view/render_table">table</div>
+
+    </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

@@ -16,6 +16,16 @@
 
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="group_management"
+        class=".groups.GroupManagement"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        allowed_attributes="render_table"
+        />
+
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         name="user_membership"
         class=".user_membership.UserMembership"
         permission="zope2.ManageUsers"
