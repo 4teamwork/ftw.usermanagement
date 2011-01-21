@@ -28,6 +28,7 @@ setup(name='ftw.usermanagement',
       install_requires=[
           'setuptools',
           'plone.principalsource',
+          'profile-collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
