@@ -192,7 +192,7 @@ class UserManagement(BrowserView):
             username=username,
             firstname=firstname,
             lastname=lastname,
-            fullname='%s %s' % (firstname, lastname),
+            fullname='%s %s' % (lastname, firstname),
             email=email)
 
         # Get given password or generate one
