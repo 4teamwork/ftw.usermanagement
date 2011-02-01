@@ -32,6 +32,15 @@
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"
         />
 
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="user_delete"
+        class=".user_delete.UserDelete"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        />
+
+
 
     <browser:resource
         name="user_group.js"

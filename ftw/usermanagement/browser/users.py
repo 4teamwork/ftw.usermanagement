@@ -19,6 +19,10 @@ def checkbox(item, value):
      return '<input type="checkbox" name="userids:list" value="%s" />' % \
         item['email']
 
+def userpreflink(item, value):
+    url = './@@user-information?userid=%s' % item['email']
+    return '<a href="%s">%s</a>' % (url, item['name'])
+
 class UserManagement(BrowserView):
     """
     A ftw.table based user management view
@@ -27,7 +31,8 @@ class UserManagement(BrowserView):
     columns = (
         {'transform': checkbox},
         {'column': 'name',
-         'column_title': _(u'label_name', default='Name'), },
+         'column_title': _(u'label_name', default='Name'), 
+         'transform': userpreflink},
         {'column': 'email',
          'column_title': _(u'label_email', default='Email'), },
         {'column': 'groups',
@@ -215,7 +220,7 @@ class UserManagement(BrowserView):
             self.context.absolute_url() +
             '/@@user_management?searchstring=' + username)
 
-    def delete_users(self, userids):
+    def     _users(self, userids):
         if not userids:
             return self.template()            
         self.mtool.deleteMembers(userids, delete_memberareas=0, delete_localroles=1, REQUEST=self.request)

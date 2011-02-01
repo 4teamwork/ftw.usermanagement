@@ -5,6 +5,12 @@ Changelog
 1.1
 ---
 
+* Implement editing user by an overlay. 
+[01.02.2011, mathias.leimgruber]
+
+* Ask before really delete a user. 
+  [01.02.2011, mathias.leimgruber]
+
 1.0-devdev (unreleased)
 -----------------------
 

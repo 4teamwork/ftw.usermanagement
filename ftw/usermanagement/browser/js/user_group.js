@@ -1,5 +1,11 @@
 jq(function(){
    
+   function initUserGroupManagement(){
+          initGroupOverlay();
+          editUser();
+          deleteUsers();
+   }
+   
    //Show a overlay with selected and available groups, per user
    function initGroupOverlay(){
        jq.ajaxSetup ({
@@ -27,17 +33,59 @@ jq(function(){
                var api = overlay.data('overlay');
                //reload table
                jq('div#usertable').load('./@@user_management/render_table', function(){
-                   initGroupOverlay();
+                   initUserGroupManagement();
                });
                api.close();
            },
              'closeselector':'[name=form.Cancel]'
        });
    }
-   initGroupOverlay();
-   
+  
+
    function deleteUsers(){
-       
+       jq('[name=delete.user]').bind('click', function(e){
+           e.stopPropagation();
+           e.preventDefault();
+           $form = jq(this).closest('form');
+           var $fakelink = jq('[href*=user_delete]');
+           if (!$fakelink.length)
+               $fakelink = jq('<a style="display:none" href="./user_delete">dfdf</a>');
+           jq(this).after($fakelink);
+           $fakelink.prepOverlay({
+               subtype:'ajax',
+               'closeselector':'[name=form.Cancel]',
+               config:{onBeforeLoad: function(e){
+                   var $overlay = e.target.getOverlay();
+                   var $del_button = jq('[name=form.submitted]', $overlay);
+                   $del_button.bind('click', function(e){
+                       e.stopPropagation();
+                       e.preventDefault();
+                       // Simulate delete button
+                       $form.append('<input type="hidden" name="delete.user" value="1" />');
+                       $form.submit();
+                       $overlay.data('overlay').close();
+                   });
+               }}
+           });
+      // load overlay
+      $fakelink.trigger('click');
+      });
    }
    
+   function editUser(){
+       jq('[href*=user-information]').prepOverlay({
+           subtype:'ajax',
+           formselector:'form.edit-form',
+           closeselector:'[name=form.Cancel]',
+           filter: '#content > *',
+           noform: function(el){
+               jq('div#usertable').load('./@@user_management/render_table', function(){
+                   initUserGroupManagement();
+               });
+               return 'close';
+           }
+       });
+   }
+
+   initUserGroupManagement();
 }); 
