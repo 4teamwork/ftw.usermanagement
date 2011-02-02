@@ -6,7 +6,7 @@ Changelog
 ---
 
 * Implement editing user by an overlay. 
-[01.02.2011, mathias.leimgruber]
+  [01.02.2011, mathias.leimgruber]
 
 * Ask before really delete a user. 
   [01.02.2011, mathias.leimgruber]
