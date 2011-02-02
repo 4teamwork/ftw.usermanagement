@@ -130,7 +130,7 @@ msgstr "Sie müssen kein Passwort angeben, Sie können jederzeit ein neues verse
 #. Default: "Are you sure, that you want to delete the selected user(s)?"
 #: ./ftw/usermanagement/browser/user_delete.pt:3
 msgid "label_delete_user"
-msgstr "Sind Sie sicher, dass die ausgwählten Benutzer löschen möchten?"
+msgstr "Sind Sie sicher, dass Sie die ausgwählten Benutzer löschen möchten?"
 
 #. Default: "Email"
 #: ./ftw/usermanagement/browser/users.py:37
