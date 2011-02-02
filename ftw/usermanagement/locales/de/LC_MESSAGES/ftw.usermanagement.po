@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-18 13:16+0000\n"
+"POT-Creation-Date: 2011-02-02 08:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,22 +12,23 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./ftw/usermanagement/browser/groups.pt:17
+#: ./ftw/usermanagement/browser/groups.pt:19
 msgid "Add a new Group"
 msgstr "Neue Gruppe hinzufügen"
 
-#: ./ftw/usermanagement/browser/users.pt:32
+#: ./ftw/usermanagement/browser/users.pt:33
 msgid "Add a new Member"
 msgstr "Neuer Benutzer hinzufügen"
 
-#: ./ftw/usermanagement/browser/groups.pt:32
+#: ./ftw/usermanagement/browser/groups.pt:34
 msgid "Add group"
 msgstr "Hinzufügen"
 
-#: ./ftw/usermanagement/browser/users.pt:51
+#: ./ftw/usermanagement/browser/users.pt:52
 msgid "Add member"
 msgstr "Hinzufügen"
 
+#: ./ftw/usermanagement/browser/user_delete.pt:10
 #: ./ftw/usermanagement/browser/user_membership.pt:14
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -36,43 +37,55 @@ msgstr "Abbrechen"
 msgid "Changes made."
 msgstr "Änderungen übernommen"
 
-#: ./ftw/usermanagement/browser/users.pt:66
+#: ./ftw/usermanagement/browser/groups.pt:49
+msgid "Delete groups"
+msgstr "Gruppe(n) löschen"
+
+#: ./ftw/usermanagement/browser/users.pt:67
 msgid "Delete user"
 msgstr "Benutzer löschen"
 
-#: ./ftw/usermanagement/browser/users.pt:42
+#: ./ftw/usermanagement/browser/user_delete.pt:9
+msgid "Delete user(s)"
+msgstr "Benutzer löschen"
+
+#: ./ftw/usermanagement/browser/users.pt:43
 msgid "Email"
 msgstr "E-Mail"
 
-#: ./ftw/usermanagement/browser/users.pt:40
+#: ./ftw/usermanagement/browser/users.pt:41
 msgid "Firstname"
 msgstr "Vorname"
 
-#: ./ftw/usermanagement/browser/groups.pt:14
+#: ./ftw/usermanagement/browser/groups.pt:16
 msgid "Group Management"
 msgstr "Gruppenverwaltung"
 
-#: ./ftw/usermanagement/browser/groups.pt:25
+#: ./ftw/usermanagement/browser/groups.py:103
+msgid "Group(s) deleted."
+msgstr "Gruppe(n) wurden gelöscht"
+
+#: ./ftw/usermanagement/browser/groups.pt:27
 msgid "ID"
 msgstr "ID"
 
-#: ./ftw/usermanagement/browser/users.pt:41
+#: ./ftw/usermanagement/browser/users.pt:42
 msgid "Lastname"
 msgstr "Nachname"
 
-#: ./ftw/usermanagement/browser/users.py:226
+#: ./ftw/usermanagement/browser/users.py:241
 msgid "No mailhost defined. contact site Administrator."
 msgstr "Email-Konfiguration fehlerhaft, Bitte kontaktieren Sie den Administrator"
 
-#: ./ftw/usermanagement/browser/users.pt:64
+#: ./ftw/usermanagement/browser/users.pt:65
 msgid "Notify user"
 msgstr "Benutzerinformationen senden (ohne Passwort)"
 
-#: ./ftw/usermanagement/browser/users.pt:65
+#: ./ftw/usermanagement/browser/users.pt:66
 msgid "Notify user and reset password"
 msgstr "Benutzerinformationen senden (mit neuem Passwort)"
 
-#: ./ftw/usermanagement/browser/users.pt:43
+#: ./ftw/usermanagement/browser/users.pt:44
 msgid "Password"
 msgstr "Passwort"
 
@@ -80,116 +93,116 @@ msgstr "Passwort"
 msgid "Save"
 msgstr "Speichern"
 
-#: ./ftw/usermanagement/browser/users.py:151
+#: ./ftw/usermanagement/browser/users.py:166
 msgid "The login name you selected is alreadyin use or is not valid. Please choose another."
 msgstr "Der Benutzername (E-Mail) ist ungültig oder wird bereits verwendet"
 
-#: ./ftw/usermanagement/browser/users.py:144
+#: ./ftw/usermanagement/browser/users.py:159
 msgid "This username is reserved. Please choose a different name."
 msgstr "Dieser Benutzname ist ungültig"
 
-#: ./ftw/usermanagement/browser/groups.pt:26
+#: ./ftw/usermanagement/browser/groups.pt:28
 msgid "Title"
 msgstr "Titel"
 
-#: ./ftw/usermanagement/browser/users.pt:29
+#: ./ftw/usermanagement/browser/users.pt:30
 msgid "User Management"
 msgstr "Benutzerverwaltung"
 
-#: ./ftw/usermanagement/browser/users.py:203
+#: ./ftw/usermanagement/browser/users.py:218
 msgid "User added."
 msgstr "Benutzer hinzugefügt"
 
-#: ./ftw/usermanagement/browser/users.py:158
+#: ./ftw/usermanagement/browser/users.py:173
 msgid "You must enter a valid email address."
 msgstr "Sie müssen eine gültige E-Mail Adresse eingeben."
 
 #. Default: "ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed"
-#: ./ftw/usermanagement/browser/groups.pt:18
+#: ./ftw/usermanagement/browser/groups.pt:20
 msgid "help_add_group"
 msgstr "Die Gruppen ID sollte nur aus a-z, A-Z, 0-9 und '_' bestehen."
 
 #. Default: "If no password is provided, plone will generate one for you"
-#: ./ftw/usermanagement/browser/users.pt:33
+#: ./ftw/usermanagement/browser/users.pt:34
 msgid "help_add_member"
 msgstr "Sie müssen kein Passwort angeben, Sie können jederzeit ein neues versenden."
 
+#. Default: "Are you sure, that you want to delete the selected user(s)?"
+#: ./ftw/usermanagement/browser/user_delete.pt:3
+msgid "label_delete_user"
+msgstr "Sind Sie sicher, dass die ausgwählten Benutzer löschen möchten?"
+
 #. Default: "Email"
-#: ./ftw/usermanagement/browser/users.py:32
+#: ./ftw/usermanagement/browser/users.py:37
 msgid "label_email"
 msgstr "E-Mail"
 
 #. Default: "Id"
-#: ./ftw/usermanagement/browser/groups.py:20
+#: ./ftw/usermanagement/browser/groups.py:24
 msgid "label_group_id"
 msgstr "Id"
 
-#. Default: "Members"
-#: ./ftw/usermanagement/browser/groups.py:22
-msgid "label_group_members"
-msgstr "Bentutzer"
-
 #. Default: "Title"
-#: ./ftw/usermanagement/browser/groups.py:18
+#: ./ftw/usermanagement/browser/groups.py:22
 msgid "label_group_title"
 msgstr "Titel"
 
 #. Default: "Groups"
-#: ./ftw/usermanagement/browser/users.py:34
+#: ./ftw/usermanagement/browser/users.py:39
 msgid "label_groups"
 msgstr "Gruppen"
 
 #. Default: "Name"
-#: ./ftw/usermanagement/browser/users.py:30
+#: ./ftw/usermanagement/browser/users.py:34
 msgid "label_name"
 msgstr "Name"
 
-#: ./ftw/usermanagement/browser/users.py:98
+#. Default: "No Group"
+#: ./ftw/usermanagement/browser/users.py:105
 msgid "no_group"
 msgstr "Kein Gruppen"
 
-#: ./ftw/usermanagement/browser/groups.py:84
+#: ./ftw/usermanagement/browser/groups.py:94
 msgid "text_enter_valid_group_id"
 msgstr "Geben Sie ein gültige Gruppen ID ein"
 
-#: ./ftw/usermanagement/browser/groups.py:79
+#: ./ftw/usermanagement/browser/groups.py:89
 msgid "text_group_created"
 msgstr "Gruppe wurde erstellt"
 
-#: ./ftw/usermanagement/browser/users.py:132
+#: ./ftw/usermanagement/browser/users.py:147
 msgid "text_missing_email"
 msgstr "Bitte geben Sie eine E-Mail Adresse ein."
 
-#: ./ftw/usermanagement/browser/users.py:134
+#: ./ftw/usermanagement/browser/users.py:149
 msgid "text_missing_firstname"
 msgstr "Bitte geben Sie den Vornamen ein"
 
-#: ./ftw/usermanagement/browser/users.py:136
+#: ./ftw/usermanagement/browser/users.py:151
 msgid "text_missing_lastname"
 msgstr "Bitte geben Sie den Nachnamen ein."
 
-#: ./ftw/usermanagement/browser/users.py:212
+#: ./ftw/usermanagement/browser/users.py:227
 msgid "text_user_deleted"
 msgstr "Benutzer wurde(n) gelöscht"
 
 #. Default: "User ${fullname} (${email}) has been notified"
-#: ./ftw/usermanagement/browser/users.py:294
+#: ./ftw/usermanagement/browser/users.py:310
 msgid "text_usermanagament_user_notified"
 msgstr "Der Benutzer ${fullname} (${email}) wurde benachrichtig."
 
 #. Default: "You can change your password in your \"My Account\" section after logging in."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:33
 msgid "text_usermanagement_after_pw_reset"
-msgstr "Sie können Ihr Passwort unter \"Mein Konto\" nach dem Anmelden ändern." 
+msgstr "Sie können Ihr Passwort unter \"Mein Konto\" nach dem Anmelden ändern."
 
 #. Default: "Or use this direct link ${home_url} to your \"My Account\" section and click \"Change password\"."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:39
 msgid "text_usermanagement_after_pw_reset_url"
 msgstr "Oder Sie benutzen den folgenden Link ${home_url}, um direkt in Ihren \"Mein Konto\" Bereich zu gelangen, dort finden Sie den Link \"Passwort ändern\"."
 
-
 #. Default: "If you have any questions, please contact: ${contact_email}"
-#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:48
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:49
 msgid "text_usermanagement_mail_comment"
 msgstr "Ihr Kontakt bei Fragen lautet: ${contact_email}"
 
@@ -219,7 +232,8 @@ msgid "text_usermanagemnt_mail_user_text"
 msgstr "Sie wurde auf der Plattform ${site_title} registriert"
 
 #. Default: "Welcome on ${title}"
-#: ./ftw/usermanagement/browser/users.py:304
+#: ./ftw/usermanagement/browser/users.py:322
 msgid "usermanagement_mail_notification_subjectation_subject"
 msgstr "Willkommen auf der Plattform ${title}"
+
 

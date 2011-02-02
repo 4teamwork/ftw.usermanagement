@@ -220,7 +220,7 @@ class UserManagement(BrowserView):
             self.context.absolute_url() +
             '/@@user_management?searchstring=' + username)
 
-    def     _users(self, userids):
+    def delete_users(self, userids):
         if not userids:
             return self.template()            
         self.mtool.deleteMembers(userids, delete_memberareas=0, delete_localroles=1, REQUEST=self.request)

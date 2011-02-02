@@ -56,6 +56,11 @@ jq(function(){
                'closeselector':'[name=form.Cancel]',
                config:{onBeforeLoad: function(e){
                    var $overlay = e.target.getOverlay();
+                   var $list = jq('ul.userList', $overlay);
+                   jq('input:checked', $form).each(function(i, o){
+                       $list.append('<li'> + jq(o).attr('value') + '</li>');
+                   });
+                   
                    var $del_button = jq('[name=form.submitted]', $overlay);
                    $del_button.bind('click', function(e){
                        e.stopPropagation();

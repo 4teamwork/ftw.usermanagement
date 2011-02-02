@@ -5,13 +5,8 @@
     </h1>
 
     <ul class="userList">
-        <li tal:repeat="user view/users_to_delete">
-            <span tal:replace="user/fullname" />
-        </li>
     </ul>
-    <input tal:replace="structure context/@@authenticator/authenticator" /> 
     <input type="submit" name="form.submitted" value="Delete user(s)" i18n:attributes="value"/>
-
     <input type="submit" name="form.Cancel" value="Cancel" i18n:attributes="value"/>
 
 </form>
