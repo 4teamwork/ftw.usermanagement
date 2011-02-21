@@ -29,6 +29,7 @@ setup(name='ftw.usermanagement',
           'setuptools',
           'plone.principalsource',
           'collective.js.jqueryui',
+          'collective.js.ui.multiselect',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

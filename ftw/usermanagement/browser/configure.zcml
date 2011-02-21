@@ -3,8 +3,8 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="ftw.usermanagement">
-    
-    
+
+
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         name="user_management"
@@ -45,11 +45,6 @@
     <browser:resource
         name="user_group.js"
         file="js/user_group.js"
-        />
-
-    <browser:resource
-        name="ui.multiselect.js"
-        file="js/ui.multiselect.js"
         />
 
     <browser:resource
