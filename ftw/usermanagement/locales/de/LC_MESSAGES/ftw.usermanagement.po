@@ -18,7 +18,7 @@ msgstr "Neue Gruppe hinzufügen"
 
 #: ./ftw/usermanagement/browser/users.pt:33
 msgid "Add a new Member"
-msgstr "Neuer Benutzer hinzufügen"
+msgstr "Neuen Benutzer hinzufügen"
 
 #: ./ftw/usermanagement/browser/groups.pt:34
 msgid "Add group"
@@ -75,7 +75,7 @@ msgstr "Nachname"
 
 #: ./ftw/usermanagement/browser/users.py:241
 msgid "No mailhost defined. contact site Administrator."
-msgstr "Email-Konfiguration fehlerhaft, Bitte kontaktieren Sie den Administrator"
+msgstr "Email-Konfiguration fehlerhaft, bitte kontaktieren Sie den Administrator"
 
 #: ./ftw/usermanagement/browser/users.pt:65
 msgid "Notify user"
@@ -125,7 +125,7 @@ msgstr "Die Gruppen ID sollte nur aus a-z, A-Z, 0-9 und '_' bestehen."
 #. Default: "If no password is provided, plone will generate one for you"
 #: ./ftw/usermanagement/browser/users.pt:34
 msgid "help_add_member"
-msgstr "Sie müssen kein Passwort angeben, Sie können jederzeit ein neues versenden."
+msgstr "Sie müssen kein Passwort angeben, Sie können jederzeit ein Neues versenden."
 
 #. Default: "Are you sure, that you want to delete the selected user(s)?"
 #: ./ftw/usermanagement/browser/user_delete.pt:3
@@ -160,11 +160,11 @@ msgstr "Name"
 #. Default: "No Group"
 #: ./ftw/usermanagement/browser/users.py:105
 msgid "no_group"
-msgstr "Kein Gruppen"
+msgstr "Keine Gruppen"
 
 #: ./ftw/usermanagement/browser/groups.py:94
 msgid "text_enter_valid_group_id"
-msgstr "Geben Sie ein gültige Gruppen ID ein"
+msgstr "Geben Sie eine gültige Gruppen ID ein"
 
 #: ./ftw/usermanagement/browser/groups.py:89
 msgid "text_group_created"
@@ -189,7 +189,7 @@ msgstr "Benutzer wurde(n) gelöscht"
 #. Default: "User ${fullname} (${email}) has been notified"
 #: ./ftw/usermanagement/browser/users.py:310
 msgid "text_usermanagament_user_notified"
-msgstr "Der Benutzer ${fullname} (${email}) wurde benachrichtig."
+msgstr "Der Benutzer ${fullname} (${email}) wurde benachrichtigt."
 
 #. Default: "You can change your password in your \"My Account\" section after logging in."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:33

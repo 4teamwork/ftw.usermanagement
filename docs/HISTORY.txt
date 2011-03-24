@@ -5,6 +5,9 @@ Changelog
 1.3
 ---
 
+* Fixed some typos in translations
+  [24,03.2011, lukas.graf]
+
 * exprted jquery.multiselect to collective.js.ui.multiselect
   [21.02.2011, elio.schmutz]
 
