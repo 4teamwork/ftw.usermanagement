@@ -214,9 +214,9 @@ class UserManagement(BrowserView):
             IStatusMessage(self.request).addStatusMessage(err, type="error")
             return self.template()
 
-        # Create the user's member area
-        members = self.mtool.getMembersFolder()
-        self.mtool.createMemberarea(username)
+        if self.mtool.memberareaCreationFlag:
+            # Create the user's member area
+            self.mtool.createMemberarea(username)
 
         IStatusMessage(self.request).addStatusMessage(
             _(u"User added."), type='info')
