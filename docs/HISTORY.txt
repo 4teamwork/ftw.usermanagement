@@ -5,6 +5,11 @@ Changelog
 1.4
 ---
 
+* #479 Fehler beim versenden von Passwoerter
+  [06.04.2011, elio.schmutz]
+
+* #478 Nummerierung bei user_management hinzufuegen
+  [06.04.2011, elio.schmutz]
 
 1.3
 ---

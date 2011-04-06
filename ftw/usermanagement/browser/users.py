@@ -23,15 +23,18 @@ def userpreflink(item, value):
     url = './@@user-information?userid=%s' % item['email']
     return '<a href="%s">%s</a>' % (url, item['name'])
 
+
 class UserManagement(BrowserView):
     """
     A ftw.table based user management view
     """
 
     columns = (
+        {'column': 'counter',
+         'column_title': _(u'label_nr', default='Nr.'),},
         {'transform': checkbox},
         {'column': 'name',
-         'column_title': _(u'label_name', default='Name'), 
+         'column_title': _(u'label_name', default='Name'),
          'transform': userpreflink},
         {'column': 'email',
          'column_title': _(u'label_email', default='Email'), },
@@ -54,12 +57,12 @@ class UserManagement(BrowserView):
     def __call__(self):
         if self.request.get('add_member_form', ''):
             return self.validate_registration()
-            
-            
+
+
         userids = self.request.get('userids', [])
         if self.request.get('delete.user', False):
             return self.delete_users(userids)
-        
+
         if self.request.get('notify.users'):
             for userid in userids:
                 self.send_user_notification(userid)
@@ -67,7 +70,7 @@ class UserManagement(BrowserView):
         if self.request.get('notify.users.password'):
             for userid in userids:
                 self.send_user_notification(userid, reset_pw=True)
-        
+
         return self.template()
 
     def render_table(self):
@@ -89,7 +92,7 @@ class UserManagement(BrowserView):
             users_terms = factory(context)
             # convert to a dict for now, because ftw.table cannot hanndle
             # SimpleTerms
-            for t in users_terms:
+            for index, t in enumerate(users_terms):
                 member = self.mtool.getMemberById(t.token)
                 user_groups = []
                 for g in self.groups_by_member(member):
@@ -115,10 +118,12 @@ class UserManagement(BrowserView):
                     (t.value, user_groups)
 
                 userinfo = dict(
+                    counter = index+1,
                     name = t.title,
                     email = t.value,
                     groups = group_link)
                 users.append(userinfo)
+
         return users
 
     def groups_by_member(self, userid):
@@ -226,7 +231,7 @@ class UserManagement(BrowserView):
 
     def delete_users(self, userids):
         if not userids:
-            return self.template()            
+            return self.template()
         self.mtool.deleteMembers(userids, delete_memberareas=0, delete_localroles=1, REQUEST=self.request)
         msg = _(u'text_user_deleted')
         IStatusMessage(self.request).addStatusMessage(msg, type="info")
@@ -245,7 +250,7 @@ class UserManagement(BrowserView):
                 _(
                     u'No mailhost defined. contact site Administrator.'),
                     type='error')
-        
+
         pw = None
         if reset_pw:
             rolemakers = self.acl_users.plugins.listPlugins(IRolesPlugin)
@@ -256,7 +261,7 @@ class UserManagement(BrowserView):
                     rolemaker.getRolesForPrincipal(
                         self.acl_users.getUserById(username)))
 
-            
+
             pw = self.registration.generatePassword()
             self.acl_users.userFolderEditUser(
                 username,
@@ -274,11 +279,11 @@ class UserManagement(BrowserView):
             'contact.email',
             properties.email_from_address.decode)
         # prepare from address for header
-        header_from = Header(properties.email_from_name.decode('utf-8'),
-                             'iso-8859-1')
+        header_from = Header(properties.email_from_name.encode('utf-8'),
+                             'utf-8')
         header_from.append(u'<%s>' % properties.email_from_address.
-                           decode('utf-8'),
-                           'iso-8859-1')
+                           encode('utf-8'),
+                           'utf-8')
         # get subject
         header_subject = Header(
             unicode(self.get_subject(site_title)), 'iso-8859-1')
