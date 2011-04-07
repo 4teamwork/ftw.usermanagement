@@ -5,6 +5,11 @@
     i18n_domain="ftw.usermanagement">
 
 
+    <adapter
+        for="ftw.usermanagement.browser.users.IUserTabSourceConfig
+             *"
+        factory="ftw.usermanagement.browser.users.UserTabSource" />
+
 	<!-- tabbed user/groups management -->
     <browser:page
         for="plone.app.layout.navigation.interfaces.INavigationRoot"

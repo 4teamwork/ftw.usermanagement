@@ -13,6 +13,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from zope.i18n import translate
 from Products.PluggableAuthService.interfaces.plugins import IRolesPlugin
+from ftw.tabbedview.browser.listing import ListingView
+from ftw.table.basesource import BaseTableSource
+from ftw.table.interfaces import ITableSourceConfig
+from zope.interface import implements
 
 
 def checkbox(item, value):
@@ -24,10 +28,15 @@ def userpreflink(item, value):
     return '<a href="%s">%s</a>' % (url, item['name'])
 
 
-class UserManagement(BrowserView):
+class IUserTabSourceConfig(ITableSourceConfig):
+    """Marker interface for a TableSourceConfig interface"""
+
+
+class UserManagement(ListingView):
     """
     A ftw.table based user management view
     """
+    implements(IUserTabSourceConfig)
 
     columns = (
         {'column': 'counter',
@@ -340,3 +349,15 @@ class UserManagement(BrowserView):
                          context=self.request,
                          default=u'Welcome on ${title}',
                          mapping=dict(title=site_title))
+
+
+class UserTabSource(BaseTableSource):
+    """"""
+
+    def validate_base_query(self, query):
+
+        # results = list(SharingHelpers.get_Items())
+        return query
+
+    def search_results(self, results):
+        return results
