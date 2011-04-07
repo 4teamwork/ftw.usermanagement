@@ -23,6 +23,18 @@ def userpreflink(item, value):
     url = './@@user-information?userid=%s' % item['email']
     return '<a href="%s">%s</a>' % (url, item['name'])
 
+def helper_index(item, value):
+    """return a integer. always you run this method
+    the returned var is incremented by 1
+    """
+
+    return counter()
+
+def counter(static={'count':0}):
+    """counter method"""
+
+    static["count"]+=1
+    return static["count"]
 
 class UserManagement(BrowserView):
     """
@@ -31,7 +43,8 @@ class UserManagement(BrowserView):
 
     columns = (
         {'column': 'counter',
-         'column_title': _(u'label_nr', default='Nr.'),},
+         'column_title': _(u'label_nr', default='Nr.'),
+         'transform': helper_index,},
         {'transform': checkbox},
         {'column': 'name',
          'column_title': _(u'label_name', default='Name'),
@@ -90,9 +103,10 @@ class UserManagement(BrowserView):
 
         if factory:
             users_terms = factory(context)
+
             # convert to a dict for now, because ftw.table cannot hanndle
             # SimpleTerms
-            for index, t in enumerate(users_terms):
+            for t in users_terms:
                 member = self.mtool.getMemberById(t.token)
                 user_groups = []
                 for g in self.groups_by_member(member):
@@ -118,7 +132,6 @@ class UserManagement(BrowserView):
                     (t.value, user_groups)
 
                 userinfo = dict(
-                    counter = index+1,
                     name = t.title,
                     email = t.value,
                     groups = group_link)
