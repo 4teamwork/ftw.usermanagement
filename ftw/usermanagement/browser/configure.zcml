@@ -5,18 +5,29 @@
     i18n_domain="ftw.usermanagement">
 
 
+	<!-- tabbed user/groups management -->
+    <browser:page
+        for="plone.app.layout.navigation.interfaces.INavigationRoot"
+        name="tabbed_view"
+        class=".tabbed_management.ManagementTabbedView"
+        permission="zope2.View"
+        allowed_attributes="listing select_all reorder"
+        />
+
+
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="user_management"
+        name="tabbedview_view-user_management"
         class=".users.UserManagement"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"
         allowed_attributes="validate_registration render_table"
         />
 
+
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="group_management"
+        name="tabbedview_view-group_management"
         class=".groups.GroupManagement"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"
