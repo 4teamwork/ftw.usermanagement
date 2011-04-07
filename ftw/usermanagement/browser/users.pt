@@ -1,31 +1,3 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="ftw.usermanagement">
-<body>
-    <head>
-    <metal:js fill-slot="javascript_head_slot">
-        <script type="text/javascript" src="++resource++user_group.js"
-                tal:attributes="src string:${portal_url}/++resource++user_group.js"></script>
-    </metal:js>
-    <metal:css fill-slot="style_slot">
-        <link href="++resource++ui.multiselect.css"
-              rel="stylesheet"
-              type="text/css"
-              tal:attributes="href string:$portal_url/++resource++ui.multiselect.css" />
-    </metal:css>
-    </head>
-    
-<metal:left fill-slot="column_two_slot" />
-<metal:left fill-slot="column_one_slot" />
-
-<metal:content-core fill-slot="main">
-    <metal:content-core define-macro="main">
-
-        <h1 i18n:translate="">User Management</h1>
 
         <fieldset>
             <legend i18n:translate="">Add a new Member</legend>
@@ -65,8 +37,3 @@
             <input class="allowMultiSubmit" type="submit" name="delete.user" value="Delete user" i18n:attributes="value" />
         </div>
         </form>
-    </metal:content-core>
-</metal:content-core>
-
-</body>
-</html>

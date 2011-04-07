@@ -39,6 +39,13 @@
         allowed_attributes="render_table"
         />
 
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="simple_user"
+        class=".simple_user.UserManagement"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        />
 
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"

@@ -2,7 +2,6 @@ from ftw.table.interfaces import ITableGenerator
 from ftw.usermanagement import user_management_factory as _
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from zope import schema
@@ -53,9 +52,13 @@ class UserManagement(ListingView):
 
     field_names = ['firstname', 'lastname', 'email', 'password']
 
+    batching_enabled = True
+    batching_size = 3
+
     template = ViewPageTemplateFile('users.pt')
 
     def __init__(self, context, request):
+        super(UserManagement, self).__init__(context, request)
         self.context = context
         self.request = request
 
@@ -64,7 +67,7 @@ class UserManagement(ListingView):
         self.mtool = getToolByName(self, 'portal_membership')
         self.registration = getToolByName(self.context, 'portal_registration')
 
-    def __call__(self):
+    def __call__(self, *args, **kwargs):
         if self.request.get('add_member_form', ''):
             return self.validate_registration()
 
@@ -81,6 +84,11 @@ class UserManagement(ListingView):
             for userid in userids:
                 self.send_user_notification(userid, reset_pw=True)
 
+        #ftw.tabbedview
+        if self.table_options is None:
+            self.table_options = {}
+
+        self.update()
         return self.template()
 
     def render_table(self):
@@ -89,7 +97,27 @@ class UserManagement(ListingView):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
         return generator.generate(self.users, self.columns, sortable = True)
 
-    @property
+
+    # def search(self, kwargs):
+    #     search = kwargs.get('SearchableText', None)
+    #     if search:
+    #         search = search.lower()
+    #
+    #     self.contents = self.get_items()
+    #
+    #     if search:
+    #
+    #         def filter_(item):
+    #             searchable = ' '.join((item['name'], item['mail'])).lower()
+    #             return search in searchable
+    #
+    #         self.contents = filter(filter_, self.contents)
+    #     self.len_results = len(self.contents)
+
+    def get_base_query(self):
+        query = self.users()
+        return query
+
     def users(self):
         context = self.context
         users = []
