@@ -19,6 +19,18 @@
         allowed_attributes="listing select_all reorder"
         />
 
+	    <!-- <adapter
+	        for=".simple_user.ISimpleSourceConfig
+	             *"
+	        factory=".simple_user.SimpleTableSource" /> -->
+
+	    <browser:page
+	        for="plone.app.layout.navigation.interfaces.INavigationRoot"
+	        name="simple_tabbed_view"
+	        class=".simple_tabbed_user.ManagementTabbedView"
+	        permission="zope2.View"
+	        allowed_attributes="listing select_all reorder"
+	        />
 
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
@@ -41,7 +53,7 @@
 
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="simple_user"
+        name="tabbedview_view-simple_user"
         class=".simple_user.UserManagement"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"

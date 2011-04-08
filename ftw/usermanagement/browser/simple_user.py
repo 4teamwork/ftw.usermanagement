@@ -7,6 +7,8 @@ from zope.component import queryUtility, getUtility
 from zope.i18n import translate
 from ftw.tabbedview.browser.listing import ListingView
 from Products.Five.browser import BrowserView
+from ftw.table.interfaces import ITableSource
+from ftw.table.basesource import BaseTableSource
 
 def checkbox(item, value):
      return '<input type="checkbox" name="userids:list" value="%s" />' % \
@@ -17,7 +19,7 @@ def userpreflink(item, value):
     return '<a href="%s">%s</a>' % (url, item['name'])
 
 
-class UserManagement(BrowserView):
+class UserManagement(ListingView):
     """
     A ftw.table based user management view
     """
@@ -47,17 +49,16 @@ class UserManagement(BrowserView):
         self.gtool = getToolByName(self, 'portal_groups')
         self.mtool = getToolByName(self, 'portal_membership')
         self.registration = getToolByName(self.context, 'portal_registration')
+        self.pagenumber = 1
+        self.pagesize = 4
+        self.sort_order = 'asc'
+        self.contents = self.users()
+        self.sortable = True
 
     def __call__(self, *args, **kwargs):
 
 
         return self.template()
-
-    def render_table(self):
-        """Renders a table usfing ftw.table"""
-
-        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
-        return generator.generate(self.users, self.columns, sortable = True)
 
     def users(self):
         context = self.context
@@ -112,3 +113,15 @@ class UserManagement(BrowserView):
         groupResults.sort(
             key=lambda x: x is not None and x.getGroupTitleOrName().lower())
         return filter(None, groupResults)
+
+
+# class SimpleTableSource(BaseTableSource):
+#
+#
+#     def validate_base_query(self, query):
+#
+#         # results = list(SharingHelpers.get_Items())
+#         return query
+#
+#     def search_results(self, results):
+#         return results

@@ -2,7 +2,7 @@
 <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
 
 <form action="./user_management" method="POST">
-    <div id="usertable" tal:content="structure view/render_table">table</div>
+    <div id="usertable" tal:content="structure view/render_listing">table</div>
 
 <div class="formControls">
     <input tal:replace="structure context/@@authenticator/authenticator" /> 
