@@ -1,4 +1,3 @@
-from ftw.table.interfaces import ITableGenerator
 from ftw.usermanagement import user_management_factory as _
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -6,9 +5,10 @@ from zope import schema
 from zope.component import queryUtility, getUtility
 from zope.i18n import translate
 from ftw.tabbedview.browser.listing import ListingView
-from Products.Five.browser import BrowserView
-from ftw.table.interfaces import ITableSource
+from ftw.table.interfaces import ITableSource, ITableSourceConfig
 from ftw.table.basesource import BaseTableSource
+from zope.interface import implements
+
 
 def checkbox(item, value):
      return '<input type="checkbox" name="userids:list" value="%s" />' % \
@@ -19,10 +19,14 @@ def userpreflink(item, value):
     return '<a href="%s">%s</a>' % (url, item['name'])
 
 
+class ISimpleSourceConfig(ITableSourceConfig):
+    """Marker interface for a TableSourceConfig interface"""
+
 class UserManagement(ListingView):
     """
     A ftw.table based user management view
     """
+    implements(ISimpleSourceConfig)
 
     columns = (
         {'column': 'counter',
@@ -57,7 +61,7 @@ class UserManagement(ListingView):
 
     def __call__(self, *args, **kwargs):
 
-
+        self.update()
         return self.template()
 
     def users(self):
@@ -115,13 +119,19 @@ class UserManagement(ListingView):
         return filter(None, groupResults)
 
 
-# class SimpleTableSource(BaseTableSource):
-#
-#
-#     def validate_base_query(self, query):
-#
-#         # results = list(SharingHelpers.get_Items())
-#         return query
-#
-#     def search_results(self, results):
-#         return results
+    def get_base_query(self):
+        query = self.users()
+        return query
+
+
+
+class SimpleTableSource(BaseTableSource):
+
+
+    def validate_base_query(self, query):
+
+        # results = list(SharingHelpers.get_Items())
+        return query
+
+    def search_results(self, results):
+        return results

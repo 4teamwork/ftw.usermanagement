@@ -19,10 +19,10 @@
         allowed_attributes="listing select_all reorder"
         />
 
-	    <!-- <adapter
-	        for=".simple_user.ISimpleSourceConfig
-	             *"
-	        factory=".simple_user.SimpleTableSource" /> -->
+    <adapter
+       for=".simple_user.ISimpleSourceConfig
+             *"
+       factory=".simple_user.SimpleTableSource" />
 
 	    <browser:page
 	        for="plone.app.layout.navigation.interfaces.INavigationRoot"
