@@ -5,10 +5,10 @@ from zope import schema
 from zope.component import queryUtility, getUtility
 from zope.i18n import translate
 from ftw.tabbedview.browser.listing import ListingView
-from ftw.table.interfaces import ITableSource, ITableSourceConfig
+from ftw.table.interfaces import ITableSourceConfig
 from ftw.table.basesource import BaseTableSource
 from zope.interface import implements
-from operator import itemgetter
+
 
 def checkbox(item, value):
      return '<input type="checkbox" name="userids:list" value="%s" />' % \
@@ -114,21 +114,6 @@ class UserManagement(ListingView):
             key=lambda x: x is not None and x.getGroupTitleOrName().lower())
         return filter(None, groupResults)
 
-    def search(self, kwargs):
-        search = kwargs.get('SearchableText', None)
-        if search:
-            search = search.lower()
-
-        self.contents = self.users()
-
-        if search:
-
-            def filter_(item):
-                searchable = ' '.join((item['name'], item['mail'])).lower()
-                return search in searchable
-
-            self.contents = filter(filter_, self.contents)
-        self.len_results = len(self.contents)
 
     def get_base_query(self):
         query = self.users()
@@ -140,10 +125,15 @@ class UserManagement(ListingView):
 
     def _custom_sort_method(self, results, sort_on, sort_reverse):
 
-        results.sort(key=itemgetter(sort_on))
-
+        results.sort(
+            lambda x, y: cmp(
+                str(x.get(sort_on,'')).lower(), str(y.get(sort_on,'')).lower()))
         if sort_reverse:
             results.reverse()
+
+        #add static numbers
+        for index, result in enumerate(results):
+            result['counter'] = index + 1
 
         return results
 
@@ -154,4 +144,12 @@ class SimpleTableSource(BaseTableSource):
         return query
 
     def search_results(self, results):
+
+        search = self.config.filter_text.lower()
+
+        if search:
+            def filter_(item):
+                searchable = ' '.join((item['name'], item['email'])).lower()
+                return search in searchable
+            return filter(filter_, results)
         return results
