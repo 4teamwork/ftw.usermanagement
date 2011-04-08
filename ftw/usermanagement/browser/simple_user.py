@@ -8,7 +8,7 @@ from ftw.tabbedview.browser.listing import ListingView
 from ftw.table.interfaces import ITableSource, ITableSourceConfig
 from ftw.table.basesource import BaseTableSource
 from zope.interface import implements
-
+from operator import itemgetter
 
 def checkbox(item, value):
      return '<input type="checkbox" name="userids:list" value="%s" />' % \
@@ -54,10 +54,11 @@ class UserManagement(ListingView):
         self.mtool = getToolByName(self, 'portal_membership')
         self.registration = getToolByName(self.context, 'portal_registration')
         self.pagenumber = 1
-        self.pagesize = 4
-        self.sort_order = 'asc'
+        self.pagesize = 5
+        self.sort_order = 'ASC'
         self.contents = self.users()
         self.sortable = True
+        self.sort_on = 'name'
 
     def users(self):
         context = self.context
@@ -119,7 +120,7 @@ class UserManagement(ListingView):
             search = search.lower()
 
         self.contents = self.users()
-        import pdb; pdb.set_trace( )
+
         if search:
 
             def filter_(item):
@@ -137,12 +138,19 @@ class UserManagement(ListingView):
 
         return self.batching()
 
+    def _custom_sort_method(self, results, sort_on, sort_reverse):
+
+        results.sort(key=itemgetter(sort_on))
+
+        if sort_reverse:
+            results.reverse()
+
+        return results
+
 class SimpleTableSource(BaseTableSource):
 
 
     def validate_base_query(self, query):
-
-        # results = list(SharingHelpers.get_Items())
         return query
 
     def search_results(self, results):
