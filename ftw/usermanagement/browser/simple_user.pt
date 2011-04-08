@@ -2,6 +2,7 @@
 <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
 
 <form action="./user_management" method="POST">
+	<div id="batch_navigation" tal:content="structure view/batching">table</div>
     <div id="usertable" tal:content="structure view/render_listing">table</div>
 
 <div class="formControls">

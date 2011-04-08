@@ -59,11 +59,6 @@ class UserManagement(ListingView):
         self.contents = self.users()
         self.sortable = True
 
-    def __call__(self, *args, **kwargs):
-
-        self.update()
-        return self.template()
-
     def users(self):
         context = self.context
         users = []
@@ -118,12 +113,29 @@ class UserManagement(ListingView):
             key=lambda x: x is not None and x.getGroupTitleOrName().lower())
         return filter(None, groupResults)
 
+    def search(self, kwargs):
+        search = kwargs.get('SearchableText', None)
+        if search:
+            search = search.lower()
+
+        self.contents = self.users()
+        import pdb; pdb.set_trace( )
+        if search:
+
+            def filter_(item):
+                searchable = ' '.join((item['name'], item['mail'])).lower()
+                return search in searchable
+
+            self.contents = filter(filter_, self.contents)
+        self.len_results = len(self.contents)
 
     def get_base_query(self):
         query = self.users()
         return query
 
+    def batch_template(self):
 
+        return self.batching()
 
 class SimpleTableSource(BaseTableSource):
 
