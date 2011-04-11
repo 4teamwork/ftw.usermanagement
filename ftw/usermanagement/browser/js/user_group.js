@@ -32,9 +32,8 @@ jq(function(){
            afterpost: function(el, overlay){
                var api = overlay.data('overlay');
                //reload table
-               jq('div#usertable').load('./@@tabbedview/render_listing', function(){
-                   initUserGroupManagement();
-               });
+               tabbedview.reload_view();
+               initUserGroupManagement();
                api.close();
            },
              'closeselector':'[name=form.Cancel]'

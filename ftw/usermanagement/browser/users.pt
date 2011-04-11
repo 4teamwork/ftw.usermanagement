@@ -1,17 +1,5 @@
-
-    <!-- <head>
- 
-        <script type="text/javascript" src="++resource++user_group.js"
-                tal:attributes="src string:${portal_url}/++resource++user_group.js"></script>
-       <script type="text/javascript" src="++resource++ui.multiselect.js"
-                tal:attributes="src string:${portal_url}/++resource++ui.multiselect.js"></script>
- 
-        <link href="++resource++ui.multiselect.css"
-              rel="stylesheet"
-              type="text/css"
-              tal:attributes="href string:${portal_url}/++resource++ui.multiselect.css" />
-
-    </head> -->
+<script type="text/javascript" src="++resource++user_group.js"
+      tal:attributes="src string:${context/absolute_url}/++resource++user_group.js"></script>
 <fieldset>
     <legend i18n:translate="">Add a new Member</legend>
     <div class="helpDescription" i18n:translate="help_add_member">

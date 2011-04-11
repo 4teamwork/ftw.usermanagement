@@ -74,7 +74,6 @@ class UserManagement(ListingView):
         if self.request.get('add_member_form', ''):
             return self.validate_registration()
 
-        import pdb; pdb.set_trace( )
         userids = self.request.get('userids', [])
         if self.request.get('delete.user', False):
             return self.delete_users(userids)
@@ -248,7 +247,7 @@ class UserManagement(ListingView):
             '/@@user_management?searchstring=' + username)
 
     def delete_users(self, userids):
-        import pdb; pdb.set_trace( )
+
         if not userids:
             return self.template()
         self.mtool.deleteMembers(userids, delete_memberareas=0, delete_localroles=1, REQUEST=self.request)
