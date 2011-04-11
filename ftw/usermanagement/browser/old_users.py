@@ -1,33 +1,33 @@
+from ftw.table.interfaces import ITableGenerator
 from ftw.usermanagement import user_management_factory as _
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope import schema
-from zope.component import getUtility
-from zope.i18n import translate
-from ftw.tabbedview.browser.listing import ListingView
-from ftw.table.interfaces import ITableSourceConfig
-from ftw.table.basesource import BaseTableSource
-from zope.interface import implements
-from Products.CMFCore.interfaces import ISiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
+from zope import schema
+from zope.component import queryUtility, getUtility
 from Products.CMFCore.interfaces import IPropertiesTool
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from zope.i18n import translate
 from Products.PluggableAuthService.interfaces.plugins import IRolesPlugin
+from ftw.tabbedview.browser.listing import ListingView
+from ftw.table.basesource import BaseTableSource
+from ftw.table.interfaces import ITableSourceConfig
+from zope.interface import implements
 
 
 def checkbox(item, value):
-    return '<input type="checkbox" name="userids:list" value="%s" />' % \
+     return '<input type="checkbox" name="userids:list" value="%s" />' % \
         item['email']
-
 
 def userpreflink(item, value):
     url = './@@user-information?userid=%s' % item['email']
     return '<a href="%s">%s</a>' % (url, item['name'])
 
 
-class IUsersSourceConfig(ITableSourceConfig):
+class IUserTabSourceConfig(ITableSourceConfig):
     """Marker interface for a TableSourceConfig interface"""
 
 
@@ -35,7 +35,7 @@ class UserManagement(ListingView):
     """
     A ftw.table based user management view
     """
-    implements(IUsersSourceConfig)
+    implements(IUserTabSourceConfig)
 
     columns = (
         {'column': 'counter',
@@ -50,6 +50,10 @@ class UserManagement(ListingView):
         {'column': 'groups',
          'column_title': _(u'label_groups', default='Groups'), })
 
+    field_names = ['firstname', 'lastname', 'email', 'password']
+
+    batching_enabled = True
+    batching_size = 3
 
     template = ViewPageTemplateFile('users.pt')
 
@@ -62,19 +66,12 @@ class UserManagement(ListingView):
         self.gtool = getToolByName(self, 'portal_groups')
         self.mtool = getToolByName(self, 'portal_membership')
         self.registration = getToolByName(self.context, 'portal_registration')
-        self.pagenumber = 1
-        self.pagesize = 5
-        self.sort_order = 'ASC'
-        self.contents = self.users()
-        self.sortable = True
-        self.sort_on = 'name'
 
     def __call__(self, *args, **kwargs):
-
         if self.request.get('add_member_form', ''):
             return self.validate_registration()
 
-        import pdb; pdb.set_trace( )
+
         userids = self.request.get('userids', [])
         if self.request.get('delete.user', False):
             return self.delete_users(userids)
@@ -87,11 +84,39 @@ class UserManagement(ListingView):
             for userid in userids:
                 self.send_user_notification(userid, reset_pw=True)
 
+        #ftw.tabbedview
         if self.table_options is None:
             self.table_options = {}
 
         self.update()
         return self.template()
+
+    def render_table(self):
+        """Renders a table usfing ftw.table"""
+
+        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+        return generator.generate(self.users, self.columns, sortable = True)
+
+
+    # def search(self, kwargs):
+    #     search = kwargs.get('SearchableText', None)
+    #     if search:
+    #         search = search.lower()
+    #
+    #     self.contents = self.get_items()
+    #
+    #     if search:
+    #
+    #         def filter_(item):
+    #             searchable = ' '.join((item['name'], item['mail'])).lower()
+    #             return search in searchable
+    #
+    #         self.contents = filter(filter_, self.contents)
+    #     self.len_results = len(self.contents)
+
+    def get_base_query(self):
+        query = self.users()
+        return query
 
     def users(self):
         context = self.context
@@ -120,7 +145,7 @@ class UserManagement(ListingView):
                     if 0:
                     # -- i18ndude hint --
                         _(u'no_group',
-                          default=u'No Group')
+                          default=u'No Group',)
                     # / -- i18ndude hint --
                     # do not use translation messages - translate directly
                     user_groups = translate(u'no_group',
@@ -146,10 +171,6 @@ class UserManagement(ListingView):
         groupResults.sort(
             key=lambda x: x is not None and x.getGroupTitleOrName().lower())
         return filter(None, groupResults)
-
-    def get_base_query(self):
-        query = self.users()
-        return query
 
     def validate_registration(self):
         """Copied from plone.app.user.browser.register."""
@@ -248,7 +269,6 @@ class UserManagement(ListingView):
             '/@@user_management?searchstring=' + username)
 
     def delete_users(self, userids):
-        import pdb; pdb.set_trace( )
         if not userids:
             return self.template()
         self.mtool.deleteMembers(userids, delete_memberareas=0, delete_localroles=1, REQUEST=self.request)
@@ -359,35 +379,13 @@ class UserManagement(ListingView):
                          mapping=dict(title=site_title))
 
 
-    def _custom_sort_method(self, results, sort_on, sort_reverse):
-
-        results.sort(
-            lambda x, y: cmp(
-                str(x.get(sort_on, '')).lower(),
-                str(y.get(sort_on, '')).lower()))
-        if sort_reverse:
-            results.reverse()
-
-        #add static numbers
-        for index, result in enumerate(results):
-            result['counter'] = index + 1
-
-        return results
-
-
-class UsersTableSource(BaseTableSource):
+class UserTabSource(BaseTableSource):
+    """"""
 
     def validate_base_query(self, query):
+
+        # results = list(SharingHelpers.get_Items())
         return query
 
     def search_results(self, results):
-
-        search = self.config.filter_text.lower()
-
-        if search:
-
-            def filter_(item):
-                searchable = ' '.join((item['name'], item['email'])).lower()
-                return search in searchable
-            return filter(filter_, results)
         return results

@@ -32,7 +32,7 @@ jq(function(){
            afterpost: function(el, overlay){
                var api = overlay.data('overlay');
                //reload table
-               jq('div#usertable').load('./@@user_management/render_table', function(){
+               jq('div#usertable').load('./@@tabbedview/render_listing', function(){
                    initUserGroupManagement();
                });
                api.close();

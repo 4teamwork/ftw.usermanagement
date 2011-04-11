@@ -6,6 +6,5 @@ class ManagementTabbedView(TabbedView):
 
     def get_tabs(self):
         """Returns a list of dicts containing the tabs definitions"""
-        return [{'id':'user_management', 'class':''},
-                {'id':'groups_management','class':''},
+        return [{'id':'users', 'class':''},
                ]

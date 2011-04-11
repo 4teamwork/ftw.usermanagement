@@ -1,39 +1,54 @@
 
-        <fieldset>
-            <legend i18n:translate="">Add a new Member</legend>
-            <div class="helpDescription" i18n:translate="help_add_member">
-                If no password is provided, plone will generate one for you
-            </div>
-            <form name="add_member_form" method="POST" 
-                  tal:attributes="action string: ./user_management/validate_registration">
-                <table class="addusertable">
-                    <tr>
-                        <th i18n:translate="">Firstname</th>
-                        <th i18n:translate="">Lastname</th>
-                        <th i18n:translate="">Email</th>
-                        <th i18n:translate="">Password</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="firstname" tal:attributes="value context/REQUEST/firstname|nothing"/></td>
-                        <td><input type="text" name="lastname" tal:attributes="value context/REQUEST/lastname|nothing"/></td>
-                        <td><input type="text" name="email" tal:attributes="value context/REQUEST/email|nothing"/></td>
-                        <td><input type="text" name="password" /></td>
-                        <td><input type="submit" name="add" value="Add member" i18n:attributes="value" /></td>
-                    </tr>
-                </table>
-                <input tal:replace="structure context/@@authenticator/authenticator" /> 
-            </form>
-        </fieldset>
-        <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
+    <!-- <head>
+ 
+        <script type="text/javascript" src="++resource++user_group.js"
+                tal:attributes="src string:${portal_url}/++resource++user_group.js"></script>
+       <script type="text/javascript" src="++resource++ui.multiselect.js"
+                tal:attributes="src string:${portal_url}/++resource++ui.multiselect.js"></script>
+ 
+        <link href="++resource++ui.multiselect.css"
+              rel="stylesheet"
+              type="text/css"
+              tal:attributes="href string:${portal_url}/++resource++ui.multiselect.css" />
 
-        <form action="./user_management" method="POST">
-            <div id="usertable" tal:content="structure view/render_table">table</div>
-        
-        <div class="formControls">
-            <input tal:replace="structure context/@@authenticator/authenticator" /> 
-            <input type="submit" name="notify.users" value="Notify user" i18n:attributes="value" />
-            <input type="submit" name="notify.users.password" value="Notify user and reset password" i18n:attributes="value" />
-            <input class="allowMultiSubmit" type="submit" name="delete.user" value="Delete user" i18n:attributes="value" />
-        </div>
-        </form>
+    </head> -->
+<fieldset>
+    <legend i18n:translate="">Add a new Member</legend>
+    <div class="helpDescription" i18n:translate="help_add_member">
+        If no password is provided, plone will generate one for you
+    </div>
+    <form name="add_member_form" method="POST" 
+          tal:attributes="action string: ./tabbed_view/validate_registration">
+        <table class="addusertable">
+            <tr>
+                <th i18n:translate="">Firstname</th>
+                <th i18n:translate="">Lastname</th>
+                <th i18n:translate="">Email</th>
+                <th i18n:translate="">Password</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="firstname" tal:attributes="value context/REQUEST/firstname|nothing"/></td>
+                <td><input type="text" name="lastname" tal:attributes="value context/REQUEST/lastname|nothing"/></td>
+                <td><input type="text" name="email" tal:attributes="value context/REQUEST/email|nothing"/></td>
+                <td><input type="text" name="password" /></td>
+                <td><input type="submit" name="add" value="Add member" i18n:attributes="value" /></td>
+            </tr>
+        </table>
+        <input tal:replace="structure context/@@authenticator/authenticator" /> 
+    </form>
+</fieldset>
+
+<tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
+
+<form action="./tabbed_view" method="POST">
+	<div id="batch_navigation" tal:content="structure view/batching">table</div>
+    <div id="usertable" tal:content="structure view/render_listing">table</div>
+
+<div class="formControls">
+    <input tal:replace="structure context/@@authenticator/authenticator" /> 
+    <input type="submit" name="notify.users" value="Notify user" i18n:attributes="value" />
+    <input type="submit" name="notify.users.password" value="Notify user and reset password" i18n:attributes="value" />
+    <input class="allowMultiSubmit" type="submit" name="delete.user" value="Delete user" i18n:attributes="value" />
+</div>
+</form>
