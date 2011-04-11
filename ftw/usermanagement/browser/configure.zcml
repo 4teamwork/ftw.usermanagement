@@ -4,7 +4,6 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="ftw.usermanagement">
 
-
     <adapter
        for=".users.IUsersSourceConfig
              *"

@@ -71,8 +71,8 @@ class UserManagement(ListingView):
 
     def __call__(self, *args, **kwargs):
 
-        if self.request.get('add_member_form', ''):
-            return self.validate_registration()
+        if self.request.get('action', '') == "add":
+            self.validate_registration()
 
         userids = self.request.get('userids', [])
         if self.request.get('delete.user', False):
@@ -90,6 +90,7 @@ class UserManagement(ListingView):
             self.table_options = {}
 
         self.update()
+
         return self.template()
 
     def users(self):
@@ -200,7 +201,7 @@ class UserManagement(ListingView):
                 IStatusMessage(self.request).addStatusMessage(
                     msg,
                     type="error")
-            return self.template()
+            return
         else:
             # Everything is fine, so register our new member
             return self.register()

@@ -1,5 +1,21 @@
 jq(function(){
-   
+   jq('table.addusertable input[name="add"]').bind('click',function(e,o){
+        e.preventDefault();
+        
+        var firstname = jq('table.addusertable input[name="firstname"]').val();
+        var lastname = jq('table.addusertable input[name="lastname"]').val();
+        var email = jq('table.addusertable input[name="email"]').val();
+        var password = jq('table.addusertable input[name="password"]').val();
+        
+        tabbedview.param('action',"add");
+        tabbedview.param('firstname',firstname);
+        tabbedview.param('lastname',lastname);
+        tabbedview.param('email',email);
+        tabbedview.param('password',password);
+        
+        tabbedview.reload_view();
+       
+   });
    function initUserGroupManagement(){
           initGroupOverlay();
           editUser();
