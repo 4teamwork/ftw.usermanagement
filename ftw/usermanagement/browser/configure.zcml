@@ -14,16 +14,14 @@
         name="user_management"
         class=".tabbed_management.ManagementTabbedView"
         permission="zope2.View"
-        allowed_attributes="listing select_all reorder validate_registration"
         />
 
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="tabbedview_view-groups_management"
+        name="tabbedview_view-groups"
         class=".groups.GroupManagement"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"
-        allowed_attributes="render_table"
         />
 
     <browser:page
@@ -64,8 +62,6 @@
         class=".user_register.UserRegister"
         permission="zope2.ManageUsers"
         />
-
-
 
     <browser:resource
         name="user_group.js"
