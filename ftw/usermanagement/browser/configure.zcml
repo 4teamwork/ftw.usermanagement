@@ -11,7 +11,7 @@
 
     <browser:page
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
-        name="tabbed_view"
+        name="user_management"
         class=".tabbed_management.ManagementTabbedView"
         permission="zope2.View"
         allowed_attributes="listing select_all reorder validate_registration"
@@ -48,6 +48,20 @@
         class=".user_delete.UserDelete"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="user_notify"
+        class=".user_notify.UserNotify"
+        permission="zope2.ManageUsers"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="user_register"
+        class=".user_register.UserRegister"
+        permission="zope2.ManageUsers"
         />
 
 
