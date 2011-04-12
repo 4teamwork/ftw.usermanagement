@@ -75,8 +75,8 @@ jq(function(){
                config:{onBeforeLoad: function(e){
                    var $overlay = e.target.getOverlay();
                    var $list = jq('ul.userList', $overlay);
-
-                   $checked.each(function(i, o){
+                   
+                   jq('input:checked', $form).each(function(i, o){
                        $list.append('<li>' + jq(o).attr('value') + '</li>');
                    });
 
