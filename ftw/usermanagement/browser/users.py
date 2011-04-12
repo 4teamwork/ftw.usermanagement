@@ -4,11 +4,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope import schema
 from zope.component import getUtility
 from zope.i18n import translate
-from ftw.tabbedview.browser.listing import ListingView
-from ftw.table.interfaces import ITableSourceConfig
-from ftw.table.basesource import BaseTableSource
-from zope.interface import implements
-from Products.statusmessages.interfaces import IStatusMessage
+from ftw.usermanagement.browser.base_listing import BaseListing
 
 
 def checkbox(item, value):
@@ -21,15 +17,10 @@ def userpreflink(item, value):
     return '<a href="%s">%s</a>' % (url, item['name'])
 
 
-class IUsersSourceConfig(ITableSourceConfig):
-    """Marker interface for a TableSourceConfig interface"""
-
-
-class UserManagement(ListingView):
+class UserManagement(BaseListing):
     """
     A ftw.table based user management view
     """
-    implements(IUsersSourceConfig)
 
     columns = (
         {'column': 'counter',
@@ -136,50 +127,3 @@ class UserManagement(ListingView):
         groupResults.sort(
             key=lambda x: x is not None and x.getGroupTitleOrName().lower())
         return filter(None, groupResults)
-
-    def get_base_query(self):
-        query = self.users()
-        return query
-
-
-    def delete_users(self, userids):
-
-        if not userids:
-            return
-        self.mtool.deleteMembers(userids, delete_memberareas=0, delete_localroles=1, REQUEST=self.request)
-        msg = _(u'text_user_deleted')
-        IStatusMessage(self.request).addStatusMessage(msg, type="info")
-        return
-
-    def _custom_sort_method(self, results, sort_on, sort_reverse):
-
-        results.sort(
-            lambda x, y: cmp(
-                str(x.get(sort_on, '')).lower(),
-                str(y.get(sort_on, '')).lower()))
-        if sort_reverse:
-            results.reverse()
-
-        #add static numbers
-        for index, result in enumerate(results):
-            result['counter'] = index + 1
-
-        return results
-
-
-class UsersTableSource(BaseTableSource):
-
-    def validate_base_query(self, query):
-        return query
-
-    def search_results(self, results):
-
-        search = self.config.filter_text.lower()
-
-        if search:
-
-            def filter_(item):
-                searchable = ' '.join((item['name'], item['email'])).lower()
-                return search in searchable
-            return filter(filter_, results)
-        return results

@@ -5,9 +5,9 @@
     i18n_domain="ftw.usermanagement">
 
     <adapter
-       for=".users.IUsersSourceConfig
+       for=".base_listing.IUsersSourceConfig
              *"
-       factory=".users.UsersTableSource" />
+       factory=".base_listing.UsersTableSource" />
 
     <browser:page
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
