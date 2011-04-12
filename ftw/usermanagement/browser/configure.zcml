@@ -48,6 +48,7 @@
         class=".user_delete.UserDelete"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+		allowed_attributes="delete"
         />
 
     <browser:page

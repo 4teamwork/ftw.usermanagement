@@ -27,6 +27,10 @@ class UserNotify(BrowserView):
 
         userids = self.request.get('userids', [])
         reset_pw = self.request.get('reset_pw', False)
+
+        if type(userids) != list:
+            userids = [userids]
+
         for userid in userids:
             self.send_user_notification(userid, reset_pw)
 

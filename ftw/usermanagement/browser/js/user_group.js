@@ -1,69 +1,28 @@
 jq(function(){
-   jq('table.addusertable input[name="submit.add"]').bind('click', function(e,o){
-       // add a new user
-        e.preventDefault();
-        
-        var $form = jq('form[name="add_member_form"]').serializeArray();
-        var url = (window.portal_url + "/user_register");
-        
-        jq.post(url, $form);
-        
-        tabbedview.reload_view();
-        
-   });
-   jq('div#users_overview input[name="delete.users"]').bind('click', function(e,o){
-       // delete selected users
-        e.preventDefault();
-        
-  
-        var $form = jq('form[name="add_member_form"]').serializeArray();
-        var url = (window.portal_url + "/user_delete/delete");
-     
-        jq.post(url, $form);
-        tabbedview.reload_view();
-        
-   });
-   
-   jq('div#users_overview input[name="notify.users"]').bind('click', function(e,o){
-       // notify users without pw-reset
-        e.preventDefault();
-        
-        var $form = jq('form[name="member_overview_form"]').serializeArray();
-        var url = (window.portal_url + "/user_notify");
-        
-        jq.post(url, $form);
-
-        tabbedview.reload_view();
-
-   });
-   jq('div#users_overview input[name="notify.users.password"]').bind('click', function(e,o){
-       // notify users with pw-reset
-        e.preventDefault();
-        
-        var $form = jq('form[name="member_overview_form"]').serializeArray();
-        var url = (window.portal_url + "/user_notify");
-        
-        $form.push({'name':"reset_pw", 'value':"True"});
-        jq.post(url, $form);
-
-        tabbedview.reload_view();
-
-   });
-     
-   function add_tabbedview_param($form){
-       
-       var $s_form = jq($form).serializeArray();
-        jq($s_form).each(function(i, o){
-            
-            tabbedview.param(o.name, o.value);
-        });
-       
-   }
-
+   // 
+   // jq('div#users_overview input[name="delete.users"]').bind('click', function(e,o){
+   //     // delete selected users
+   //      e.preventDefault();
+   //      
+   //   
+   //      var $form = jq('form[name="member_overview_form"]').serializeArray();
+   //      var url = (window.portal_url + "/user_delete/delete");
+   //   
+   //      jq.post(url, $form);
+   //      tabbedview.reload_view();
+   //      
+   // });
+   // 
+   // 
+   // 
+    
    function initUserGroupManagement(){
           initGroupOverlay();
           editUser();
           deleteUsers();
+          notifyUsers();
+          notifyUsersPassword();
+          addUser();
    }
    
    //Show a overlay with selected and available groups, per user
@@ -102,7 +61,7 @@ jq(function(){
   
 
    function deleteUsers(){
-       jq('[name=delete.user]').bind('click', function(e){
+       jq('[name=delete.users]').bind('click', function(e){
            e.stopPropagation();
            e.preventDefault();
            $form = jq(this).closest('form');
@@ -116,18 +75,27 @@ jq(function(){
                config:{onBeforeLoad: function(e){
                    var $overlay = e.target.getOverlay();
                    var $list = jq('ul.userList', $overlay);
-                   jq('input:checked', $form).each(function(i, o){
-                       $list.append('<li'> + jq(o).attr('value') + '</li>');
+
+                   $checked.each(function(i, o){
+                       $list.append('<li>' + jq(o).attr('value') + '</li>');
                    });
-                   
+
                    var $del_button = jq('[name=form.submitted]', $overlay);
                    $del_button.bind('click', function(e){
                        e.stopPropagation();
                        e.preventDefault();
-                       // Simulate delete button
-                       $form.append('<input type="hidden" name="delete.user" value="1" />');
-                       $form.submit();
-                       $overlay.data('overlay').close();
+                       
+                       var $form = jq('form[name="member_overview_form"]').serializeArray();
+                       var url = (window.portal_url + "/user_delete/delete");
+                       
+                       jq.post(url, $form, function(data){
+                           
+                           tabbedview.reload_view();
+                           initUserGroupManagement();
+                           $overlay.data('overlay').close();                           
+                           
+                       });
+
                    });
                }}
            });
@@ -143,12 +111,70 @@ jq(function(){
            closeselector:'[name=form.Cancel]',
            filter: '#content > *',
            noform: function(el){
-               jq('div#usertable').load('./@@user_management/render_table', function(){
-                   initUserGroupManagement();
-               });
+               tabbedview.reload_view();
+               initUserGroupManagement();
                return 'close';
            }
        });
+   }
+   function addUser(){
+       jq('table.addusertable input[name="submit.add"]').bind('click', function(e,o){
+           // add a new user
+            e.preventDefault();
+
+            var $form = jq('form[name="add_member_form"]').serializeArray();
+            var url = (window.portal_url + "/user_register");
+
+            jq.post(url, $form, function(data){
+                
+                tabbedview.reload_view();
+                initUserGroupManagement();
+                
+            });
+
+            
+
+       });
+       
+   }
+   function notifyUsers(){
+       jq('div#users_overview input[name="notify.users"]').bind('click', function(e,o){
+           // notify users without pw-reset
+            e.preventDefault();
+
+            var $form = jq('form[name="member_overview_form"]').serializeArray();
+            var url = (window.portal_url + "/user_notify");
+
+            jq.post(url, $form, function(data){
+
+                tabbedview.reload_view();
+                initUserGroupManagement();
+                
+            });
+
+
+       });
+       
+   }
+   function notifyUsersPassword(){
+       jq('div#users_overview input[name="notify.users.password"]').bind('click', function(e,o){
+           // notify users with pw-reset
+            e.preventDefault();
+
+            var $form = jq('form[name="member_overview_form"]').serializeArray();
+            var url = (window.portal_url + "/user_notify");
+
+            $form.push({'name':"reset_pw", 'value':"True"});
+            jq.post(url, $form, function(data){
+                
+                tabbedview.reload_view();
+                initUserGroupManagement();
+                
+            });
+
+            
+       });
+       
    }
 
    initUserGroupManagement();
