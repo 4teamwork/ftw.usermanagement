@@ -109,7 +109,5 @@ class UserRegister(BrowserView):
 
         IStatusMessage(self.request).addStatusMessage(
             _(u"User added."), type='info')
-        self.request.response.redirect(
-            self.context.absolute_url() +
-            '/@@user_management')
+
         return True

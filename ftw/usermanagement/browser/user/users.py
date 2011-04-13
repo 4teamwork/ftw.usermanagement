@@ -158,7 +158,6 @@ class UsersTableSource(BaseTableSource):
             def filter_(item):
 
                 searchable = ' '.join((item['name'], item['email'], item['groups'].encode('utf-8'))).lower()
-
                 return search in searchable
             return filter(filter_, results)
         return results
