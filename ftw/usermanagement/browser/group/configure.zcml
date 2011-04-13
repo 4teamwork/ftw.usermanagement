@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="ftw.usermanagement">
+
+    <adapter
+       for=".groups.IGroupsSourceConfig
+             *"
+       factory=".groups.GroupsTableSource" />
+
+	<browser:page
+	    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+	    name="group_delete"
+	    class=".group_delete.GroupDelete"
+	    permission="zope2.ManageUsers"
+	    layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+		allowed_attributes="delete"
+	    />
+
+	<browser:page
+	    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+	    name="group_add"
+	    class=".group_add.GroupAdd"
+	    permission="zope2.ManageUsers"
+	    layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+	    />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="tabbedview_view-groups"
+        class=".groups.GroupManagement"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        />
+
+</configure>

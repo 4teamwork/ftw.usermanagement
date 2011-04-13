@@ -5,6 +5,12 @@ from zope import schema
 from zope.component import getUtility
 from zope.i18n import translate
 from ftw.usermanagement.browser.base_listing import BaseListing
+from ftw.table.basesource import BaseTableSource
+from ftw.table.interfaces import ITableSourceConfig
+from zope.interface import implements
+
+class IUsersSourceConfig(ITableSourceConfig):
+    """Marker interface for a TableSourceConfig interface"""
 
 
 def checkbox(item, value):
@@ -21,6 +27,7 @@ class UserManagement(BaseListing):
     """
     A ftw.table based user management view
     """
+    implements(IUsersSourceConfig)
 
     columns = (
         {'column': 'counter',
@@ -130,3 +137,21 @@ class UserManagement(BaseListing):
     def get_base_query(self):
         query = self.users()
         return query
+
+
+class UsersTableSource(BaseTableSource):
+
+    def validate_base_query(self, query):
+        return query
+
+    def search_results(self, results):
+
+        search = self.config.filter_text.lower()
+
+        if search:
+
+            def filter_(item):
+                searchable = ' '.join((item['name'], item['email'])).lower()
+                return search in searchable
+            return filter(filter_, results)
+        return results

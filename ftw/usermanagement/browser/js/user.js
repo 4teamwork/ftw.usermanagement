@@ -1,14 +1,12 @@
 jq(function(){
     
-   function initUserGroupManagement(){
+   function initUserManagement(){
           initGroupOverlay();
           editUser();
           deleteUsers();
           notifyUsers();
           notifyUsersPassword();
           addUser();
-          deleteGroups();
-          addGroup();
    }
    
    //Show a overlay with selected and available groups, per user
@@ -38,7 +36,7 @@ jq(function(){
                var api = overlay.data('overlay');
                //reload table
                tabbedview.reload_view();
-               initUserGroupManagement();
+               initUserManagement();
                api.close();
            },
              'closeselector':'[name=form.Cancel]'
@@ -77,7 +75,7 @@ jq(function(){
                        jq.post(url, $form, function(data){
                            
                            tabbedview.reload_view();
-                           initUserGroupManagement();
+                           initUserManagement();
                            $overlay.data('overlay').close();                           
                            
                        });
@@ -98,7 +96,7 @@ jq(function(){
            filter: '#content > *',
            noform: function(el){
                tabbedview.reload_view();
-               initUserGroupManagement();
+               initUserManagement();
                return 'close';
            }
        });
@@ -145,73 +143,16 @@ jq(function(){
        });
        
    }
-   function deleteGroups(){
-      jq('[name=delete.groups]').bind('click', function(e){
-          e.stopPropagation();
-          e.preventDefault();
-          $form = jq(this).closest('form');
-          var $fakelink = jq('[href*=group_delete]');
-          if (!$fakelink.length)
-              $fakelink = jq('<a style="display:none" href="./group_delete">dfdf</a>');
-          jq(this).after($fakelink);
-          $fakelink.prepOverlay({
-              subtype:'ajax',
-              'closeselector':'[name=form.Cancel]',
-              config:{onBeforeLoad: function(e){
-                  var $overlay = e.target.getOverlay();
-                  var $list = jq('ul.groupList', $overlay);
-                  
-                  jq('input:checked', $form).each(function(i, o){
-                      $list.append('<li>' + jq(o).attr('value') + '</li>');
-                  });
-
-                  var $del_button = jq('[name=form.submitted]', $overlay);
-                  $del_button.bind('click', function(e){
-                      e.stopPropagation();
-                      e.preventDefault();
-                      
-                      var $form = jq('form[name="group_overview_form"]').serializeArray();
-                      var url = (window.portal_url + "/group_delete/delete");
-                      
-                      jq.post(url, $form, function(data){
-                          
-                          tabbedview.reload_view();
-                          initUserGroupManagement();
-                          $overlay.data('overlay').close();                           
-                          
-                      });
-
-                  });
-              }}
-          });
-     // load overlay
-     $fakelink.trigger('click');
-     });
-
-   }
-   function addGroup(){
-       jq('table.addgrouptable input[name="add.group"]').bind('click', function(e,o){
-           // add a new group
-            e.preventDefault();
-
-            var $form = jq('form[name="add_group_form"]').serializeArray();
-            var url = (window.portal_url + "/group_add");
-
-            jquery_post_request(url, $form);            
-
-       });
-       
-   }
    function jquery_post_request(url, $form){
        
        jq.post(url, $form, function(data){
            
            tabbedview.reload_view();
-           initUserGroupManagement();
+           initUserManagement();
            
        });
        
    }
 
-   initUserGroupManagement();
+   initUserManagement();
 }); 

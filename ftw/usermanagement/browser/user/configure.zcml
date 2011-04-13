@@ -1,0 +1,52 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="ftw.usermanagement">
+
+    <adapter
+       for=".users.IUsersSourceConfig
+             *"
+       factory=".users.UsersTableSource" />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="tabbedview_view-users"
+        class=".users.UserManagement"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="user_membership"
+        class=".user_membership.UserMembership"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="user_delete"
+        class=".user_delete.UserDelete"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+		allowed_attributes="delete"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="user_notify"
+        class=".user_notify.UserNotify"
+        permission="zope2.ManageUsers"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="user_register"
+        class=".user_register.UserRegister"
+        permission="zope2.ManageUsers"
+        />
+
+
+</configure>

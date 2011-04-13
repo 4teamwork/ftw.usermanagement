@@ -4,6 +4,13 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryMultiAdapter
 from ftw.usermanagement.browser.base_listing import BaseListing
+from ftw.table.interfaces import ITableSourceConfig
+from zope.interface import implements
+from ftw.table.basesource import BaseTableSource
+
+class IGroupsSourceConfig(ITableSourceConfig):
+    """Marker interface for a TableSourceConfig interface"""
+
 
 
 def checkbox(item, value):
@@ -14,6 +21,7 @@ class GroupManagement(BaseListing):
     """
     A ftw.table based user management view
     """
+    implements(IGroupsSourceConfig)
 
     columns = (
         {'column': 'counter',
@@ -94,3 +102,21 @@ class GroupManagement(BaseListing):
     def get_base_query(self):
         query = self.groups()
         return query
+
+
+class GroupsTableSource(BaseTableSource):
+
+    def validate_base_query(self, query):
+        return query
+
+    def search_results(self, results):
+
+        search = self.config.filter_text.lower()
+
+        if search:
+
+            def filter_(item):
+                searchable = ' '.join((item['group_title'], item['group_id'])).lower()
+                return search in searchable
+            return filter(filter_, results)
+        return results

@@ -1,5 +1,5 @@
 <script type="text/javascript" src="++resource++user_group.js"
-      tal:attributes="src string:${context/absolute_url}/++resource++user_group.js"></script>
+      tal:attributes="src string:${context/absolute_url}/++resource++user.js"></script>
 <fieldset>
     <legend i18n:translate="">Add a new Member</legend>
     <div class="helpDescription" i18n:translate="help_add_member">

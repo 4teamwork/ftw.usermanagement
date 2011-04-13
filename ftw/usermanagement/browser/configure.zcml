@@ -4,11 +4,10 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="ftw.usermanagement">
 
-    <adapter
-       for=".base_listing.IUsersSourceConfig
-             *"
-       factory=".base_listing.UsersTableSource" />
+    <include package=".group" />
+    <include package=".user" />
 
+	<!-- tabbed view -->
     <browser:page
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         name="user_management"
@@ -16,80 +15,18 @@
         permission="zope2.View"
         />
 
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="tabbedview_view-groups"
-        class=".groups.GroupManagement"
-        permission="zope2.ManageUsers"
-        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="tabbedview_view-users"
-        class=".users.UserManagement"
-        permission="zope2.ManageUsers"
-        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="user_membership"
-        class=".user_membership.UserMembership"
-        permission="zope2.ManageUsers"
-        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="user_delete"
-        class=".user_delete.UserDelete"
-        permission="zope2.ManageUsers"
-        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
-		allowed_attributes="delete"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="user_notify"
-        class=".user_notify.UserNotify"
-        permission="zope2.ManageUsers"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="user_register"
-        class=".user_register.UserRegister"
-        permission="zope2.ManageUsers"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="group_delete"
-        class=".group_delete.GroupDelete"
-        permission="zope2.ManageUsers"
-        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
-		allowed_attributes="delete"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="group_add"
-        class=".group_add.GroupAdd"
-        permission="zope2.ManageUsers"
-        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
-        />
-
     <browser:resource
-        name="user_group.js"
-        file="js/user_group.js"
+        name="group.js"
+        file="js/group.js"
         />
-
+    <browser:resource
+        name="user.js"
+        file="js/user.js"
+        />
     <browser:resource
         name="ui.multiselect.css"
         file="css/ui.multiselect.css"
         />
-
 
     <!-- mail templates -->
     <browser:page
