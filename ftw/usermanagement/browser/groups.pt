@@ -1,35 +1,39 @@
-        <fieldset>
-            <legend i18n:translate="">Add a new Group</legend>
-            <div class="helpDescription" i18n:translate="help_add_group">
-                ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed
-            </div>
-            <form name="add_group_form" method="POST" 
-                  tal:attributes="action string: ./group_management">
-                <table class="addgrouptable">
-                    <tr>
-                        <th i18n:translate="">ID</th>
-                        <th i18n:translate="">Title</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="group_id" tal:attributes="value context/REQUEST/group_id|nothing"/></td>
-                        <td><input type="text" name="group_title" tal:attributes="value context/REQUEST/group_title|nothing"/></td>
-                        <td><input type="submit" name="add.group" value="Add group" i18n:attributes="value" /></td>
-                    </tr>
-                </table>
+<script type="text/javascript" src="++resource++user_group.js"
+      tal:attributes="src string:${context/absolute_url}/++resource++user_group.js"></script>
 
-                <input tal:replace="structure context/@@authenticator/authenticator" /> 
-            </form>
-        </fieldset>
+ <fieldset>
+     <legend i18n:translate="">Add a new Group</legend>
+     <div class="helpDescription" i18n:translate="help_add_group">
+         ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed
+     </div>
+     <form name="add_group_form" method="POST" 
+           tal:attributes="action string: ./group_management">
+         <table class="addgrouptable">
+             <tr>
+                 <th i18n:translate="">ID</th>
+                 <th i18n:translate="">Title</th>
+                 <th>&nbsp;</th>
+             </tr>
+             <tr>
+                 <td><input type="text" name="group_id" tal:attributes="value context/REQUEST/group_id|nothing"/></td>
+                 <td><input type="text" name="group_title" tal:attributes="value context/REQUEST/group_title|nothing"/></td>
+                 <td><input type="submit" name="add.group" value="Add group" i18n:attributes="value" /></td>
+             </tr>
+         </table>
 
-        <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
+         <input tal:replace="structure context/@@authenticator/authenticator" /> 
+     </form>
+ </fieldset>
 
-        <form action="./group_management" method="POST">
-            <div id="usertable" tal:content="structure view/render_table">table</div>
+ <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
 
-            <div class="formControls">
-                <input tal:replace="structure context/@@authenticator/authenticator" /> 
-                <input type="submit" name="delete.groups" value="Delete groups" i18n:attributes="value" />
-            </div>
+ <form name="group_overview_form" method="POST">
+	<div id="batch_navigation" tal:content="structure view/batching">table</div>
+     <div id="groupstable" tal:content="structure view/render_listing">table</div>
 
-        </form>
+     <div class="formControls">
+         <input tal:replace="structure context/@@authenticator/authenticator" /> 
+         <input type="submit" name="delete.groups" value="Delete groups" i18n:attributes="value" />
+     </div>
+
+ </form>

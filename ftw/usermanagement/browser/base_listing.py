@@ -14,11 +14,15 @@ class BaseListing(ListingView):
 
     def __call__(self):
 
+
+        if self.table_options is None:
+            self.table_options = {}
+
         self.update()
         return self.template()
 
     def get_base_query(self):
-        query = self.users()
+        query = []
         return query
 
 

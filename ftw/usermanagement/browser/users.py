@@ -48,7 +48,6 @@ class UserManagement(BaseListing):
         self.mtool = getToolByName(self, 'portal_membership')
         self.registration = getToolByName(self.context, 'portal_registration')
         self.pagenumber = 1
-        self.pagesize = 5
         self.sort_order = 'ASC'
         self.contents = self.users()
         self.sortable = True
@@ -127,3 +126,7 @@ class UserManagement(BaseListing):
         groupResults.sort(
             key=lambda x: x is not None and x.getGroupTitleOrName().lower())
         return filter(None, groupResults)
+
+    def get_base_query(self):
+        query = self.users()
+        return query

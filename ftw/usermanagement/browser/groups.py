@@ -1,22 +1,24 @@
-from ftw.table.interfaces import ITableGenerator
 from ftw.usermanagement import user_management_factory as _
 from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
-from zope.component import queryMultiAdapter, queryUtility
+from zope.component import queryMultiAdapter
+from ftw.usermanagement.browser.base_listing import BaseListing
 
 
 def checkbox(item, value):
-     return '<input type="checkbox" name="groupids:list" value="%s" />' % \
+     return '<input type="checkbox" name="groupids" value="%s" />' % \
         item['group_id']
 
-class GroupManagement(BrowserView):
+class GroupManagement(BaseListing):
     """
     A ftw.table based user management view
     """
 
     columns = (
+        {'column': 'counter',
+         'column_title': _(u'label_nr', default='Nr.'),
+         },
         {'transform': checkbox},
         {'column': 'group_title',
          'column_title': _(u'label_group_title', default='Title'), },
@@ -31,32 +33,25 @@ class GroupManagement(BrowserView):
 
 
     def __call__(self):
-        if self.request.get('add.group', ''):
-            return self.create_group()
+
+        if self.table_options is None:
+            self.table_options = {}
+
+        self.update()
         return self.template()
 
     def __init__(self, context, request):
+        super(GroupManagement, self).__init__(context, request)
+
         self.context = context
         self.request = request
+        self.sort_on = 'group_title'
 
         self.gtool = getToolByName(self, 'portal_groups')
 
         self.groupprefs = queryMultiAdapter((context, request),
                                          name=u'usergroup-groupprefs')
 
-        groupids = self.request.get('groupids', [])
-        if self.request.get('delete.groups', False):
-            return self.delete_groups(groupids)
-
-
-        
-    def render_table(self):
-        """Renders a table usfing ftw.table"""
-
-        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
-        return generator.generate(self.groups, self.columns, sortable = True)
-
-    @property
     def groups(self):
         groups = self.groupprefs.doSearch(searchString='')
         results = []
@@ -67,23 +62,21 @@ class GroupManagement(BrowserView):
                     group_title=g['title'],
                     group_members=''))
         return results
-        
-
 
     def create_group(self):
         """Validates input and creates a new group"""
-        
+
         # XXX: Validate input
         group_id = self.request.get('group_id', '')
         group_title = self.request.get('group_title', group_id)
-        
+
         if group_id:
             data = dict(title=group_title)
             success = self.gtool.addGroup(group_id, **data)
             if not success:
                 # reset group_id
                 group_id = ''
-        
+
         if group_id:
             # Successfully created group
             msg = _(u'text_group_created')
@@ -97,15 +90,7 @@ class GroupManagement(BrowserView):
                 type="error")
         return self.template()
 
-    def delete_groups(self, groupids):
-        if groupids:
-            self.gtool.removeGroups(groupids)
-            msg = _(u'Group(s) deleted.')
-            
-            IStatusMessage(self.request).addStatusMessage(
-                msg,
-                type="info")
-        self.request.response.redirect(
-            self.context.absolute_url() + '/@@group_management')
-        
-            
+
+    def get_base_query(self):
+        query = self.groups()
+        return query

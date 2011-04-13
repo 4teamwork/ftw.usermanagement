@@ -63,6 +63,23 @@
         permission="zope2.ManageUsers"
         />
 
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="group_delete"
+        class=".group_delete.GroupDelete"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+		allowed_attributes="delete"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="group_add"
+        class=".group_add.GroupAdd"
+        permission="zope2.ManageUsers"
+        layer="ftw.usermanagement.interfaces.IFtwUserManagement"
+        />
+
     <browser:resource
         name="user_group.js"
         file="js/user_group.js"

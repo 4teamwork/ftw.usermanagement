@@ -1,0 +1,12 @@
+
+<form method="POST" action="./user_delete" i18n:domain="ftw.usermanagement">
+    <h1 i18n:translate="label_delete_groups">
+        Are you sure, that you want to delete the selected group(s)?
+    </h1>
+
+    <ul class="groupList">
+    </ul>
+    <input type="submit" name="form.submitted" value="Delete group(s)" i18n:attributes="value"/>
+    <input type="submit" name="form.Cancel" value="Cancel" i18n:attributes="value"/>
+
+</form>
