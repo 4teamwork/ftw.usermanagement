@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-04-13 09:36+0000\n"
+"POT-Creation-Date: 2011-04-13 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add a new Group"
 msgstr "Neue Gruppe hinzufügen"
 
-#: ./ftw/usermanagement/browser/user/users.pt:7
+#: ./ftw/usermanagement/browser/user/users.pt:6
 msgid "Add a new Member"
 msgstr "Neuen Benutzer hinzufügen"
 
@@ -24,7 +24,7 @@ msgstr "Neuen Benutzer hinzufügen"
 msgid "Add group"
 msgstr "Hinzufügen"
 
-#: ./ftw/usermanagement/browser/user/users.pt:26
+#: ./ftw/usermanagement/browser/user/users.pt:25
 msgid "Add member"
 msgstr "Hinzufügen"
 
@@ -46,7 +46,7 @@ msgstr "Gruppe(n) löschen"
 msgid "Delete groups"
 msgstr "Gruppe(n) löschen"
 
-#: ./ftw/usermanagement/browser/user/users.pt:43
+#: ./ftw/usermanagement/browser/user/users.pt:42
 msgid "Delete user"
 msgstr "Benutzer löschen"
 
@@ -54,11 +54,11 @@ msgstr "Benutzer löschen"
 msgid "Delete user(s)"
 msgstr "Benutzer löschen"
 
-#: ./ftw/usermanagement/browser/user/users.pt:17
+#: ./ftw/usermanagement/browser/user/users.pt:16
 msgid "Email"
 msgstr "E-Mail"
 
-#: ./ftw/usermanagement/browser/user/users.pt:15
+#: ./ftw/usermanagement/browser/user/users.pt:14
 msgid "Firstname"
 msgstr "Vorname"
 
@@ -70,7 +70,7 @@ msgstr "Gruppe(n) wurden gelöscht"
 msgid "ID"
 msgstr "ID"
 
-#: ./ftw/usermanagement/browser/user/users.pt:16
+#: ./ftw/usermanagement/browser/user/users.pt:15
 msgid "Lastname"
 msgstr "Nachname"
 
@@ -78,15 +78,15 @@ msgstr "Nachname"
 msgid "No mailhost defined. contact site Administrator."
 msgstr "Email-Konfiguration fehlerhaft, bitte kontaktieren Sie den Administrator"
 
-#: ./ftw/usermanagement/browser/user/users.pt:41
+#: ./ftw/usermanagement/browser/user/users.pt:40
 msgid "Notify user"
 msgstr "Benutzerinformationen senden (ohne Passwort)"
 
-#: ./ftw/usermanagement/browser/user/users.pt:42
+#: ./ftw/usermanagement/browser/user/users.pt:41
 msgid "Notify user and reset password"
 msgstr "Benutzerinformationen senden (mit neuem Passwort)"
 
-#: ./ftw/usermanagement/browser/user/users.pt:18
+#: ./ftw/usermanagement/browser/user/users.pt:17
 msgid "Password"
 msgstr "Passwort"
 
@@ -120,7 +120,7 @@ msgid "help_add_group"
 msgstr "Die Gruppen ID sollte nur aus a-z, A-Z, 0-9 und '_' bestehen."
 
 #. Default: "If no password is provided, plone will generate one for you"
-#: ./ftw/usermanagement/browser/user/users.pt:8
+#: ./ftw/usermanagement/browser/user/users.pt:7
 msgid "help_add_member"
 msgstr "Sie müssen kein Passwort angeben, Sie können jederzeit ein Neues versenden."
 
@@ -135,7 +135,7 @@ msgid "label_delete_user"
 msgstr "Sind Sie sicher, dass Sie die ausgwählten Benutzer löschen möchten?"
 
 #. Default: "Email"
-#: ./ftw/usermanagement/browser/user/users.py:40
+#: ./ftw/usermanagement/browser/user/users.py:46
 msgid "label_email"
 msgstr "E-Mail"
 
@@ -150,23 +150,33 @@ msgid "label_group_title"
 msgstr "Titel"
 
 #. Default: "Groups"
-#: ./ftw/usermanagement/browser/user/users.py:42
+#: ./ftw/usermanagement/browser/user/users.py:48
 msgid "label_groups"
 msgstr "Gruppen"
 
 #. Default: "Name"
-#: ./ftw/usermanagement/browser/user/users.py:37
+#: ./ftw/usermanagement/browser/user/users.py:43
 msgid "label_name"
 msgstr "Name"
 
 #. Default: "Nr."
 #: ./ftw/usermanagement/browser/group/groups.py:28
-#: ./ftw/usermanagement/browser/user/users.py:33
+#: ./ftw/usermanagement/browser/user/users.py:39
 msgid "label_nr"
 msgstr ""
 
+#. Default: "Groups-management"
+#: ./ftw/usermanagement/browser/tabbed_management.py:16
+msgid "msg_groupsDescription"
+msgstr "Gruppenverwaltung"
+
+#. Default: "Users-management"
+#: ./ftw/usermanagement/browser/tabbed_management.py:13
+msgid "msg_usersDescription"
+msgstr "Benutzerverwaltung"
+
 #. Default: "No Group"
-#: ./ftw/usermanagement/browser/user/users.py:108
+#: ./ftw/usermanagement/browser/user/users.py:115
 msgid "no_group"
 msgstr "Keine Gruppen"
 

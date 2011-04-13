@@ -28,7 +28,7 @@
 
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="tabbedview_view-groups"
+        name="tabbedview_view-groups_management"
         class=".groups.GroupManagement"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"

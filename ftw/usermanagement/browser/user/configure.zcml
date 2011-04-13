@@ -11,7 +11,7 @@
 
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="tabbedview_view-users"
+        name="tabbedview_view-users_management"
         class=".users.UserManagement"
         permission="zope2.ManageUsers"
         layer="ftw.usermanagement.interfaces.IFtwUserManagement"
