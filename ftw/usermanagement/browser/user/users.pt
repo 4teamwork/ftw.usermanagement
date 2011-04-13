@@ -1,6 +1,5 @@
 <script type="text/javascript" src="++resource++user_group.js"
-      tal:attributes="src string:${context/absolute_url}/++resource++user.js"></script>
-
+      tal:attributes="src string:${context/absolute_url}/++resource++user_group.js"></script>
 <div i18n:domain="ftw.usermanagement"
 	lang="en-US">
 <fieldset>

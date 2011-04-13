@@ -148,9 +148,9 @@ class UsersTableSource(BaseTableSource):
         search = self.config.filter_text.lower()
 
         if search:
-
             def filter_(item):
                 searchable = ' '.join((item['name'], item['email'])).lower()
+
                 return search in searchable
             return filter(filter_, results)
         return results
