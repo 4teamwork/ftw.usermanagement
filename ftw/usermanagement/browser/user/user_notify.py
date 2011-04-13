@@ -12,8 +12,8 @@ from zope.i18n import translate
 
 
 class UserNotify(BrowserView):
-    """notify a user that he is registered
-    possible to reset password with notification
+    """Notify a registered user.
+    Possible to reset password with notification
     """
 
     def __init__(self, context, request):
@@ -37,7 +37,7 @@ class UserNotify(BrowserView):
         return True
 
     def send_user_notification(self, userid, reset_pw=False):
-        """notifies a user, that he has been registered on the portal"""
+        """Notifies a user, that he has been registered on the portal"""
 
         member = self.mtool.getMemberById(userid)
         username = member.id

@@ -8,19 +8,19 @@ from ftw.table.interfaces import ITableSourceConfig
 from zope.interface import implements
 from ftw.table.basesource import BaseTableSource
 
+
 class IGroupsSourceConfig(ITableSourceConfig):
     """Marker interface for a TableSourceConfig interface"""
 
 
-
 def checkbox(item, value):
-     return '<input type="checkbox" name="groupids" value="%s" />' % \
+    return '<input type="checkbox" name="groupids" value="%s" />' % \
         item['group_id']
 
+
 class GroupManagement(BaseListing):
-    """
-    A ftw.table based user management view
-    """
+    """A ftw.table based user management view"""
+
     implements(IGroupsSourceConfig)
 
     columns = (
@@ -38,7 +38,6 @@ class GroupManagement(BaseListing):
 
 
     template = ViewPageTemplateFile('groups.pt')
-
 
     def __call__(self):
 
@@ -98,7 +97,6 @@ class GroupManagement(BaseListing):
                 type="error")
         return self.template()
 
-
     def get_base_query(self):
         query = self.groups()
         return query
@@ -116,7 +114,11 @@ class GroupsTableSource(BaseTableSource):
         if search:
 
             def filter_(item):
-                searchable = ' '.join((item['group_title'], item['group_id'])).lower()
+                searchable = ' '.join(
+                        (item['group_title'],
+                         item['group_id'],
+                        )
+                    ).lower()
                 return search in searchable
             return filter(filter_, results)
         return results

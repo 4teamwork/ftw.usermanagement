@@ -9,6 +9,7 @@ from ftw.table.basesource import BaseTableSource
 from ftw.table.interfaces import ITableSourceConfig
 from zope.interface import implements
 
+
 class IUsersSourceConfig(ITableSourceConfig):
     """Marker interface for a TableSourceConfig interface"""
 
@@ -24,9 +25,7 @@ def userpreflink(item, value):
 
 
 class UserManagement(BaseListing):
-    """
-    A ftw.table based user management view
-    """
+    """A ftw.table based user management view"""
     implements(IUsersSourceConfig)
 
     columns = (

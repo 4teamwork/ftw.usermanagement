@@ -1,8 +1,8 @@
+from ftw.usermanagement import user_management_factory as _
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from ftw.usermanagement import user_management_factory as _
 from Products.statusmessages.interfaces import IStatusMessage
-from Products.CMFCore.utils import getToolByName
 
 
 class GroupDelete(BrowserView):
@@ -20,7 +20,7 @@ class GroupDelete(BrowserView):
         return self.template()
 
     def delete(self):
-        """delete groups"""
+        """Delete groups"""
 
         groupids = self.request.get('groupids', [])
 

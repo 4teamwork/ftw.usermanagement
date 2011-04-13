@@ -2,9 +2,9 @@ from ftw.tabbedview.browser.listing import ListingView
 
 
 class BaseListing(ListingView):
+    """BaseListing View for a tab in the tabbedview"""
 
     def __call__(self):
-
 
         if self.table_options is None:
             self.table_options = {}
@@ -16,8 +16,8 @@ class BaseListing(ListingView):
         query = []
         return query
 
-
     def _custom_sort_method(self, results, sort_on, sort_reverse):
+        """Sort the columns in ftw.table"""
 
         results.sort(
             lambda x, y: cmp(

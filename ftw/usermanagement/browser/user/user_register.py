@@ -7,7 +7,7 @@ from zope.component import getUtility
 
 
 class UserRegister(BrowserView):
-    """validate and register a new member"""
+    """Validate and register a new member"""
 
     def __init__(self, context, request):
         super(UserRegister, self).__init__(context, request)

@@ -1,7 +1,7 @@
 from ftw.usermanagement import user_management_factory as _
-from Products.statusmessages.interfaces import IStatusMessage
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 
 
 class GroupAdd(BrowserView):
@@ -12,8 +12,7 @@ class GroupAdd(BrowserView):
         self.gtool = getToolByName(self, 'portal_groups')
 
     def __call__(self):
-        self.create_group();
-
+        self.create_group()
 
     def create_group(self):
         """Validates input and creates a new group"""
