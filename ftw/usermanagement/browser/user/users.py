@@ -23,6 +23,12 @@ def userpreflink(item, value):
     url = './@@user-information?userid=%s' % item['email']
     return '<a href="%s">%s</a>' % (url, item['name'])
 
+def link_group(item, value):
+
+    group_link = '<a href="./user_membership?userid=%s">%s</a>' % \
+                       (item['email'], value)
+
+    return group_link
 
 class UserManagement(BaseListing):
     """A ftw.table based user management view"""
@@ -39,7 +45,8 @@ class UserManagement(BaseListing):
         {'column': 'email',
          'column_title': _(u'label_email', default='Email'), },
         {'column': 'groups',
-         'column_title': _(u'label_groups', default='Groups'), })
+         'column_title': _(u'label_groups', default='Groups'),
+         'transform': link_group })
 
 
     template = ViewPageTemplateFile('users.pt')
@@ -113,15 +120,15 @@ class UserManagement(BaseListing):
                                      domain='ftw.usermanagement',
                                      context=self.request,
                                      default=u'No Group')
-
-                group_link = '<a href="./user_membership?userid=%s">%s</a>' % \
-                    (t.value, user_groups)
+                #
+                # group_link = '<a href="./user_membership?userid=%s">%s</a>' % \
+                #                    (t.value, user_groups)
 
                 userinfo = dict(
                     counter = index + 1,
                     name = t.title,
                     email = t.value,
-                    groups = group_link)
+                    groups = user_groups)
                 users.append(userinfo)
 
         return users
@@ -149,7 +156,8 @@ class UsersTableSource(BaseTableSource):
 
         if search:
             def filter_(item):
-                searchable = ' '.join((item['name'], item['email'])).lower()
+
+                searchable = ' '.join((item['name'], item['email'], item['groups'].encode('utf-8'))).lower()
 
                 return search in searchable
             return filter(filter_, results)
