@@ -1,6 +1,8 @@
 <script type="text/javascript" src="++resource++user_group.js"
       tal:attributes="src string:${context/absolute_url}/++resource++group.js"></script>
-
+<div i18n:domain="ftw.usermanagement"
+	lang="en-US">
+	
  <fieldset>
      <legend i18n:translate="">Add a new Group</legend>
      <div class="helpDescription" i18n:translate="help_add_group">
@@ -36,3 +38,4 @@
      </div>
 
  </form>
+</div>
