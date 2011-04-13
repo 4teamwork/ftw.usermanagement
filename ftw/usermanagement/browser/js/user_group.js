@@ -37,6 +37,7 @@ jq(function(){
            afterpost: function(el, overlay){
                var api = overlay.data('overlay');
                //reload table
+               load_status_messages();
                tabbedview.reload_view();
                initUserGroupManagement();
                api.close();
@@ -198,7 +199,7 @@ jq(function(){
             var $form = jq('form[name="add_group_form"]').serializeArray();
             var url = (window.portal_url + "/group_add");
 
-            jquery_post_request(url, $form);            
+            jquery_post_request(url, $form); 
 
        });
        
