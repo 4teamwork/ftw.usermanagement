@@ -68,17 +68,6 @@ class UserManagement(BaseListing):
 
     def __call__(self, *args, **kwargs):
 
-        action = self.request.get('action', '')
-
-        if action == "add":
-            self.validate_registration()
-
-        userids = self.request.get('userids', [])
-
-        if action == "delete":
-            return self.delete_users(userids)
-
-
         if self.table_options is None:
             self.table_options = {}
 
