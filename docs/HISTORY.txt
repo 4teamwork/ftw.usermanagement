@@ -5,6 +5,9 @@ Changelog
 1.4
 ---
 
+* added 'disable_border' to request 
+  [06.05.2011, elio.schmutz]
+
 * Removed unused code
   [19.04.2011, elio.schmutz]
 

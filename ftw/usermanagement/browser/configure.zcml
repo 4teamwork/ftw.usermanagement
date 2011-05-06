@@ -12,7 +12,7 @@
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         name="user_management"
         class=".tabbed_management.ManagementTabbedView"
-        permission="zope2.View"
+        permission="zope2.ManageUsers"
         />
 
     <browser:resource
