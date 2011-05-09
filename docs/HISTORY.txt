@@ -5,6 +5,9 @@ Changelog
 1.4
 ---
 
+* removed CMF-Action 'Gruppenverwaltung'
+  [09.05.2011, elio.schmutz]
+
 * added 'disable_border' to request 
   [06.05.2011, elio.schmutz]
 
