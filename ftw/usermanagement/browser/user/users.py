@@ -130,7 +130,7 @@ class UserManagement(BaseListing):
         return filter(None, groupResults)
 
     def get_base_query(self):
-        query = self.users()
+        query = self.contents
         return query
 
 
