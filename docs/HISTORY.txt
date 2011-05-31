@@ -14,7 +14,7 @@ Changelog
 * Removed unused code
   [19.04.2011, elio.schmutz]
 
-* #482 Batching für ftw.usermanagement
+* #482 Batching fuer ftw.usermanagement
   Batching und ftw.tabbedview integration
   [13.04.2011, elio.schmutz]
 
