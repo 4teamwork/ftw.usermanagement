@@ -14,15 +14,18 @@ Features
 --------
 
 - Manage users
-  - List users
-  - Assign users to groups
-  - Add users
-  - Delete users
-  - Reset password of a user and send a notification
+
+ - List users
+ - Assign users to groups
+ - Add users
+ - Delete users
+ - Reset password of a user and send a notification
+
 - Manage groups
-  - List groups
-  - Add groups
-  - Delete groups
+
+ - List groups
+ - Add groups
+ - Delete groups
 
 
 Usage
