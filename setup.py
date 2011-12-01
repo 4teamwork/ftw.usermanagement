@@ -7,7 +7,7 @@ maintainer = 'Mathias Leimgruber'
 setup(name='ftw.usermanagement',
       version=version,
       description='An advanced view for managing users in plone.',
-      long_description=open('README.txt').read() + '\n' + \
+      long_description=open('README.rst').read() + '\n' + \
           open(os.path.join('docs', 'HISTORY.txt')).read(),
 
       # Get more strings from
