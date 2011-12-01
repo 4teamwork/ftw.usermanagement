@@ -33,6 +33,8 @@ recipe to manage your project, you can do this:
 
 - Add ``ftw.usermanagement`` to the list of eggs to install, e.g.:
 
+::
+
     [instance]
     ...
     eggs =
@@ -40,6 +42,8 @@ recipe to manage your project, you can do this:
         ftw.usermanagement
 
 - Re-run buildout, e.g. with:
+
+::
 
     $ ./bin/buildout
 
