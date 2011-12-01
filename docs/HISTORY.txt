@@ -2,58 +2,52 @@ Changelog
 =========
 
 
-1.5
----
+1.5 (unreleased)
+----------------
+
+- Nothing changed yet.
 
 
-1.4
----
+1.4 (2011-05-31)
+----------------
 
-* removed CMF-Action 'Gruppenverwaltung'
-  [09.05.2011, elio.schmutz]
+- removed CMF-Action 'Gruppenverwaltung'
+  [elio.schmutz]
 
-* added 'disable_border' to request 
-  [06.05.2011, elio.schmutz]
+- added 'disable_border' to request
+  [elio.schmutz]
 
-* Removed unused code
-  [19.04.2011, elio.schmutz]
+- Removed unused code
+  [elio.schmutz]
 
-* #482 Batching fuer ftw.usermanagement
-  Batching und ftw.tabbedview integration
-  [13.04.2011, elio.schmutz]
-
-* #479 Fehler beim versenden von Passwoerter
-  [06.04.2011, elio.schmutz]
-
-* #478 Nummerierung bei user_management hinzufuegen
-  [06.04.2011, elio.schmutz]
-
-1.3
----
-
-* Creating member area for user upon registration
-  [24,03.2011, lukas.graf]
-
-* Fixed some typos in translations
-  [24,03.2011, lukas.graf]
-
-* exprted jquery.multiselect to collective.js.ui.multiselect
-  [21.02.2011, elio.schmutz]
-
-1.2
----
+- Batching and ftw.tabbedview integration
+  [elio.schmutz]
 
 
-1.1
----
+1.3 (2011-03-30)
+----------------
 
-* Implement editing user by an overlay.
-  [01.02.2011, mathias.leimgruber]
+- Creating member area for user upon registration
+  [lukas.graf]
 
-* Ask before really delete a user.
-  [01.02.2011, mathias.leimgruber]
+- Fixed some typos in translations
+  [lukas.graf]
 
-1.0-devdev (unreleased)
------------------------
+- exprted jquery.multiselect to collective.js.ui.multiselect
+  [elio.schmutz]
+
+
+1.2 (2011-02-02)
+----------------
+
+- Implement editing user by an overlay.
+  [mathias.leimgruber]
+
+- Ask before really delete a user.
+  [mathias.leimgruber]
+
+
+1.0 (2011-01-25)
+----------------
 
 - Initial release
