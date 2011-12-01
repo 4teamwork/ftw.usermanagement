@@ -32,6 +32,8 @@ setup(name='ftw.usermanagement',
       zip_safe=False,
 
       install_requires=[
+        'ftw.table',
+        'ftw.tabbedview',
         'setuptools',
         'plone.principalsource',
         'collective.js.jqueryui',
