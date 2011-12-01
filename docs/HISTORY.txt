@@ -5,8 +5,11 @@ Changelog
 1.5 (unreleased)
 ----------------
 
+- Encode translated string to utf-8 if we can't find any users
+  [eschmutz]
+
 - Fixed Bug in user_notify. From Address must be string.
-  [01.12.2011, tschanzt]
+  [tschanzt]
 
 
 1.4 (2011-05-31)

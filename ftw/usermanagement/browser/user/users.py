@@ -108,11 +108,10 @@ class UserManagement(BaseListing):
                     user_groups = translate(u'no_group',
                                      domain='ftw.usermanagement',
                                      context=self.request,
-                                     default=u'No Group')
+                                     default=u'No Group').encode('utf-8')
                 #
                 # group_link = '<a href="./user_membership?userid=%s">%s</a>' % \
                 #                    (t.value, user_groups)
-
                 userinfo = dict(
                     counter = index + 1,
                     name = t.title,
@@ -145,8 +144,7 @@ class UsersTableSource(BaseTableSource):
 
         if search:
             def filter_(item):
-
-                searchable = ' '.join((item['name'], item['email'], item['groups'].encode('utf-8'))).lower()
+                searchable = ' '.join((item['name'], item['email'], item['groups'])).lower()
                 return search in searchable
             return filter(filter_, results)
         return results
