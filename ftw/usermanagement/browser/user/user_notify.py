@@ -24,7 +24,6 @@ class UserNotify(BrowserView):
         self.registration = getToolByName(self.context, 'portal_registration')
 
     def __call__(self):
-
         userids = self.request.get('userids', [])
         reset_pw = self.request.get('reset_pw', False)
 
@@ -77,14 +76,11 @@ class UserNotify(BrowserView):
             'contact.email',
             properties.email_from_address.decode)
         # prepare from address for header
-        header_from = Header(properties.email_from_name.encode('utf-8'),
-                             'utf-8')
-        header_from.append(u'<%s>' % properties.email_from_address.
-                           encode('utf-8'),
-                           'utf-8')
+        header_from = properties.email_from_name.encode('utf-8') + u'<%s>' \
+        % properties.email_from_address.encode('utf-8')
         # get subject
         header_subject = Header(
-            unicode(self.get_subject(site_title)), 'iso-8859-1')
+             unicode(self.get_subject(site_title)), 'iso-8859-1')
 
         # prepare options
         options = {

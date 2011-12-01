@@ -5,7 +5,8 @@ Changelog
 1.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed Bug in user_notify. From Address must be string.
+  [01.12.2011, tschanzt]
 
 
 1.4 (2011-05-31)

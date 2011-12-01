@@ -125,7 +125,6 @@ jq(function(){
 
             var $form = jq('form[name="member_overview_form"]').serializeArray();
             var url = (window.portal_url + "/user_notify");
-
             jquery_post_request(url, $form);
 
        });
