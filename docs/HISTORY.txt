@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5 (unreleased)
+1.5 (2011-12-15)
 ----------------
 
 - Encode translated string to utf-8 if we can't find any users
