@@ -10,6 +10,7 @@ class ManagementTabbedView(TabbedView):
 
         if not request.get('disable_border'):
             request.set('disable_border', '1')
+
         request.set('disable_plone.rightcolumn', True)
         request.set('disable_plone.leftcolumn', True)
 
