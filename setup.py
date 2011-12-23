@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.5.1dev'
+version = '1.5.1'
 maintainer = 'Mathias Leimgruber'
 
 setup(name='ftw.usermanagement',

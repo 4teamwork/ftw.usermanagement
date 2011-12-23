@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5.1 (unreleased)
+1.5.1 (2011-12-23)
 ------------------
 
 - Hide right/left column by default in management view.
