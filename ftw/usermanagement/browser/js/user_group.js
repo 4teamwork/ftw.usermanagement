@@ -119,7 +119,7 @@ jq(function(){
        
    }
    function notifyUsers(){
-       jq('div#users_overview input[name="notify.users"]').bind('click', function(e,o){
+       jq('div#users_management_overview input[name="notify.users"]').bind('click', function(e,o){
            // notify users without pw-reset
             e.preventDefault();
 
@@ -131,7 +131,7 @@ jq(function(){
        
    }
    function notifyUsersPassword(){
-       jq('div#users_overview input[name="notify.users.password"]').bind('click', function(e,o){
+       jq('div#users_management_overview input[name="notify.users.password"]').bind('click', function(e,o){
            // notify users with pw-reset
             e.preventDefault();
 
