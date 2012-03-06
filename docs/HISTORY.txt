@@ -5,6 +5,12 @@ Changelog
 1.5.3 (unreleased)
 ------------------
 
+- Added compatibility with new tabbeview layout.
+  [mathias.leimgruber]
+
+ - It's no possible to change the group memberships.
+   [mathias.leimgruber]
+
 - Nothing changed yet.
 
 
