@@ -72,6 +72,7 @@ class GroupMembership(BrowserView):
 
         return users
 
+    #XXX - rRefactor same method is defined in user_membership.py
     def membershipSearch(self, searchString='', searchUsers=True, searchGroups=True, ignore=[]):
         """Search for users and/or groups, returning actual member and group items
            Replaces the now-deprecated prefs_user_groups_search.py script"""
