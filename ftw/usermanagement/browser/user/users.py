@@ -34,6 +34,9 @@ class UserManagement(BaseListing):
     """A ftw.table based user management view"""
     implements(IUsersSourceConfig)
 
+    show_menu = False
+    show_selects = True
+
     columns = (
         {'column': 'counter',
          'column_title': _(u'label_nr', default='Nr.'),
@@ -63,7 +66,6 @@ class UserManagement(BaseListing):
         self.pagenumber = 1
         self.sort_order = 'ASC'
         self.contents = self.users()
-        self.sortable = True
         self.sort_on = 'name'
 
     def __call__(self, *args, **kwargs):

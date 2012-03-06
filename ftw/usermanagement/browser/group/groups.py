@@ -23,6 +23,8 @@ class GroupManagement(BaseListing):
 
     implements(IGroupsSourceConfig)
 
+    show_menu = False
+
     columns = (
         {'column': 'counter',
          'column_title': _(u'label_nr', default='Nr.'),
