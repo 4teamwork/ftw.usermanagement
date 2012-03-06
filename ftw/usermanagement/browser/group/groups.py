@@ -17,6 +17,14 @@ def checkbox(item, value):
     return '<input type="checkbox" name="groupids" value="%s" />' % \
         item['group_id']
 
+def link_group(item, value):
+
+    group_link = '<a href="./group_membership?group_id=%s">%s</a>' % \
+                       (item['group_id'], value)
+
+    return group_link
+
+
 
 class GroupManagement(BaseListing):
     """A ftw.table based user management view"""
@@ -31,7 +39,8 @@ class GroupManagement(BaseListing):
          },
         {'transform': checkbox},
         {'column': 'group_title',
-         'column_title': _(u'label_group_title', default='Title'), },
+         'column_title': _(u'label_group_title', default='Title'),
+         'transform': link_group},
         {'column': 'group_id',
          'column_title': _(u'label_group_id', default='Id'), },
         # {'column': 'group_members',

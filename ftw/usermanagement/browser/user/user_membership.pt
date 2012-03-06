@@ -8,7 +8,7 @@
 
     </select>
     <input type="hidden" name="userid" tal:attributes="value context/REQUEST/userid|nothing" />
-    <input tal:replace="structure context/@@authenticator/authenticator" /> 
+    <input tal:replace="structure context/@@authenticator/authenticator" />
     <input type="submit" name="form.submitted" value="Save" i18n:attributes="value"/>
 
     <input type="submit" name="form.Cancel" value="Cancel" i18n:attributes="value"/>

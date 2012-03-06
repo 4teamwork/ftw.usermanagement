@@ -7,80 +7,70 @@ from itertools import chain
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
-class UserMembership(BrowserView):
-    """Provides another way to assign groups to a member"""
+class GroupMembership(BrowserView):
+    """Provides another way to assign users to a group"""
 
-    template = ViewPageTemplateFile('user_membership.pt')
+    template = ViewPageTemplateFile('group_membership.pt')
 
     def __call__(self):
 
         self.gtool = getToolByName(self.context, 'portal_groups')
         self.mtool = getToolByName(self.context, 'portal_membership')
-        self.userid = self.request.get('userid', None)
-        if self.userid is None:
-            return 'No user selected'
-        self.member = self.mtool.getMemberById(self.userid)
+        self.group_id = self.request.get('group_id', None)
+        if self.group_id is None:
+            return 'No group selected'
+        #self.member = self.mtool.getGroupById(self.group_id)
         self.search_string = ''
 
         form = self.request.form
-        self.current_groups = [g.getId() for g in self.get_groups()]
-
+        self.current_users = self.get_users()
 
         if form.get('form.submitted', False):
-            new_groups = form.get('new_groups', [])
-
-            # Remove unselected groups
-            for g in self.current_groups:
-                if g == 'AuthenticatedUsers':
-                    continue
-                if g not in new_groups:
+            new_users = form.get('new_users', [])
+            # Remove unselected users
+            for m in self.current_users:
+                if m not in new_users:
                     self.gtool.removePrincipalFromGroup(
-                        self.userid,
-                        g,
+                        m,
+                        self.group_id,
                         self.request,
                         )
 
-
-            # XXX: If we call self.get_groups after removing an item,
-            # it will be still there?
-
             # Redefine current_groups
-            self.current_groups = [g.getId() for g in self.get_groups()]
+            # XXX Do not call self.get_users twice
+            self.current_users = self.get_users()
             # Add member to groups
-            for g in new_groups:
-                if g not in self.current_groups:
+            for m in new_users:
+                if m not in self.current_users:
                     self.gtool.addPrincipalToGroup(
-                        self.userid,
-                        g,
+                        m,
+                        self.group_id,
                         self.request,
                         )
 
             self.context.plone_utils.addPortalMessage(_(u'Changes made.'))
 
-            self.current_groups = [g.getId() for g in self.get_groups()]
+            # XXX Do not call self.get_users three times
+            self.current_users = self.get_users()
 
         return self.template()
 
-    def get_groups(self):
+    def get_users(self):
         """Copied from plone.app.controlpanel.usergroups"""
-        groupResults = [self.gtool.getGroupById(m) for m in self.gtool.getGroupsForPrincipal(self.member)]
-        groupResults.sort(key=lambda x: x is not None and x.getGroupTitleOrName().lower())
-        return filter(None, groupResults)
+        group_members = self.gtool.getGroupMembers(self.group_id)
+        group_members.sort(key=lambda x: self.mtool.getMemberById(x).getProperty('fullname', x))
+        return filter(None, group_members)
 
-    def get_display_groups(self):
+    def get_display_users(self):
         """Returns a list of dicts with name, title and is_member_of"""
+        users = []
+        for m in self.membershipSearch(searchGroups=False):
+            users.append(dict(
+                userid=m.getUserId(),
+                name=m.getProperty('fullname', m.getUserId()),
+                is_member_of = m.getUserId() in self.get_users()))
 
-        groups = []
-        for g in self.membershipSearch(searchUsers=False):
-            # Ignore AuthenticatedUsers group
-            if g.getId() == 'AuthenticatedUsers':
-                continue
-            groups.append(dict(
-                name=g.getId(),
-                title=g.getGroupTitleOrName(),
-                is_member_of = g.getId() in [g.getId() for g in self.get_groups()]))
-
-        return groups
+        return users
 
     def membershipSearch(self, searchString='', searchUsers=True, searchGroups=True, ignore=[]):
         """Search for users and/or groups, returning actual member and group items

@@ -2,6 +2,7 @@ jq(function(){
 
    function initUserGroupManagement(){
           initGroupOverlay();
+          initUserOverlay();
           editUser();
           deleteUsers();
           notifyUsers();
@@ -135,6 +136,44 @@ jq(function(){
             jquery_post_request(url, $form);
        });
    }
+
+
+   //Show an overlay with selected and available users, per group
+   function initUserOverlay(){
+       jq.ajaxSetup ({
+           // Disable caching of AJAX responses
+           cache: false
+       });
+
+       jq('[href*=group_membership]').prepOverlay({
+           subtype:'ajax',
+           formselector:'form',
+           config:{onBeforeLoad: function(e){
+               var $select = jq('[name=new_users:list]', e.target.getOverlay());
+                $select.multiselect({sortable: false});
+                $multi = $select.data('multiselect');
+               // It seems that, ui.multiselect has some style problem in a overlay
+               $multi.container.css('width','601px');
+               $multi.availableActions.css('width','300px');
+               $multi.availableContainer.css('width','300px');
+               $multi.selectedActions.css('width','300px');
+               $multi.selectedContainer.css('width','300px');
+               $multi.availableList.css('height','250px');
+               $multi.selectedList.css('height','250px');
+           }},
+           afterpost: function(el, overlay){
+               var api = overlay.data('overlay');
+               //reload table
+               load_status_messages();
+               tabbedview.reload_view();
+               initUserGroupManagement();
+               api.close();
+           },
+             'closeselector':'[name=form.Cancel]'
+       });
+   }
+
+
 
    function deleteGroups(){
       jq('[name=delete.groups]').bind('click', function(e){

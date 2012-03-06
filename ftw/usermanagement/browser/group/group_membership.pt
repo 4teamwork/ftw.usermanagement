@@ -1,0 +1,15 @@
+
+<form method="POST" action="./group_membership" i18n:domain="ftw.usermanagement">
+    <select name="new_users:list" multiple="multiple">
+        <option tal:repeat="user view/get_display_users"
+                tal:attributes="value user/userid;
+                                selected python:user['is_member_of'] and 'selected' or ''"
+                tal:content="user/name">User</option>
+
+    </select>
+    <input type="hidden" name="group_id" tal:attributes="value context/REQUEST/group_id|nothing" />
+    <input tal:replace="structure context/@@authenticator/authenticator" />
+    <input type="submit" name="form.submitted" value="Save" i18n:attributes="value"/>
+
+    <input type="submit" name="form.Cancel" value="Cancel" i18n:attributes="value"/>
+</form>
