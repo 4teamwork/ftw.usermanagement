@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5.3 (unreleased)
+1.5.3 (2012-03-12)
 ------------------
 
 - Added compatibility with new tabbeview layout.
