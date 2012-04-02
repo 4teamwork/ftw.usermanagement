@@ -37,7 +37,6 @@
             <input tal:replace="structure context/@@authenticator/authenticator" />
         </form>
     </fieldset>
-    <tal:block content="structure provider:ftw.usermanagement.befortablemanager" />
     <tal:END_CUSTOM_____________________________________ />
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <layers>
-    <layer name="ftw.usermanagement" 
+    <layer name="ftw.usermanagement.layer" 
            interface="ftw.usermanagement.interfaces.IFtwUserManagement" />
 </layers>
