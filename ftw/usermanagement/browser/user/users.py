@@ -16,17 +16,17 @@ class IUsersSourceConfig(ITableSourceConfig):
 
 def checkbox(item, value):
     return '<input type="checkbox" name="userids" value="%s" />' % \
-        item['email']
+        item['userid']
 
 
 def userpreflink(item, value):
-    url = './@@user-information?userid=%s' % item['email']
+    url = './@@user-information?userid=%s' % item['userid']
     return '<a href="%s">%s</a>' % (url, item['name'])
 
 def link_group(item, value):
 
     group_link = '<a href="./user_membership?userid=%s">%s</a>' % \
-                       (item['email'], value)
+                       (item['userid'], value)
 
     return group_link
 
@@ -45,8 +45,8 @@ class UserManagement(BaseListing):
         {'column': 'name',
          'column_title': _(u'label_name', default='Name'),
          'transform': userpreflink},
-        {'column': 'email',
-         'column_title': _(u'label_email', default='Email'), },
+        {'column': 'userid',
+         'column_title': _(u'label_userid', default='Userid'), },
         {'column': 'groups',
          'column_title': _(u'label_groups', default='Groups'),
          'transform': link_group })
@@ -117,7 +117,7 @@ class UserManagement(BaseListing):
                 userinfo = dict(
                     counter = index + 1,
                     name = t.title,
-                    email = t.value,
+                    userid = t.token,
                     groups = user_groups)
                 users.append(userinfo)
 
@@ -146,7 +146,7 @@ class UsersTableSource(BaseTableSource):
 
         if search:
             def filter_(item):
-                searchable = ' '.join((item['name'], item['email'], item['groups'])).lower()
+                searchable = ' '.join((item['name'], item['userid'], item['groups'])).lower()
                 return search in searchable
             return filter(filter_, results)
         return results
