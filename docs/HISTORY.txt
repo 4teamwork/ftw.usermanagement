@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.6.1 (unreleased)
+1.6.1 (2012-04-16)
 ------------------
 
 - Use token of principal user source (This supports diffrent plone configs).
