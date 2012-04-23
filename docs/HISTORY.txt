@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.7 (unreleased)
+1.7 (2012-04-23)
 ----------------
 
 - Added i18n domain.
