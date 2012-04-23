@@ -11,7 +11,7 @@
     <tal:START_CUSTOM_____________________________________ />
     <script type="text/javascript" src="++resource++user_group.js"
         tal:attributes="src string:${context/absolute_url}/++resource++user_group.js"></script>
-    <fieldset>
+    <fieldset i18n:domain="ftw.usermanagement">
         <legend i18n:translate="">Add a new Member</legend>
         <div class="helpDescription" i18n:translate="help_add_member">
             If no password is provided, plone will generate one for you
@@ -70,7 +70,7 @@
         </tal:html>
 
         <tal:START_CUSTOM_____________________________________ />
-        <div class="formControls">
+        <div class="formControls" i18n:domain="ftw.usermanagement">
           <input type="submit" name="notify.users" value="Notify user" i18n:attributes="value" />
           <input type="submit" name="notify.users.password" value="Notify user and reset password" i18n:attributes="value" />
           <input class="allowMultiSubmit" type="submit" name="delete.users" value="Delete user" i18n:attributes="value" />

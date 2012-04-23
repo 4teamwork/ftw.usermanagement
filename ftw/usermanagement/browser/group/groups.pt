@@ -12,7 +12,7 @@
      <script type="text/javascript" src="++resource++user_group.js"
            tal:attributes="src string:${context/absolute_url}/++resource++user_group.js"></script>
 
-     <fieldset>
+     <fieldset i18n:domain="ftw.usermanagement">
          <legend i18n:translate="">Add a new Group</legend>
          <div class="helpDescription" i18n:translate="help_add_group">
              ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed
@@ -68,7 +68,7 @@
         </tal:html>
 
        <tal:START_CUSTOM_____________________________________ />
-       <div class="formControls">
+       <div class="formControls" i18n:domain="ftw.usermanagement">
            <input type="submit" name="delete.groups" value="Delete groups" i18n:attributes="value" />
        </div>
        <tal:END_CUSTOM_____________________________________ />
