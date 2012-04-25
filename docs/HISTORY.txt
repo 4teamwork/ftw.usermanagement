@@ -5,7 +5,11 @@ Changelog
 1.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added group id validator.
+  [mathias.leimgruber]
+
+- Fix display name in group_membership.
+  [mathias.leimgruber]
 
 
 1.7 (2012-04-23)

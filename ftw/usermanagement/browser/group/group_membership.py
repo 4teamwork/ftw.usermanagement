@@ -57,17 +57,27 @@ class GroupMembership(BrowserView):
 
     def get_users(self):
         """Copied from plone.app.controlpanel.usergroups"""
+        def sort_users(user):
+            member = self.mtool.getMemberById(user)
+            if not member:
+                return user
+            fullname = self.mtool.getMemberById(user).getProperty('fullname', '')
+            if  not fullname:
+                return user
+            return fullname
+
         group_members = self.gtool.getGroupMembers(self.group_id)
-        group_members.sort(key=lambda x: self.mtool.getMemberById(x).getProperty('fullname', x))
+        group_members.sort(key=sort_users)
         return filter(None, group_members)
 
     def get_display_users(self):
         """Returns a list of dicts with name, title and is_member_of"""
         users = []
         for m in self.membershipSearch(searchGroups=False):
+            fullname = m.getProperty('fullname', m.getUserId())
             users.append(dict(
                 userid=m.getUserId(),
-                name=m.getProperty('fullname', m.getUserId()),
+                name=fullname and fullname or m.getUserId(),
                 is_member_of = m.getUserId() in self.get_users()))
 
         return users

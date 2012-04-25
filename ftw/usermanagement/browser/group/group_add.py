@@ -10,14 +10,37 @@ class GroupAdd(BrowserView):
         super(GroupAdd, self).__init__(context, request)
 
         self.gtool = getToolByName(self, 'portal_groups')
+        self.registration = getToolByName(self.context, 'portal_registration')
 
     def __call__(self):
-        self.create_group()
+        self.validate_group()
+
+    def validate_group(self):
+
+        errors = {}
+        group_id = self.request.get('group_id', '')
+
+        # check if group_id is allowed
+        if not 'group_id' in errors:
+            if not self.registration.isMemberIdAllowed(group_id):
+                errors['group_id'] = _(u"The group id you selected is already"
+                    "in use or is not valid. Please choose another.")
+
+
+        if errors:
+            self.request.set('errors', errors)
+            for field, msg in errors.items():
+                IStatusMessage(self.request).addStatusMessage(
+                    msg,
+                    type="error")
+            return False
+        else:
+            self.create_group()
+
 
     def create_group(self):
         """Validates input and creates a new group"""
 
-        # XXX: Validate input
         group_id = self.request.get('group_id', '')
         group_title = self.request.get('group_title', group_id)
 
