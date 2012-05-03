@@ -3,6 +3,10 @@ import os
 
 version = '1.7.2.dev0'
 maintainer = 'Mathias Leimgruber'
+tests_require = [
+    'ftw.testing',
+    'plone.testing',
+    ]
 
 setup(name='ftw.usermanagement',
       version=version,
@@ -41,6 +45,8 @@ setup(name='ftw.usermanagement',
         # -*- Extra requirements: -*-
         ],
 
+      tests_require=tests_require,
+      extras_require=dict(tests=tests_require),
       entry_points='''
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

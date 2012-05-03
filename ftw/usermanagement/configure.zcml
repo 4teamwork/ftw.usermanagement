@@ -24,4 +24,9 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <utility
+      provides=".interfaces.IUserManagementVocabularyFactory"
+      component=".source.UsersVocabularyFactory"
+      name="plone.principalsource.Users"
+      />
 </configure>
