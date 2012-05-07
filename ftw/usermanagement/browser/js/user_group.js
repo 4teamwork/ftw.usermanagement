@@ -120,7 +120,7 @@ jq(function(){
        jq('div#users_management_overview input[name="notify.users"]').bind('click', function(e,o){
            // notify users without pw-reset
             e.preventDefault();
-            var $form = jq('form[name="member_overview_form"]').serializeArray();
+            var $form = jq('form[name="tabbedview_form"]').serializeArray();
             var url = (window.portal_url + "/user_notify");
             jquery_post_request(url, $form);
        });
@@ -130,7 +130,7 @@ jq(function(){
        jq('div#users_management_overview input[name="notify.users.password"]').bind('click', function(e,o){
            // notify users with pw-reset
             e.preventDefault();
-            var $form = jq('form[name="member_overview_form"]').serializeArray();
+            var $form = jq('form[name="tabbedview_form"]').serializeArray();
             var url = (window.portal_url + "/user_notify");
             $form.push({'name':"reset_pw", 'value':"True"});
             jquery_post_request(url, $form);
