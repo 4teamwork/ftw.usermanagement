@@ -19,8 +19,6 @@ class GroupTests(MockTestCase):
         self.expect(self.context.REQUEST).result(self.request)
 
     def base_get_groups(self, query, result):
-        """ Test the GroupsByUser class
-        """
 
         groups = [
             {'groupid': 'group1', 'title': 'Group1'},
@@ -49,8 +47,6 @@ class GroupTests(MockTestCase):
         self.assertEquals(executor.get_results(), result)
 
     def test_get_groups_no_filter(self):
-        """ Test the GroupsByUser class
-        """
 
         query = {'filter_text': ''}
 
@@ -65,8 +61,6 @@ class GroupTests(MockTestCase):
         self.base_get_groups(query, result)
 
     def test_get_groups_with_filter(self):
-        """ Test the GroupsByUser class
-        """
 
         query = {'filter_text': 'Group1'}
 
