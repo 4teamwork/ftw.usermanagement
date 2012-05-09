@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from ftw.usermanagement import user_management_factory as _
 from ftw.usermanagement.browser.utils import membership_search
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
 
 
 class UserMembership(BrowserView):
@@ -11,64 +12,73 @@ class UserMembership(BrowserView):
     template = ViewPageTemplateFile('user_membership.pt')
 
     def __call__(self):
-
-        self.gtool = getToolByName(self.context, 'portal_groups')
-        self.mtool = getToolByName(self.context, 'portal_membership')
-        self.userid = self.request.get('userid', None)
-        if self.userid is None:
-            return 'No user selected'
-        self.member = self.mtool.getMemberById(self.userid)
-        self.search_string = ''
-
+        """ Check the given request parameters and call the
+        correct functions
+        """
         form = self.request.form
-        self.current_groups = [g.getId() for g in self.get_groups()]
+        user_id = self.request.get('userid', None)
+        groups = form.get('new_groups', [])
 
+        if not user_id:
+            return 'No user selected'
 
-        if form.get('form.submitted', False):
-            new_groups = form.get('new_groups', [])
+        if not form.get('form.submitted', False):
+            return self.render(user_id)
 
-            # Remove unselected groups
-            for g in self.current_groups:
-                if g == 'AuthenticatedUsers':
-                    continue
-                if g not in new_groups:
-                    self.gtool.removePrincipalFromGroup(
-                        self.userid,
-                        g,
-                        self.request,
-                        )
+        return self.replace_groups(user_id, groups)
 
+    def render(self, user_id):
+        """ Renders the popup to assign new groups
+        """
+        users = self.get_display_groups(user_id)
+        return self.template(users=users)
 
-            # XXX: If we call self.get_groups after removing an item,
-            # it will be still there?
+    def replace_groups(self, user_id, groups):
+        """ Replace the assigned group in the groups-attr
+        """
+        gtool = getToolByName(self.context, 'portal_groups')
+        current_groups = self.get_groups(user_id)
 
-            # Redefine current_groups
-            self.current_groups = [g.getId() for g in self.get_groups()]
-            # Add member to groups
-            for g in new_groups:
-                if g not in self.current_groups:
-                    self.gtool.addPrincipalToGroup(
-                        self.userid,
-                        g,
-                        self.request,
-                        )
+        # Remove unselected groups
+        for group in current_groups:
+            if group == 'AuthenticatedUsers':
+                continue
+            if group not in groups:
+                gtool.removePrincipalFromGroup(user_id, group, self.request)
 
-            self.context.plone_utils.addPortalMessage(_(u'Changes made.'))
+        # Add member to groups
+        for group in groups:
+            if group not in current_groups:
+                gtool.addPrincipalToGroup(user_id, group, self.request)
 
-            self.current_groups = [g.getId() for g in self.get_groups()]
+        IStatusMessage(self.request).addStatusMessage(
+            _(u'Changes made.'), type="info")
 
-        return self.template()
+        return True
 
-    def get_groups(self):
-        """Copied from plone.app.controlpanel.usergroups"""
-        groupResults = [self.gtool.getGroupById(m) for m in self.gtool.getGroupsForPrincipal(self.member)]
-        groupResults.sort(key=lambda x: x is not None and x.getGroupTitleOrName().lower())
-        return filter(None, groupResults)
+    def get_groups(self, user_id):
+        """Return a sorted list of group ids the user is member of
+        """
+        gtool = getToolByName(self.context, 'portal_groups')
+        mtool = getToolByName(self.context, 'portal_membership')
 
-    def get_display_groups(self):
+        member = mtool.getMemberById(user_id)
+        groups = gtool.getGroupsForPrincipal(member)
+
+        group_results = [gtool.getGroupById(m) for m in groups]
+
+        group_results.sort(
+            key=lambda x: x is not None and x.getGroupTitleOrName().lower())
+
+        group_results = filter(None, group_results)
+        group_ids = [group.getId() for group in group_results]
+        return group_ids
+
+    def get_display_groups(self, user_id):
         """Returns a list of dicts with name, title and is_member_of"""
 
         groups = []
+        current_groups = self.get_groups(user_id)
         for g in membership_search(self.context, searchUsers=False):
             # Ignore AuthenticatedUsers group
             if g.getId() == 'AuthenticatedUsers':
@@ -76,6 +86,6 @@ class UserMembership(BrowserView):
             groups.append(dict(
                 name=g.getId(),
                 title=g.getGroupTitleOrName(),
-                is_member_of = g.getId() in [g.getId() for g in self.get_groups()]))
+                is_member_of = g.getId() in current_groups))
 
         return groups

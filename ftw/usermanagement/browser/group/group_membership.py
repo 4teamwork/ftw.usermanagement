@@ -13,7 +13,7 @@ class GroupMembership(BrowserView):
     template = ViewPageTemplateFile('group_membership.pt')
 
     def __call__(self):
-        """ Check the given request parameters and return the call the
+        """ Check the given request parameters and call the
         correct functions
         """
         form = self.request.form
@@ -30,11 +30,13 @@ class GroupMembership(BrowserView):
         return self.replace_group_members(group_id, users)
 
     def render(self, group_id):
+        """ Renders the popup to assign new users
+        """
         users = self.get_display_users(group_id)
         return self.template(users=users)
 
     def replace_group_members(self, group_id, users):
-        """ Replace the assigned group users with the users set in users
+        """ Replace the assigned users in the users-attr
         """
         current_users = self.get_users(group_id)
         gtool = getToolByName(self.context, 'portal_groups')

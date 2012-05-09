@@ -1,7 +1,7 @@
 
 <form method="POST" action="./user_membership" i18n:domain="ftw.usermanagement">
     <select name="new_groups:list" multiple="multiple">
-        <option tal:repeat="group view/get_display_groups"
+        <option tal:repeat="group options/users"
                 tal:attributes="value group/name;
                                 selected python:group['is_member_of'] and 'selected' or ''"
                 tal:content="group/title">Group</option>
