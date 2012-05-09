@@ -1,5 +1,5 @@
 from ftw.testing import MockTestCase
-from mocker import ANY, KWARGS
+from mocker import ANY
 from ftw.usermanagement.testing import USERMANAGEMENT_ZCML_LAYER
 from ftw.usermanagement.browser.user.user_register import UserRegister
 from Products.statusmessages.interfaces import IStatusMessage
@@ -20,21 +20,11 @@ class UserTests(MockTestCase):
 
         self.mtool = self.mocker.mock(count=False)
         self.mock_tool(self.mtool, 'portal_membership')
-
-        self.rtool = self.mocker.mock(count=False)
-        self.mock_tool(self.rtool, 'portal_registration')
-
-    def base_register(self, request, errors):
-
         self.expect(self.mtool.memberareaCreationFlag(ANY)).result(True)
         self.expect(self.mtool.createMemberarea(ANY)).result(True)
 
-        statusmsg = self.mocker.mock(count=False)
-        message_cache = self.create_dummy()
-        self.expect(statusmsg(ANY).addStatusMessage(ANY, KWARGS)).call(
-            lambda msg, type: setattr(message_cache, type, msg))
-        self.mock_adapter(statusmsg, IStatusMessage, (Interface, ))
-
+        self.rtool = self.mocker.mock(count=False)
+        self.mock_tool(self.rtool, 'portal_registration')
         self.expect(self.rtool.generatePassword()).result('12345')
         self.expect(self.rtool.addMember(
             'attribute_error',
@@ -52,55 +42,76 @@ class UserTests(MockTestCase):
             properties=ANY,
             REQUEST=ANY)).result(True)
 
-        register_obj = UserRegister(self.context, request)
-        register = self.mocker.patch(register_obj)
-        self.expect(register.validate_registration(ANY)).result(errors)
-
-        self.replay()
-        register()
-
-        self.assertEquals(request.get('errors', []), errors)
-
-        return message_cache
+        self.statusmsg = self.mocker.mock(count=False)
+        self.message_cache = self.create_dummy()
+        self.expect(self.statusmsg(ANY).addStatusMessage(ANY, type=ANY)).call(
+            lambda msg, type: setattr(self.message_cache, type, msg))
+        self.mock_adapter(self.statusmsg, IStatusMessage, (Interface, ))
 
     def test_register_ok(self):
 
-        message = self.base_register(Request({'email': 'ok'}), [])
+        self.request['email'] = 'ok'
 
-        self.assertTrue(len(message.__dict__) == 1)
-        self.assertEquals(message.__dict__.get('info'), u'User added.')
+        register_obj = self.mocker.patch(
+            UserRegister(self.context, self.request))
+
+        self.expect(register_obj.validate_registration(ANY)).result(True)
+
+        self.replay()
+
+        result = register_obj.register()
+
+        self.assertEquals(result, True)
+        self.assertEquals(
+            self.message_cache.__dict__.get('info'), u'User added.')
 
     def test_register_value_error(self):
 
-        message = self.base_register(Request({'email': 'value_error'}), [])
+        self.request['email'] = 'value_error'
 
-        self.assertTrue(len(message.__dict__) == 1)
-        self.assertEquals(type(message.__dict__.get('error')), ValueError)
+        register_obj = self.mocker.patch(
+            UserRegister(self.context, self.request))
+
+        self.expect(register_obj.validate_registration(ANY)).result(True)
+
+        self.replay()
+
+        result = register_obj.register()
+
+        self.assertEquals(result, False)
+        self.assertEquals(
+            type(self.message_cache.__dict__.get('error')), ValueError)
+
 
     def test_register_attribute_error(self):
 
-        message = self.base_register(Request({'email': 'attribute_error'}), [])
+        self.request['email'] = 'attribute_error'
 
-        self.assertTrue(len(message.__dict__) == 1)
-        self.assertEquals(type(message.__dict__.get('error')), AttributeError)
+        register_obj = self.mocker.patch(
+            UserRegister(self.context, self.request))
+
+        self.expect(register_obj.validate_registration(ANY)).result(True)
+
+        self.replay()
+
+        result = register_obj.register()
+
+        self.assertEquals(result, False)
+        self.assertEquals(
+            type(self.message_cache.__dict__.get('error')), AttributeError)
 
     def test_register_validation_error(self):
 
-        message = self.base_register(
-            Request({'email': 'ok'}), ['err1', 'err2'])
-        self.assertTrue(len(message.__dict__) == 0)
+        self.request['email'] = 'ok'
 
+        register_obj = self.mocker.patch(
+            UserRegister(self.context, self.request))
 
-class Request(object):
-    """ Dummy request class prividing IStatusMessage and
-    behave like a dict
-    """
+        self.expect(register_obj.validate_registration(ANY)).result(False)
 
-    def __init__(self, _dict={}):
-        self._dict = _dict
+        self.replay()
 
-    def get(self, attr, default=''):
-        return self._dict.get(attr, default)
+        result = register_obj.register()
 
-    def set(self, key, value):
-        self._dict[key] = value
+        self.assertEquals(result, False)
+        self.assertTrue(len(self.message_cache.__dict__) == 0)

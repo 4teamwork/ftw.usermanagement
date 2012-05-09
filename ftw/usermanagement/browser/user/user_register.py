@@ -30,10 +30,8 @@ class UserRegister(BrowserView):
         registration = getToolByName(self.context, 'portal_registration')
         mtool = getToolByName(self, 'portal_membership')
         data = self._get_register_values()
-        errors = self.validate_registration(data)
 
-        if errors:
-            self.request.set('errors', errors)
+        if not self.validate_registration(data):
             return False
 
         try:
@@ -64,8 +62,10 @@ class UserRegister(BrowserView):
 
         if not data.get('firstname'):
             errors['firstname'] = ERROR_MSG.get('no_firstname')
+
         if not data.get('lastname'):
             errors['lastname'] = ERROR_MSG.get('no_lastname')
+
         if not data.get('email'):
             errors['email'] = ERROR_MSG.get('no_email')
 
@@ -84,7 +84,7 @@ class UserRegister(BrowserView):
         for field, msg in errors.items():
             self._add_statusmessage(msg, "error")
 
-        return errors
+        return not errors
 
     def _add_statusmessage(self, msg, mtype):
         """ Add a statusmessage

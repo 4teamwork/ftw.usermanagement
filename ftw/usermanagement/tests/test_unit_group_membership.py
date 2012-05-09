@@ -127,7 +127,7 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.expect(self.gtool.addPrincipalToGroup(
             ANY, ANY, ANY)).call(lambda x, y, z: self.added_users.append(x))
 
-    def test_replace_group_members_nothing(self):
+    def test_nothing(self):
 
         self.replay()
 
@@ -138,7 +138,7 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.assertTrue(len(self.removed_users) == 0)
         self.assertTrue(len(self.added_users) == 0)
 
-    def test_replace_group_members_add(self):
+    def test_add(self):
 
         self.replay()
 
@@ -150,7 +150,7 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.assertTrue(len(self.removed_users) == 0)
         self.assertTrue(len(self.added_users) == 2)
 
-    def test_replace_group_members_remove(self):
+    def test_remove(self):
 
         self.replay()
 
@@ -162,7 +162,7 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.assertTrue(len(self.removed_users) == 2)
         self.assertTrue(len(self.added_users) == 0)
 
-    def test_replace_group_members_remove_and_add(self):
+    def test_remove_and_add(self):
 
         self.replay()
 
@@ -174,7 +174,7 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.assertTrue(len(self.removed_users) == 2)
         self.assertTrue(len(self.added_users) == 2)
 
-    def test_replace_group_members_leave_all(self):
+    def test_leave_all(self):
 
         self.replay()
 
@@ -198,7 +198,7 @@ class CallTests(MockTestCase):
         self.context = self.stub()
         self.expect(self.context.REQUEST).result(self.request)
 
-    def test_call_no_group_id(self):
+    def test_no_group_id(self):
 
         request = self.mocker.proxy(self.request)
         self.expect(request.form).result({})
@@ -209,7 +209,7 @@ class CallTests(MockTestCase):
 
         self.assertEquals(result, 'No group selected')
 
-    def test_call_form_submitted(self):
+    def test_form_submitted(self):
 
         self.request['group_id'] = "Group_1"
         request = self.mocker.proxy(self.request)
@@ -226,7 +226,7 @@ class CallTests(MockTestCase):
 
         self.assertEquals(result, 'replace')
 
-    def test_call_form_not_submitted(self):
+    def test_form_not_submitted(self):
 
         self.request['group_id'] = "Group_1"
         request = self.mocker.proxy(self.request)
@@ -270,7 +270,7 @@ class GetUsersTests(MockTestCase):
         self.expect(
             self.member_2.getProperty('fullname', ANY)).result('')
 
-    def test_get_users_no_members(self):
+    def test_no_members(self):
 
         self.expect(self.gtool.getGroupMembers(ANY)).result([])
 
@@ -282,7 +282,7 @@ class GetUsersTests(MockTestCase):
         # No users
         self.assertEquals(result, [])
 
-    def test_get_user(self):
+    def test_with_members(self):
 
         self.expect(self.gtool.getGroupMembers(ANY)).result(
             ['fullname', 'no_fullname', 'admin'])

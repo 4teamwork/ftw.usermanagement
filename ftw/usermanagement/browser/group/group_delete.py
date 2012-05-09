@@ -16,7 +16,8 @@ class GroupDelete(BrowserView):
     def delete(self):
         """Delete groups"""
 
-        groupids = list(self.request.get('groupids', []))
+        groupids = self.request.get('groupids', [])
+        groupids = isinstance(groupids, list) and groupids or [groupids]
 
         try:
             getToolByName(self, 'portal_groups').removeGroups(groupids)
