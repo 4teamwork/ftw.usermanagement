@@ -82,7 +82,6 @@ class UserTests(MockTestCase):
         self.assertEquals(
             type(self.message_cache.__dict__.get('error')), ValueError)
 
-
     def test_register_attribute_error(self):
 
         self.request['email'] = 'attribute_error'

@@ -10,29 +10,20 @@ class UserDelete(BrowserView):
 
     template = ViewPageTemplateFile('user_delete.pt')
 
-    def __init__(self, context, request):
-        super(UserDelete, self).__init__(context, request)
-
-        self.mtool = getToolByName(self, 'portal_membership')
-
     def __call__(self):
         return self.template()
 
     def delete(self):
         """delete users"""
         userids = self.request.get('userids', [])
-        self.delete_users(userids)
+        mtool = getToolByName(self, 'portal_membership')
 
-    def delete_users(self, userids):
-
-        if not userids:
-            return
-        self.mtool.deleteMembers(
+        mtool.deleteMembers(
             userids,
             delete_memberareas=0,
             delete_localroles=1,
             REQUEST=self.request,
             )
-        msg = _(u'text_user_deleted')
-        IStatusMessage(self.request).addStatusMessage(msg, type="info")
-        return
+
+        IStatusMessage(self.request).addStatusMessage(
+            _(u'text_user_deleted'), type="info")

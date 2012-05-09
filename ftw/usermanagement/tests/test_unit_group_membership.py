@@ -186,6 +186,7 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.assertTrue(len(self.removed_users) == 0)
         self.assertTrue(len(self.added_users) == 0)
 
+
 class CallTests(MockTestCase):
 
     layer = USERMANAGEMENT_ZCML_LAYER
