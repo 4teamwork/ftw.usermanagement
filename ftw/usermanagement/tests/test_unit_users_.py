@@ -5,6 +5,59 @@ from ftw.usermanagement.browser.user.users import UsersSearchResultExecutor
 from ftw.usermanagement.interfaces import IUserManagementVocabularyFactory
 
 
+class GroupNamesOfUserTests(MockTestCase):
+
+    layer = USERMANAGEMENT_ZCML_LAYER
+
+    def setUp(self):
+        super(GroupNamesOfUserTests, self).setUp()
+
+        self.context = self.stub()
+        self.expect(self.context.REQUEST).result(self.context)
+
+        self.gtool = self.mocker.mock(count=False)
+        self.mock_tool(self.gtool, 'portal_groups')
+
+    def test_no_groups(self):
+
+        self.expect(self.gtool.getGroupsByUserId(ANY)).result([])
+
+        self.replay()
+
+        executor =  UsersSearchResultExecutor(self.context, '')
+        result = executor.get_group_names_of_user('user')
+
+        self.assertEquals(result, 'No Group')
+
+    def test_unsorted_groups(self):
+
+        groups = [Group('group%s' % i) for i in range(5)]
+        groups.reverse()
+
+        self.expect(self.gtool.getGroupsByUserId(ANY)).result(groups)
+
+        self.replay()
+
+        executor =  UsersSearchResultExecutor(self.context, '')
+        result = executor.get_group_names_of_user('user')
+
+        self.assertEquals(result, 'group0, group1, group2, group3, group4')
+
+    def test_filter_groups(self):
+
+        groups = [Group('group%s' % i) for i in range(5)]
+        groups.append(Group('AuthenticatedUsers'))
+
+        self.expect(self.gtool.getGroupsByUserId(ANY)).result(groups)
+
+        self.replay()
+
+        executor =  UsersSearchResultExecutor(self.context, '')
+        result = executor.get_group_names_of_user('invalid')
+
+        self.assertEquals(result, 'group0, group1, group2, group3, group4')
+
+
 class UserTests(MockTestCase):
 
     layer = USERMANAGEMENT_ZCML_LAYER
@@ -22,50 +75,6 @@ class UserTests(MockTestCase):
 
         self.gtool = self.mocker.mock(count=False)
         self.mock_tool(self.gtool, 'portal_groups')
-
-    def test_group_names_of_user(self):
-        """ Test group_names_of_user
-        """
-
-        # Normal groups
-        groups_valid = [Group('group%s' % i) for i in range(5)]
-
-        # No groups
-        groups_invalid = []
-
-        # Unsorted groups
-        groups_unsorted = [Group('group%s' % i) for i in range(5)]
-        groups_unsorted.reverse()
-
-        # A group contains a id we don't want
-        groups_filter = [Group('group%s' % i) for i in range(5)]
-        groups_filter.append(Group('AuthenticatedUsers'))
-
-        self.expect(
-            self.gtool.getGroupsByUserId('valid')).result(groups_valid)
-        self.expect(
-            self.gtool.getGroupsByUserId('invalid')).result(groups_invalid)
-        self.expect(
-            self.gtool.getGroupsByUserId('unsorted')).result(groups_unsorted)
-        self.expect(
-            self.gtool.getGroupsByUserId('filter')).result(groups_filter)
-
-        self.replay()
-
-        executor = UsersSearchResultExecutor(self.context, '')
-
-        groups_valid = executor.get_group_names_of_user('valid')
-        groups_invalid = executor.get_group_names_of_user('invalid')
-        groups_unsorted = executor.get_group_names_of_user('unsorted')
-        groups_filter = executor.get_group_names_of_user('filter')
-
-        self.assertEquals(
-            groups_valid, 'group0, group1, group2, group3, group4')
-        self.assertEquals(groups_invalid, 'No Group')
-        self.assertEquals(
-            groups_unsorted, 'group0, group1, group2, group3, group4')
-        self.assertEquals(
-            groups_filter, 'group0, group1, group2, group3, group4')
 
     def base_search_result_executor(self, query, result):
 
