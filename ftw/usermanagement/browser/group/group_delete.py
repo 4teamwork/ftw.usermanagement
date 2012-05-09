@@ -10,32 +10,20 @@ class GroupDelete(BrowserView):
 
     template = ViewPageTemplateFile('group_delete.pt')
 
-    def __init__(self, context, request):
-        super(GroupDelete, self).__init__(context, request)
-
-        self.mtool = getToolByName(self, 'portal_membership')
-        self.gtool = getToolByName(self, 'portal_groups')
-
     def __call__(self):
         return self.template()
 
     def delete(self):
         """Delete groups"""
 
-        groupids = self.request.get('groupids', [])
+        groupids = list(self.request.get('groupids', []))
 
-        if type(groupids) != list:
-            groupids = [groupids]
-
-        self.delete_groups(groupids)
-
-    def delete_groups(self, groupids):
-        if groupids:
-
-            self.gtool.removeGroups(groupids)
-            msg = _(u'Group(s) deleted.')
-
+        try:
+            getToolByName(self, 'portal_groups').removeGroups(groupids)
+        except KeyError:
             IStatusMessage(self.request).addStatusMessage(
-                msg,
-                type="info")
-        return
+                _(u'There was an error while deleting a group.'), type="error")
+            return
+
+        IStatusMessage(self.request).addStatusMessage(
+            _(u'Group(s) deleted.'), type="info")

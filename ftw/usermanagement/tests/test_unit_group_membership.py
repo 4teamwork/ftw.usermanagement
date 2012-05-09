@@ -174,6 +174,17 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.assertTrue(len(self.removed_users) == 2)
         self.assertTrue(len(self.added_users) == 2)
 
+    def test_replace_group_members_leave_all(self):
+
+        self.replay()
+
+        result = self.group_membership.replace_group_members(
+            ['user1', 'user2'], ['user1', 'user2'])
+
+        self.assertEquals(result, True)
+        self.assertEquals(self.message_cache.info, u'Changes made.')
+        self.assertTrue(len(self.removed_users) == 0)
+        self.assertTrue(len(self.added_users) == 0)
 
 class CallTests(MockTestCase):
 
