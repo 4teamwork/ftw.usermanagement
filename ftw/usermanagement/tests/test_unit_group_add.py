@@ -7,6 +7,48 @@ from Products.statusmessages.interfaces import IStatusMessage
 from zope.interface import Interface
 
 
+class ValidateGroupTests(MockTestCase):
+
+    layer = USERMANAGEMENT_ZCML_LAYER
+
+    def setUp(self):
+        super(ValidateGroupTests, self).setUp()
+
+        self.request = {}
+        self.context = self.stub()
+
+        self.rtool = self.mocker.mock(count=False)
+        self.mock_tool(self.rtool, 'portal_registration')
+        self.expect(self.rtool.isMemberIdAllowed('invalid')).result(False)
+        self.expect(self.rtool.isMemberIdAllowed('valid')).result(True)
+
+        self.statusmsg = self.mocker.mock(count=False)
+        self.message_cache = self.create_dummy()
+        self.expect(self.statusmsg(ANY).addStatusMessage(ANY, type=ANY)).call(
+            lambda msg, type: setattr(self.message_cache, type, msg))
+        self.mock_adapter(self.statusmsg, IStatusMessage, (Interface, ))
+
+    def test_invalid_id(self):
+
+        self.replay()
+
+        result = GroupAdd(self.context, self.request).validate_group('invalid')
+
+        self.assertEqual(result, False)
+        self.assertEqual(
+            self.message_cache.error,
+            u"The group id you selected is already"
+            "in use or is not valid. Please choose another.")
+
+    def test_valid_id(self):
+
+        self.replay()
+
+        result = GroupAdd(self.context, self.request).validate_group('valid')
+
+        self.assertEqual(result, True)
+
+
 class AddGroupTests(MockTestCase):
 
     layer = USERMANAGEMENT_ZCML_LAYER
