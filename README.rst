@@ -61,9 +61,12 @@ Links
 - Main github project repository: https://github.com/4teamwork/ftw.usermanagement
 - Issue tracker: https://github.com/4teamwork/ftw.usermanagement/issues
 - Package on pypi: http://pypi.python.org/pypi/ftw.usermanagement
+- Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.usermanagement
 
 
-Maintainer
-==========
+Copyright
+---------
 
-This package is produced and maintained by `4teamwork <http://www.4teamwork.ch/>`_ company.
+This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
+
+``ftw.usermanagement`` is licensed under GNU General Public License, version 2.
