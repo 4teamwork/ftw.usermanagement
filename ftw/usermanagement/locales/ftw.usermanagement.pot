@@ -264,6 +264,6 @@ msgstr ""
 
 #. Default: "Welcome on ${title}"
 #: ./ftw/usermanagement/browser/user/user_notify.py:126
-msgid "usermanagement_mail_notification_subjectation_subject"
+msgid "usermanagement_mail_notification_subject"
 msgstr ""
 
