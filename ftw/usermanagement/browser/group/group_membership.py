@@ -1,12 +1,11 @@
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from ftw.usermanagement import user_management_factory as _
-from ftw.usermanagement.browser.utils import membership_search
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
+from plone.app.controlpanel.usergroups import UsersGroupsControlPanelView
 
 
-class GroupMembership(BrowserView):
+class GroupMembership(UsersGroupsControlPanelView):
     """Provides another way to assign users to a group
     """
 
@@ -84,7 +83,7 @@ class GroupMembership(BrowserView):
         users = []
         current_users = self.get_users(group_id)
 
-        for m in membership_search(self.context, searchGroups=False):
+        for m in self.membershipSearch(searchGroups=False):
             fullname = m.getProperty('fullname', m.getUserId())
             users.append(dict(
                 userid=m.getUserId(),

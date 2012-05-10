@@ -37,9 +37,8 @@ class DisplayGroupsTests(MockTestCase):
 
     def test_no_groups(self):
 
-        msearch = self.mocker.replace(
-            'ftw.usermanagement.browser.utils.membership_search')
-        self.expect(msearch(ANY, searchUsers=ANY)).result([])
+        self.expect(
+            self.user_membership.membershipSearch(searchUsers=ANY)).result([])
 
         self.replay()
 
@@ -49,10 +48,9 @@ class DisplayGroupsTests(MockTestCase):
 
     def test_with_current_groups(self):
 
-        msearch = self.mocker.replace(
-            'ftw.usermanagement.browser.utils.membership_search')
-        self.expect(msearch(ANY, searchUsers=ANY)).result(
-            [self.group_1, self.group_2])
+        self.expect(
+            self.user_membership.membershipSearch(searchUsers=ANY)).result(
+                [self.group_1, self.group_2])
 
         self.replay()
 
@@ -74,10 +72,9 @@ class DisplayGroupsTests(MockTestCase):
 
     def test_no_current_groups(self):
 
-        msearch = self.mocker.replace(
-            'ftw.usermanagement.browser.utils.membership_search')
-        self.expect(msearch(ANY, searchUsers=ANY)).result(
-            [self.group_1, self.group_2])
+        self.expect(
+            self.user_membership.membershipSearch(searchUsers=ANY)).result(
+                [self.group_1, self.group_2])
 
         self.replay()
 
@@ -99,10 +96,9 @@ class DisplayGroupsTests(MockTestCase):
 
     def test_authenthicated_group(self):
 
-        msearch = self.mocker.replace(
-            'ftw.usermanagement.browser.utils.membership_search')
-        self.expect(msearch(ANY, searchUsers=ANY)).result(
-            [self.group_3])
+        self.expect(
+            self.user_membership.membershipSearch(searchUsers=ANY)).result(
+                [self.group_3])
 
         self.replay()
 

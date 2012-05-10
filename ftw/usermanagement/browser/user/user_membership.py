@@ -1,12 +1,10 @@
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from ftw.usermanagement import user_management_factory as _
-from ftw.usermanagement.browser.utils import membership_search
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
+from plone.app.controlpanel.usergroups import UsersGroupsControlPanelView
 
-
-class UserMembership(BrowserView):
+class UserMembership(UsersGroupsControlPanelView):
     """Provides another way to assign groups to a member"""
 
     template = ViewPageTemplateFile('user_membership.pt')
@@ -79,7 +77,8 @@ class UserMembership(BrowserView):
 
         groups = []
         current_groups = self.get_groups(user_id)
-        for g in membership_search(self.context, searchUsers=False):
+
+        for g in self.membershipSearch(searchUsers=False):
             # Ignore AuthenticatedUsers group
             if g.getId() == 'AuthenticatedUsers':
                 continue
