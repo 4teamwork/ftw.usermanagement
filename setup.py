@@ -5,7 +5,10 @@ version = '1.7.2.dev0'
 maintainer = 'Mathias Leimgruber'
 tests_require = [
     'ftw.testing',
+    'ftw.tabbedview',
+    'ftw.table',
     'plone.testing',
+    'plone.app.testing',
     ]
 
 setup(name='ftw.usermanagement',
