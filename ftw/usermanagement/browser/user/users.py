@@ -52,8 +52,7 @@ class UserManagement(BaseListing):
          'column_title': _(u'label_userid', default='Userid'), },
         {'column': 'groups',
          'column_title': _(u'label_groups', default='Groups'),
-         'transform': link_group })
-
+         'transform': link_group})
 
     template = ViewPageTemplateFile('users.pt')
 
@@ -102,10 +101,10 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
                 # If we should not load userdata, we add an empty user
                 # and continue with the next item
                 users_map.append(dict(
-                    counter = i + 1,
-                    name = '',
-                    userid = user.get('id'),
-                    groups = '',
+                    counter=i + 1,
+                    name='',
+                    userid=user.get('id'),
+                    groups='',
                     ))
                 continue
 
@@ -119,10 +118,10 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
                 continue
 
             users_map.append(dict(
-                counter = i + 1,
-                name = self._get_fullname(user_info),
-                userid = user.get('id'),
-                groups = self.get_group_names_of_user(user.get('id')),
+                counter=i + 1,
+                name=self._get_fullname(user_info),
+                userid=user.get('id'),
+                groups=self.get_group_names_of_user(user.get('id')),
                 )
             )
 

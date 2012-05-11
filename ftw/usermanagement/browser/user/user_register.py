@@ -81,7 +81,7 @@ class UserRegister(BrowserView):
         elif not registration.isValidEmail(data.get('email')):
             errors['email'] = ERROR_MSG.get('invalid_email')
 
-        for field, msg in errors.items():
+        for msg in errors.values():
             self._add_statusmessage(msg, "error")
 
         return not errors

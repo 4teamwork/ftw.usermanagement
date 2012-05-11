@@ -1,18 +1,18 @@
 # coding=UTF-8
-from ftw.usermanagement.testing import USERMANAGEMENT_PLONE_LAYER
-from unittest2 import TestCase
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import setRoles
-from ftw.usermanagement.browser.user.user_register import UserRegister
-from ftw.usermanagement.browser.user.user_delete import UserDelete
 from ftw.usermanagement.browser.group.group_add import GroupAdd
 from ftw.usermanagement.browser.group.group_delete import GroupDelete
-from ftw.usermanagement.browser.user.user_membership import UserMembership
 from ftw.usermanagement.browser.group.group_membership import GroupMembership
-from Products.CMFCore.utils import getToolByName
-import re
+from ftw.usermanagement.browser.user.user_delete import UserDelete
+from ftw.usermanagement.browser.user.user_membership import UserMembership
+from ftw.usermanagement.browser.user.user_register import UserRegister
 from ftw.usermanagement.interfaces import IFtwUserManagement
+from ftw.usermanagement.testing import USERMANAGEMENT_PLONE_LAYER
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from Products.CMFCore.utils import getToolByName
+from unittest2 import TestCase
 from zope.interface import directlyProvidedBy, directlyProvides
+import re
 
 
 class MemberIntegrationTests(TestCase):
