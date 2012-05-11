@@ -5,8 +5,15 @@ Changelog
 1.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add tests for the whole package.
+  [eschmutz]
+  
+- Full refactored and improved performance if we have many
+  users and groups.
+  [eschmutz]
 
+- Remove ability to sort on title of users or groups.
+ [eschmutz]
 
 1.7.1 (2012-04-30)
 ------------------
