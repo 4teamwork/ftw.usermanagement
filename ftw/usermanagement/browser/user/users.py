@@ -81,9 +81,10 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
     """
 
     def __init__(self, context, query):
-        self.context = context
+        super(UsersSearchResultExecutor, self).__init__(context, query)
+
         self.gtool = getToolByName(self.context, 'portal_groups')
-        self.query = query
+        self._b_area = None
 
     def __call__(self):
         return self.get_results()
@@ -112,7 +113,8 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
             # need the fullname. Thats not stored in acl_users.
             user_info = mtool.getMemberInfo(user.get('id'))
 
-            if not self._match_user_with_filter(user_info):
+            if not self._match_obj_with_filter(
+                user_info, ['username', 'fullname']):
                 # if the filter does not match with the userdata,
                 # we continue with the next user
                 continue
@@ -165,7 +167,7 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
     def _batch_area(self):
         """ Return a dict with the showable area
         """
-        if '_b_area' not in dir(self):
+        if not self._b_area:
             pagesize = self.query['pagesize']
             current_page = self.query['current_page']
             self._b_area = {
@@ -208,20 +210,6 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
             return True
 
         return False
-
-    def _match_user_with_filter(self, user_info):
-        """ Matches the filtertext with the user
-        """
-        text = self.query.get('filter_text', '').lower()
-        if not text:
-            return True
-
-        values = ' '.join([
-                user_info['username'].lower(),
-                user_info['fullname'].lower(),
-            ])
-
-        return text in values
 
     def _cleanup_groups(self, groups):
         """ Sort and filter the given list of groups

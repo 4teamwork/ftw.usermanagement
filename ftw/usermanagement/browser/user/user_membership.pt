@@ -4,7 +4,7 @@
         <option tal:repeat="group options/users"
                 tal:attributes="value group/name;
                                 selected python:group['is_member_of'] and 'selected' or ''"
-                tal:content="group/title">Group</option>
+                tal:content="group/title" />
 
     </select>
     <input type="hidden" name="userid" tal:attributes="value context/REQUEST/userid|nothing" />

@@ -100,9 +100,9 @@ class UserNotify(BrowserView):
         all_assigned_roles = []
 
         # Get all assigned roles
-        for rolemaker_id, rolemaker in rolemakers:
+        for rolemaker in rolemakers:
             all_assigned_roles.extend(
-                rolemaker.getRolesForPrincipal(
+                rolemaker[1].getRolesForPrincipal(
                     acl_users.getUserById(member.id)))
 
         # Generate new password

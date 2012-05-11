@@ -70,12 +70,15 @@ class GroupsSearchResultExecutor(BaseSearchResultExecutor):
             if group['groupid'] in ['AuthenticatedUsers']:
                 continue
 
+            if not self._match_obj_with_filter(
+                group, ['groupid', 'title']):
+                continue
+
             results.append(dict(
                 group_id=group['groupid'],
                 group_title=group['title'], ),
             )
 
-        results = filter(self._match_group_with_filter, results)
         results = self._sort_groups(results)
 
         return results
@@ -86,17 +89,3 @@ class GroupsSearchResultExecutor(BaseSearchResultExecutor):
         group.sort(key=lambda x: x.get('group_title'))
 
         return group
-
-    def _match_group_with_filter(self, group):
-        """ Matches the filtertext with the group
-        """
-        text = self.query.get('filter_text', '').lower()
-        if not text:
-            return True
-
-        values = ' '.join([
-                group['group_title'].lower(),
-                group['group_id'].lower(),
-            ])
-
-        return text in values

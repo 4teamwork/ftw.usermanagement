@@ -5,16 +5,23 @@ from ftw.table.basesource import BaseTableSource
 class BaseListing(ListingView):
     """BaseListing View for a tab in the tabbedview"""
 
+    def __init__(self, context, request):
+        super(BaseListing, self).__init__(context, request)
+
+        self.table_options = None
+
     def __call__(self):
 
         if self.table_options is None:
             self.table_options = {}
 
         self.update()
+
         return self.template()
 
     def get_base_query(self):
         return {}
+
 
 class BaseManagementTableSource(BaseTableSource):
 
@@ -81,3 +88,19 @@ class BaseSearchResultExecutor(object):
         """ Return results as a dict
         """
         return {}
+
+    def _match_obj_with_filter(self, obj, filter_attrs):
+        """ Matches the filtertext with the user
+        """
+        text = self.query.get('filter_text', '').lower()
+
+        if not text:
+            return True
+
+        values = []
+        for arg in filter_attrs:
+            values.append(obj.get(arg, '').lower())
+
+        values = ' '.join(values)
+
+        return text in values

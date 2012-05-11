@@ -1,6 +1,6 @@
 <html i18n:domain="ftw.usermanagement">
   <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <title></title>
   </head>
   <body>
@@ -33,7 +33,7 @@
         <span i18n:translate="text_usermanagement_after_pw_reset">
             You can change your password in your "My Account" section after logging in.
         </span>
-        <br>
+        <br />
         <span i18n:translate="text_usermanagement_after_pw_reset_url">
             Or use this direct link 
             <a tal:define="homeid python:options['username'].replace('@', '-40');

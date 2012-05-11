@@ -13,7 +13,7 @@ class UsermanagementZCMLLayer(Layer):
     instance.
     """
 
-    defaultBases = (zca.ZCML_DIRECTIVES,)
+    defaultBases = (zca.ZCML_DIRECTIVES, )
 
     def testSetUp(self):
         self['configurationContext'] = zca.stackConfigurationContext(
@@ -24,6 +24,7 @@ class UsermanagementZCMLLayer(Layer):
 
 
 USERMANAGEMENT_ZCML_LAYER = UsermanagementZCMLLayer()
+
 
 class UsermanagementPloneLayer(PloneSandboxLayer):
 
