@@ -6,6 +6,7 @@ class IFtwUserManagement(IDefaultPloneLayer):
     """ Marker interface for a zope 3 browser layer.
     """
 
+
 class IUserManagementVocabularyFactory(IVocabularyFactory):
     """ Vocabulary returning groups or users
     """

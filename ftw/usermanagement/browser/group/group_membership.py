@@ -88,6 +88,6 @@ class GroupMembership(UsersGroupsControlPanelView):
             users.append(dict(
                 userid=m.getUserId(),
                 name=fullname and fullname or m.getUserId(),
-                is_member_of = m.getUserId() in current_users))
+                is_member_of=m.getUserId() in current_users))
 
         return users

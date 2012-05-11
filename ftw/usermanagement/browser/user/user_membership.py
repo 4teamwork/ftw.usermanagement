@@ -4,6 +4,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.app.controlpanel.usergroups import UsersGroupsControlPanelView
 
+
 class UserMembership(UsersGroupsControlPanelView):
     """Provides another way to assign groups to a member"""
 
@@ -85,6 +86,6 @@ class UserMembership(UsersGroupsControlPanelView):
             groups.append(dict(
                 name=g.getId(),
                 title=g.getGroupTitleOrName(),
-                is_member_of = g.getId() in current_groups))
+                is_member_of=g.getId() in current_groups))
 
         return groups
