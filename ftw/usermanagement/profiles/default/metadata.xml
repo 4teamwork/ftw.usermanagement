@@ -4,5 +4,7 @@
     <dependencies>
         <dependency>profile-collective.js.jqueryui:default</dependency>
         <dependency>profile-collective.js.ui.multiselect:default</dependency>
+        <dependency>profile-ftw.table:default</dependency>
+        <dependency>profile-ftw.tabbedview:default</dependency>
     </dependencies>
 </metadata>

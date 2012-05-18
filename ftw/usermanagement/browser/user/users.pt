@@ -40,7 +40,7 @@
     <tal:END_CUSTOM_____________________________________ />
 
 
-  <tal:has_contents tal:condition="view/contents">
+  <tal:has_contents>
       <tal:extjs condition="view/extjs_enabled">
         <div id="selection_container" class="ftwtable"><!--iefix--></div>
         <div id="batching_container" class="ftwtable"><!--iefix--></div>

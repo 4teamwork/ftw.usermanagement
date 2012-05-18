@@ -1,12 +1,10 @@
 from ftw.usermanagement import user_management_factory as _
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryMultiAdapter
-from ftw.usermanagement.browser.base_listing import BaseListing
+from ftw.usermanagement.browser.base_listing import \
+    BaseListing, BaseManagementTableSource, BaseSearchResultExecutor
 from ftw.table.interfaces import ITableSourceConfig
 from zope.interface import implements
-from ftw.table.basesource import BaseTableSource
 
 
 class IGroupsSourceConfig(ITableSourceConfig):
@@ -17,13 +15,13 @@ def checkbox(item, value):
     return '<input type="checkbox" name="groupids" value="%s" />' % \
         item['group_id']
 
+
 def link_group(item, value):
 
     group_link = '<a href="./group_membership?group_id=%s">%s</a>' % \
                        (item['group_id'], value)
 
     return group_link
-
 
 
 class GroupManagement(BaseListing):
@@ -43,93 +41,51 @@ class GroupManagement(BaseListing):
          'transform': link_group},
         {'column': 'group_id',
          'column_title': _(u'label_group_id', default='Id'), },
-        # {'column': 'group_members',
-        #  'column_title': _(u'label_group_members', default='Members'), }
         )
-
 
     template = ViewPageTemplateFile('groups.pt')
 
-    def __call__(self):
 
-        if self.table_options is None:
-            self.table_options = {}
+class GroupsTableSource(BaseManagementTableSource):
 
-        self.update()
-        return self.template()
+    def search_results(self, query):
+        """Executes the query and returns a tuple of `results` and `length`.
+        """
+        return GroupsSearchResultExecutor(self.config.context, query)()
 
-    def __init__(self, context, request):
-        super(GroupManagement, self).__init__(context, request)
 
-        self.context = context
-        self.request = request
-        self.sort_on = 'group_title'
+class GroupsSearchResultExecutor(BaseSearchResultExecutor):
+    """ Search and display groups
+    """
 
-        self.gtool = getToolByName(self, 'portal_groups')
-
-        self.groupprefs = queryMultiAdapter((context, request),
+    def get_results(self):
+        """ Get title and id of all groups
+        """
+        groupprefs = queryMultiAdapter((self.context, self.context.REQUEST),
                                          name=u'usergroup-groupprefs')
-
-    def groups(self):
-        groups = self.groupprefs.doSearch(searchString='')
+        groups = groupprefs.doSearch(searchString='')
         results = []
-        for g in groups:
-            if 'AuthenticatedUsers' != g['groupid']:
-                results.append(dict(
-                    group_id=g['groupid'],
-                    group_title=g['title'],
-                    group_members=''))
+
+        for group in groups:
+            if group['groupid'] in ['AuthenticatedUsers']:
+                continue
+
+            if not self._match_obj_with_filter(
+                group, ['groupid', 'title']):
+                continue
+
+            results.append(dict(
+                group_id=group['groupid'],
+                group_title=group['title'], ),
+            )
+
+        results = self._sort_groups(results)
+
         return results
 
-    def create_group(self):
-        """Validates input and creates a new group"""
+    def _sort_groups(self, group):
+        """ Sort the group by title
+        """
+        group.sort(key=lambda x: x.get('group_title'))
 
-        # XXX: Validate input
-        group_id = self.request.get('group_id', '')
-        group_title = self.request.get('group_title', group_id)
-
-        if group_id:
-            data = dict(title=group_title)
-            success = self.gtool.addGroup(group_id, **data)
-            if not success:
-                # reset group_id
-                group_id = ''
-
-        if group_id:
-            # Successfully created group
-            msg = _(u'text_group_created')
-            IStatusMessage(self.request).addStatusMessage(
-                msg,
-                type="info")
-        else:
-            msg = _(u'text_enter_valid_group_id')
-            IStatusMessage(self.request).addStatusMessage(
-                msg,
-                type="error")
-        return self.template()
-
-    def get_base_query(self):
-        query = self.groups()
-        return query
-
-
-class GroupsTableSource(BaseTableSource):
-
-    def validate_base_query(self, query):
-        return query
-
-    def search_results(self, results):
-
-        search = self.config.filter_text.lower()
-
-        if search:
-
-            def filter_(item):
-                searchable = ' '.join(
-                        (item['group_title'],
-                         item['group_id'],
-                        )
-                    ).lower()
-                return search in searchable
-            return filter(filter_, results)
-        return results
+        return group

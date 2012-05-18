@@ -5,83 +5,108 @@ from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getUtility
 
+ERROR_MSG = {
+    'no_firstname': _(u'text_missing_firstname'),
+    'no_lastname': _(u'text_missing_lastname'),
+    'no_email': _(u'text_missing_email'),
+    'reserved_uid': _(u"This username is reserved. Please "
+        "choose a different name."),
+    'invalid_uid': _(u"The login name you selected is already"
+            "in use or is not valid. Please choose another."),
+    'invalid_email': _(u'You must enter a valid email address.'),
+}
+
 
 class UserRegister(BrowserView):
-    """Validate and register a new member"""
-
-    def __init__(self, context, request):
-        super(UserRegister, self).__init__(context, request)
-
-        self.mtool = getToolByName(self, 'portal_membership')
-        self.registration = getToolByName(self.context, 'portal_registration')
+    """Validate and register a new member
+    """
 
     def __call__(self):
-        return self.validate_registration()
+        return self.register()
 
-    def validate_registration(self):
-        """Copied from plone.app.user.browser.register."""
+    def register(self):
+        """Register the new Member
+        """
+        registration = getToolByName(self.context, 'portal_registration')
+        mtool = getToolByName(self, 'portal_membership')
+        data = self._get_register_values()
+
+        if not self.validate_registration(data):
+            return False
+
+        try:
+            registration.addMember(
+                data.get('username'),
+                self._get_password(),
+                properties=data,
+                REQUEST=self.request)
+        except (AttributeError, ValueError), err:
+            self._add_statusmessage(err, "error")
+            return False
+
+        if mtool.memberareaCreationFlag:
+            # Create the user's member area
+            mtool.createMemberarea(data.get('username'))
+
+        self._add_statusmessage(_(u"User added."), 'info')
+
+        return True
+
+    def validate_registration(self, data):
+        """ Validate the registration
+        """
 
         errors = {}
         portal = getUtility(ISiteRoot)
+        registration = getToolByName(self.context, 'portal_registration')
 
-        # Email == Login is hardcoded
-        # use_email_as_login = props.getProperty('use_email_as_login')
+        if not data.get('firstname'):
+            errors['firstname'] = ERROR_MSG.get('no_firstname')
 
+        if not data.get('lastname'):
+            errors['lastname'] = ERROR_MSG.get('no_lastname')
 
-        # Required fields
+        if not data.get('email'):
+            errors['email'] = ERROR_MSG.get('no_email')
+
+        # Check if username is valid
+        elif data.get('username') == portal.getId():
+            errors['email'] = ERROR_MSG.get('reserved_uid')
+
+        # Check if username is allowed
+        elif not registration.isMemberIdAllowed(data.get('username')):
+            errors['email'] = ERROR_MSG.get('invalid_uid')
+
+        # Check for valid email-address
+        elif not registration.isValidEmail(data.get('email')):
+            errors['email'] = ERROR_MSG.get('invalid_email')
+
+        for msg in errors.values():
+            self._add_statusmessage(msg, "error")
+
+        return not errors
+
+    def _add_statusmessage(self, msg, mtype):
+        """ Add a statusmessage
+        """
+        IStatusMessage(self.request).addStatusMessage(msg, type=mtype)
+
+    def _get_password(self):
+        """ Get given password or generate one
+        """
+        registration = getToolByName(self.context, 'portal_registration')
+
+        return self.request.get('password', '') or \
+            registration.generatePassword()
+
+    def _get_register_values(self):
+        """ Return the required values for a registration
+        """
         firstname = self.request.get('firstname', '')
         lastname = self.request.get('lastname', '')
-        username = email = self.request.get('email', '')
+        email = self.request.get('email', '')
+        username = email
 
-        if not email:
-            errors['email'] = _(u'text_missing_email')
-        if not firstname:
-            errors['firstname'] = _(u'text_missing_firstname')
-        if not lastname:
-            errors['lastname'] = _(u'text_missing_lastname')
-
-
-        # check if username is valid
-        # Skip this check if username was already in error list
-        if not 'email' in errors:
-            portal = getUtility(ISiteRoot)
-            if username == portal.getId():
-                errors['email'] = _(u"This username is reserved. Please "
-                    "choose a different name.")
-
-
-        # check if username is allowed
-        if not 'email' in errors:
-            if not self.registration.isMemberIdAllowed(username):
-                errors['email'] = _(u"The login name you selected is already"
-                    "in use or is not valid. Please choose another.")
-
-
-        # Skip this check if email was already in error list
-        if not 'email' in errors:
-            if not self.registration.isValidEmail(email):
-                errors['email'] = _(u'You must enter a valid email address.')
-
-        if errors:
-            self.request.set('errors', errors)
-            for field, msg in errors.items():
-                IStatusMessage(self.request).addStatusMessage(
-                    msg,
-                    type="error")
-            return False
-        else:
-            # Everything is fine, so register our new member
-            return self.register()
-
-    def register(self):
-        """Register the new Member"""
-        # Email == Login is hardcoded
-        # Required fields
-        firstname = self.request.get('firstname', '')
-        lastname = self.request.get('lastname', '')
-        username = email = self.request.get('email', '')
-
-        # Collect data for registration
         data = dict(
             username=username,
             firstname=firstname,
@@ -89,25 +114,4 @@ class UserRegister(BrowserView):
             fullname='%s %s' % (lastname, firstname),
             email=email)
 
-        # Get given password or generate one
-        password = self.request.get('password', '') or \
-            self.registration.generatePassword()
-
-        try:
-            self.registration.addMember(
-                username,
-                password,
-                properties=data,
-                REQUEST=self.request)
-        except (AttributeError, ValueError), err:
-            IStatusMessage(self.request).addStatusMessage(err, type="error")
-            return False
-
-        if self.mtool.memberareaCreationFlag:
-            # Create the user's member area
-            self.mtool.createMemberarea(username)
-
-        IStatusMessage(self.request).addStatusMessage(
-            _(u"User added."), type='info')
-
-        return True
+        return data
