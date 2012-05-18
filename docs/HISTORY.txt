@@ -2,12 +2,12 @@ Changelog
 =========
 
 
-1.7.3 (unreleased)
+1.8 (unreleased)
 ------------------
 
 - Add tests for the whole package.
   [eschmutz]
-  
+
 - Full refactored and improved performance if we have many
   users and groups.
   [eschmutz]
