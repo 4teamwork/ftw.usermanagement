@@ -10,15 +10,6 @@ class BaseListing(ListingView):
 
         self.table_options = None
 
-    def __call__(self):
-
-        if self.table_options is None:
-            self.table_options = {}
-
-        self.update()
-
-        return self.template()
-
     def get_base_query(self):
         return {}
 
