@@ -2,7 +2,13 @@ Changelog
 =========
 
 
-1.8 (unreleased)
+1.8.1 (unreleased)
+------------------
+
+- Add extjs compatibility
+  [eschmutz]
+
+1.8 (2012-05-18)
 ------------------
 
 - Add tests for the whole package.

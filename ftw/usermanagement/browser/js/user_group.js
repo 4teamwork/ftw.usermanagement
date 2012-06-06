@@ -247,6 +247,16 @@ jq(function(){
        });
    }
 
+   // Initialize the the management.
    initUserGroupManagement();
+
+   /* 
+   For extjs compatibility we need this ugly hack.
+   The last triggered event is the gridRendered, but on this time the content
+   isn't load. So we need a timeout to grant the content is fully loaded.
+   */
+   jq('.tab_container').bind('gridRendered', function(event) {
+       window.setTimeout(initUserGroupManagement, 10);
+   });
 
 });
