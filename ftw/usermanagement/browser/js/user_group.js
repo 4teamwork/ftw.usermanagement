@@ -256,7 +256,6 @@ jq(function(){
    isn't load. So we need a timeout to grant the content is fully loaded.
    */
    jq('.tab_container').bind('gridRendered', function(event) {
-       console.info('asdasdfasdf');
        window.setTimeout(initUserGroupManagement, 10);
    });
 
