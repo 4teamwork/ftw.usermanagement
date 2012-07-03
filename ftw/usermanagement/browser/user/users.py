@@ -112,6 +112,8 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
             # This is very expensive. We need the memberinfo because we
             # need the fullname. Thats not stored in acl_users.
             user_info = mtool.getMemberInfo(user.get('id'))
+            if not user_info:
+                continue
 
             if not self._match_obj_with_filter(
                 user_info, ['username', 'fullname']):

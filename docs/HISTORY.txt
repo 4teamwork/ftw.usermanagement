@@ -5,6 +5,9 @@ Changelog
 1.8.1 (unreleased)
 ------------------
 
+- Handle broken user objects.
+  [mathias.leimgruber]
+
 - Add extjs compatibility
   [eschmutz]
 
