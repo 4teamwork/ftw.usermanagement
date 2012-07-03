@@ -24,7 +24,7 @@ class GroupNamesOfUserTests(MockTestCase):
 
         self.replay()
 
-        executor =  UsersSearchResultExecutor(self.context, '')
+        executor = UsersSearchResultExecutor(self.context, '')
         result = executor.get_group_names_of_user('user')
 
         self.assertEquals(result, 'No Group')
@@ -38,7 +38,7 @@ class GroupNamesOfUserTests(MockTestCase):
 
         self.replay()
 
-        executor =  UsersSearchResultExecutor(self.context, '')
+        executor = UsersSearchResultExecutor(self.context, '')
         result = executor.get_group_names_of_user('user')
 
         self.assertEquals(result, 'group0, group1, group2, group3, group4')
@@ -52,7 +52,7 @@ class GroupNamesOfUserTests(MockTestCase):
 
         self.replay()
 
-        executor =  UsersSearchResultExecutor(self.context, '')
+        executor = UsersSearchResultExecutor(self.context, '')
         result = executor.get_group_names_of_user('invalid')
 
         self.assertEquals(result, 'group0, group1, group2, group3, group4')
@@ -96,7 +96,8 @@ class UserTests(MockTestCase):
         self.expect(
             self.mtool.getMemberInfo(ANY)).call(
             lambda x: x != 'broken' and {
-                'fullname': '%s Fullname' % x, 'username': '%s Username' % x} or None)
+                'fullname': '%s Fullname' % x,
+                'username': '%s Username' % x} or None)
 
         self.replay()
 
@@ -133,11 +134,16 @@ class UserTests(MockTestCase):
             'current_page': 1,
         }
         result = [
-            {'counter': 1, 'groups': 'No Group', 'name': 'user0 Fullname', 'userid': 'user0'},
-            {'counter': 2, 'groups': 'No Group', 'name': 'user1 Fullname', 'userid': 'user1'},
-            {'counter': 3, 'groups': 'No Group', 'name': 'user2 Fullname', 'userid': 'user2'},
-            {'counter': 5, 'groups': 'No Group', 'name': 'user3 Fullname', 'userid': 'user3'},
-            {'counter': 6, 'groups': 'No Group', 'name': 'user4 Fullname', 'userid': 'user4'},
+            {'counter': 1, 'groups': 'No Group', 'name': 'user0 Fullname',
+             'userid': 'user0'},
+            {'counter': 2, 'groups': 'No Group', 'name': 'user1 Fullname',
+            'userid': 'user1'},
+            {'counter': 3, 'groups': 'No Group', 'name': 'user2 Fullname',
+             'userid': 'user2'},
+            {'counter': 5, 'groups': 'No Group', 'name': 'user3 Fullname',
+             'userid': 'user3'},
+            {'counter': 6, 'groups': 'No Group', 'name': 'user4 Fullname',
+             'userid': 'user4'},
         ]
         self.base_search_result_executor(query, result, users_factory)
 
@@ -371,8 +377,8 @@ class User(object):
     """ Mockobject representing a user of the principal source
     """
 
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, id_):
+        self.id = id_
 
     def get(self, attr):
         return self.id
