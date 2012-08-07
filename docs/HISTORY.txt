@@ -5,6 +5,12 @@ Changelog
 1.8.1 (unreleased)
 ------------------
 
+- Don't remove local Roles. But remove Memberfolder.
+  [tschanzt] 
+
+- fix group listing in user overview.
+  [tschanzt]
+
 - Handle broken user objects.
   [mathias.leimgruber]
 
