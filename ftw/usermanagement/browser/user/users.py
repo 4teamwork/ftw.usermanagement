@@ -121,11 +121,13 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
                 # we continue with the next user
                 continue
 
+            #We need to use the login name to get the group because a plone function
+            # is decleared wrong
             users_map.append(dict(
                 counter=i + 1,
                 name=self._get_fullname(user_info),
                 userid=user.get('id'),
-                groups=self.get_group_names_of_user(user.get('id')),
+                groups=self.get_group_names_of_user(user.get('login')),
                 )
             )
 
@@ -218,12 +220,13 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
         """
         groups.sort(
             key=lambda x: x is not None and x.getGroupTitleOrName().lower())
-
         return filter(None, groups)
 
     def _get_group_objects_of_user(self, user_id):
         """ Return all groupobjects of a given user
         """
+
+        #This Function requires the login name and not the userid
         groups = self.gtool.getGroupsByUserId(user_id)
 
         groups = self._cleanup_groups(groups)
