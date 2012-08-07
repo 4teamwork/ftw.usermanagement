@@ -17,11 +17,10 @@ class UserDelete(BrowserView):
         """delete users"""
         userids = self.request.get('userids', [])
         mtool = getToolByName(self, 'portal_membership')
-
         mtool.deleteMembers(
             userids,
-            delete_memberareas=0,
-            delete_localroles=1,
+            delete_memberareas=1,
+            delete_localroles=0,
             REQUEST=self.request,
             )
 
