@@ -5,7 +5,8 @@ Changelog
 1.8.3 (unreleased)
 ------------------
 
-- Nothing changed yet
+- Show loginname instead of userid. If use_email_login isn't active the email is displayed as well.
+  [tschanzt]
 
 
 1.8.2 (2012-08-13)
