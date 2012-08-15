@@ -24,7 +24,7 @@ class GroupNamesOfUserTests(MockTestCase):
 
         self.replay()
 
-        executor = UsersSearchResultExecutor(self.context, '')
+        executor = UsersSearchResultExecutor(self.context, '', True)
         result = executor.get_group_names_of_user('user')
 
         self.assertEquals(result, 'No Group')
@@ -38,7 +38,7 @@ class GroupNamesOfUserTests(MockTestCase):
 
         self.replay()
 
-        executor = UsersSearchResultExecutor(self.context, '')
+        executor = UsersSearchResultExecutor(self.context, '', True)
         result = executor.get_group_names_of_user('user')
 
         self.assertEquals(result, 'group0, group1, group2, group3, group4')
@@ -52,7 +52,7 @@ class GroupNamesOfUserTests(MockTestCase):
 
         self.replay()
 
-        executor = UsersSearchResultExecutor(self.context, '')
+        executor = UsersSearchResultExecutor(self.context, '', 'False')
         result = executor.get_group_names_of_user('invalid')
 
         self.assertEquals(result, 'group0, group1, group2, group3, group4')
@@ -82,8 +82,11 @@ class UserTests(MockTestCase):
         if not users_factory:
             users_factory = [User('user%s' % str(i/2)) for i in range(5)]
 
-        self.expect(self.gtool.getGroupsByUserId(ANY)).result([])
+        self.member = self.stub()
 
+        self.expect(self.gtool.getGroupsByUserId(ANY)).result([])
+        self.expect(self.mtool.getMemberById(ANY)).result(self.member)
+        self.expect(self.member.getProperty('email')).result('test@test.ch')
         # Factory returns the users
         factory = self.mocker.mock(count=False)
         self.expect(factory(ANY)).result(users_factory)
@@ -102,7 +105,7 @@ class UserTests(MockTestCase):
         self.replay()
 
         # Executes the query
-        executor = UsersSearchResultExecutor(self.context, query)
+        executor = UsersSearchResultExecutor(self.context, query, True)
 
         self.assertEquals(executor(), result)
 
@@ -135,15 +138,15 @@ class UserTests(MockTestCase):
         }
         result = [
             {'counter': 1, 'groups': 'No Group', 'name': 'user0 Fullname',
-             'userid': 'user0'},
+             'login': 'user0'},
             {'counter': 2, 'groups': 'No Group', 'name': 'user1 Fullname',
-            'userid': 'user1'},
+            'login': 'user1'},
             {'counter': 3, 'groups': 'No Group', 'name': 'user2 Fullname',
-             'userid': 'user2'},
+             'login': 'user2'},
             {'counter': 5, 'groups': 'No Group', 'name': 'user3 Fullname',
-             'userid': 'user3'},
+             'login': 'user3'},
             {'counter': 6, 'groups': 'No Group', 'name': 'user4 Fullname',
-             'userid': 'user4'},
+             'login': 'user4'},
         ]
         self.base_search_result_executor(query, result, users_factory)
 
@@ -160,31 +163,31 @@ class UserTests(MockTestCase):
                 'counter': 1,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 5,
                 'groups': 'No Group',
                 'name': 'user2 Fullname',
-                'userid': 'user2',
+                'login': 'user2',
             },
         ]
         self.base_search_result_executor(query, result)
@@ -201,13 +204,13 @@ class UserTests(MockTestCase):
                 'counter': 1,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {'counter': 3, 'groups': '', 'name': '', 'userid': 'user1'},
             {'counter': 4, 'groups': '', 'name': '', 'userid': 'user1'},
@@ -229,13 +232,13 @@ class UserTests(MockTestCase):
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {'counter': 5, 'groups': '', 'name': '', 'userid': 'user2'},
         ]
@@ -253,13 +256,13 @@ class UserTests(MockTestCase):
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
         ]
         self.base_search_result_executor(query, result)
@@ -276,31 +279,31 @@ class UserTests(MockTestCase):
                 'counter': 1,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 5,
                 'groups': 'No Group',
                 'name': 'user2 Fullname',
-                'userid': 'user2',
+                'login': 'user2',
             },
         ]
         self.base_search_result_executor(query, result)
@@ -317,31 +320,31 @@ class UserTests(MockTestCase):
                 'counter': 1,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
-                'userid': 'user0',
+                'login': 'user0',
             },
             {
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
-                'userid': 'user1',
+                'login': 'user1',
             },
             {
                 'counter': 5,
                 'groups': 'No Group',
                 'name': 'user2 Fullname',
-                'userid': 'user2',
+                'login': 'user2',
             },
         ]
         self.base_search_result_executor(query, result)
@@ -372,6 +375,59 @@ class UserTests(MockTestCase):
         result = []
         self.base_search_result_executor(query, result)
 
+    def test_email_not_login(self):
+        
+        users_factory = [User('user%s' % str(i/2)) for i in range(5)]
+
+        self.member = self.stub()
+
+        self.expect(self.gtool.getGroupsByUserId(ANY)).result([])
+        self.expect(self.mtool.getMemberById(ANY)).result(self.member)
+        self.expect(self.member.getProperty('email')).result('test@test.ch')
+        # Factory returns the users
+        factory = self.mocker.mock(count=False)
+        self.expect(factory(ANY)).result(users_factory)
+        self.mock_utility(
+            factory,
+            IUserManagementVocabularyFactory,
+            'plone.principalsource.Users',
+        )
+
+        self.expect(
+            self.mtool.getMemberInfo(ANY)).call(
+            lambda x: x != 'broken' and {
+                'fullname': '%s Fullname' % x,
+                'username': '%s Username' % x} or None)
+
+        self.replay()
+
+        query = {
+            'filter_text': 'user1',
+            'batching': False,
+            'pagesize': 2,
+            'current_page': 1,
+        }
+        result = [
+            {
+                'counter': 3,
+                'groups': 'No Group',
+                'name': 'user1 Fullname',
+                'login': 'user1',
+                'email': 'test@test.ch'
+            },
+            {
+                'counter': 4,
+                'groups': 'No Group',
+                'name': 'user1 Fullname',
+                'login': 'user1',
+                'email': 'test@test.ch'
+            },
+        ]
+
+        executor = UsersSearchResultExecutor(self.context, query, False)
+
+        self.assertEquals(executor(), result)
+       
 
 class User(object):
     """ Mockobject representing a user of the principal source
