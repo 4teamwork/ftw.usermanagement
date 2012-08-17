@@ -73,7 +73,13 @@ class GroupMembership(UsersGroupsControlPanelView):
             return fullname
 
         group_members = gtool.getGroupMembers(group_id)
-        group_members.sort(key=sort_users)
+        clean_members = []
+        for member in group_members:
+            user_info = mtool.getMemberInfo(member)
+            if not user_info:
+                continue
+            clean_members.append(member)
+        clean_members.sort(key=sort_users)
 
         return filter(None, group_members)
 
