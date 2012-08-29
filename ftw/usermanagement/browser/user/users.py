@@ -48,10 +48,9 @@ class UserManagement(BaseListing):
         self.sort_order = 'ASC'
         self.batching_enabled = True
         self.lazy = False
-        self.email_as_login = self.is_email_login()
-        self.columns = self.get_columns()
 
-    def get_columns(self):
+    @property
+    def columns(self):
         base_columns =  (
             {'column': 'counter',
              'column_title': _(u'label_nr', default='Nr.'),
@@ -66,12 +65,12 @@ class UserManagement(BaseListing):
              'column_title': _(u'label_groups', default='Groups'),
              'transform': link_group})
 
-        if not self.email_as_login:
+        if not self.is_email_login():
             base_list = list(base_columns)
             base_list.insert(4, {'column': 'email',
              'column_title': _(u'label_email', default='E-Mail')},
             )
-            return tuple(base_list)
+            return base_list
 
     def is_email_login(self):
         prop_tool = getToolByName(self.context, 'portal_properties')
@@ -83,7 +82,7 @@ class UsersTableSource(BaseManagementTableSource):
         """Executes the query and returns a tuple of `results` and `length`.
         """
         return UsersSearchResultExecutor(self.config.context, query,
-                                         self.config.email_as_login)()
+                                         self.config.is_email_login())()
 
 
 class UsersSearchResultExecutor(BaseSearchResultExecutor):

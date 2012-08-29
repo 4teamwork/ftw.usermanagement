@@ -52,7 +52,7 @@ class GroupNamesOfUserTests(MockTestCase):
 
         self.replay()
 
-        executor = UsersSearchResultExecutor(self.context, '', 'False')
+        executor = UsersSearchResultExecutor(self.context, '', True)
         result = executor.get_group_names_of_user('invalid')
 
         self.assertEquals(result, 'group0, group1, group2, group3, group4')
@@ -376,7 +376,7 @@ class UserTests(MockTestCase):
         self.base_search_result_executor(query, result)
 
     def test_email_not_login(self):
-        
+
         users_factory = [User('user%s' % str(i/2)) for i in range(5)]
 
         self.member = self.stub()
@@ -427,7 +427,7 @@ class UserTests(MockTestCase):
         executor = UsersSearchResultExecutor(self.context, query, False)
 
         self.assertEquals(executor(), result)
-       
+
 
 class User(object):
     """ Mockobject representing a user of the principal source
