@@ -40,20 +40,6 @@ class UserManagement(BaseListing):
     show_menu = False
     show_selects = True
 
-    columns = (
-        {'column': 'counter',
-         'column_title': _(u'label_nr', default='Nr.'),
-         },
-        {'transform': checkbox},
-        {'column': 'name',
-         'column_title': _(u'label_name', default='Name'),
-         'transform': userpreflink},
-        {'column': 'userid',
-         'column_title': _(u'label_userid', default='Userid'), },
-        {'column': 'groups',
-         'column_title': _(u'label_groups', default='Groups'),
-         'transform': link_group})
-
     template = ViewPageTemplateFile('users.pt')
 
     def __init__(self, context, request):
@@ -63,13 +49,40 @@ class UserManagement(BaseListing):
         self.batching_enabled = True
         self.lazy = False
 
+    @property
+    def columns(self):
+        base_columns =  (
+            {'column': 'counter',
+             'column_title': _(u'label_nr', default='Nr.'),
+             },
+            {'transform': checkbox},
+            {'column': 'name',
+             'column_title': _(u'label_name', default='Name'),
+             'transform': userpreflink},
+            {'column': 'login',
+             'column_title': _(u'label_login', default='login'), },
+            {'column': 'groups',
+             'column_title': _(u'label_groups', default='Groups'),
+             'transform': link_group})
+
+        if not self.is_email_login():
+            base_list = list(base_columns)
+            base_list.insert(4, {'column': 'email',
+             'column_title': _(u'label_email', default='E-Mail')},
+            )
+            return base_list
+
+    def is_email_login(self):
+        prop_tool = getToolByName(self.context, 'portal_properties')
+        return prop_tool.site_properties.getProperty('use_email_as_login')
 
 class UsersTableSource(BaseManagementTableSource):
 
     def search_results(self, query):
         """Executes the query and returns a tuple of `results` and `length`.
         """
-        return UsersSearchResultExecutor(self.config.context, query)()
+        return UsersSearchResultExecutor(self.config.context, query,
+                                         self.config.is_email_login())()
 
 
 class UsersSearchResultExecutor(BaseSearchResultExecutor):
@@ -80,11 +93,12 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
     so it will be slower if we use him.
     """
 
-    def __init__(self, context, query):
+    def __init__(self, context, query, is_email_login):
         super(UsersSearchResultExecutor, self).__init__(context, query)
 
         self.gtool = getToolByName(self.context, 'portal_groups')
         self._b_area = None
+        self.is_email_login = is_email_login
 
     def __call__(self):
         return self.get_results()
@@ -123,13 +137,25 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
 
             #We need to use the login name to get the group because a plone function
             # is decleared wrong
-            users_map.append(dict(
-                counter=i + 1,
-                name=self._get_fullname(user_info),
-                userid=user.get('id'),
-                groups=self.get_group_names_of_user(user.get('login')),
+            if self.is_email_login:
+                users_map.append(dict(
+                    counter=i + 1,
+                    name=self._get_fullname(user_info),
+                    login=user.get('login'),
+                    groups=self.get_group_names_of_user(user.get('login')),
+                    )
                 )
-            )
+            else:
+                member = mtool.getMemberById(user.get('id'))
+                email = member.getProperty('email')
+                users_map.append(dict(
+                    counter=i + 1,
+                    name=self._get_fullname(user_info),
+                    login=user.get('login'),
+                    email=email,
+                    groups=self.get_group_names_of_user(user.get('login')),
+                    )
+                )
 
         return users_map
 
