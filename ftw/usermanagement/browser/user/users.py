@@ -70,7 +70,9 @@ class UserManagement(BaseListing):
             base_list.insert(4, {'column': 'email',
              'column_title': _(u'label_email', default='E-Mail')},
             )
-            return base_list
+            base_columns = tuple(base_list)
+
+        return tuple(base_columns)
 
     def is_email_login(self):
         prop_tool = getToolByName(self.context, 'portal_properties')

@@ -5,14 +5,15 @@ Changelog
 1.8.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Usertab. It was broken when email login was active.
+  [tschanzt]
 
 
 1.8.4 (2012-09-04)
 
 
 - Add check if user is None in get_display_users. This prevents Group overlay from crashing.
-
+  [tschanzt]
 
 - Show loginname instead of userid. If use_email_login isn't active the email is displayed as well.
   [tschanzt]
