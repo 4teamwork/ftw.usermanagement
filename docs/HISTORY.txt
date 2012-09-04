@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.8.5 (unreleased)
+1.8.5 (2012-09-04)
 ------------------
 
 - Fix Usertab. It was broken when email login was active.
