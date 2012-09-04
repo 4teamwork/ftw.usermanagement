@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.8.6 (unreleased)
+1.8.6 (2012-09-04)
 ------------------
 
 - Fix user_membership link.
