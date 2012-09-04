@@ -90,10 +90,11 @@ class GroupMembership(UsersGroupsControlPanelView):
         current_users = self.get_users(group_id)
 
         for m in self.membershipSearch(searchGroups=False):
-            fullname = m.getProperty('fullname', m.getUserId())
-            users.append(dict(
-                userid=m.getUserId(),
-                name=fullname and fullname or m.getUserId(),
-                is_member_of=m.getUserId() in current_users))
+            if m is not None:
+                fullname = m.getProperty('fullname', m.getUserId())
+                users.append(dict(
+                    userid=m.getUserId(),
+                    name=fullname and fullname or m.getUserId(),
+                    is_member_of=m.getUserId() in current_users))
 
         return users
