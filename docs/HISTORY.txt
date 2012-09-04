@@ -2,11 +2,18 @@ Changelog
 =========
 
 
-1.8.3 (unreleased)
-------------------
+1.8.4 (unreleased)
+
+
+- Add check if user is None in get_display_users. This prevents Group overlay from crashing.
+
 
 - Show loginname instead of userid. If use_email_login isn't active the email is displayed as well.
   [tschanzt]
+
+
+1.8.3 (2012-08-29)
+------------------
 
 - fix Group Management
   [tschanzt]
