@@ -25,7 +25,6 @@ def userpreflink(item, value):
 
 
 def link_group(item, value):
-
     group_link = '<a href="./user_membership?userid=%s">%s</a>' % \
                        (item.get('userid', ''), value)
 
@@ -144,6 +143,7 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
                     counter=i + 1,
                     name=self._get_fullname(user_info),
                     login=user.get('login'),
+                    userid=user.get('id'),
                     groups=self.get_group_names_of_user(user.get('login')),
                     )
                 )
@@ -154,6 +154,7 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
                     counter=i + 1,
                     name=self._get_fullname(user_info),
                     login=user.get('login'),
+                    userid=user.get('id'),
                     email=email,
                     groups=self.get_group_names_of_user(user.get('login')),
                     )
