@@ -138,15 +138,15 @@ class UserTests(MockTestCase):
         }
         result = [
             {'counter': 1, 'groups': 'No Group', 'name': 'user0 Fullname',
-             'login': 'user0'},
+             'login': 'user0', 'userid': 'user0'},
             {'counter': 2, 'groups': 'No Group', 'name': 'user1 Fullname',
-            'login': 'user1'},
+            'login': 'user1', 'userid': 'user1'},
             {'counter': 3, 'groups': 'No Group', 'name': 'user2 Fullname',
-             'login': 'user2'},
+             'login': 'user2', 'userid': 'user2'},
             {'counter': 5, 'groups': 'No Group', 'name': 'user3 Fullname',
-             'login': 'user3'},
+             'login': 'user3', 'userid': 'user3'},
             {'counter': 6, 'groups': 'No Group', 'name': 'user4 Fullname',
-             'login': 'user4'},
+             'login': 'user4', 'userid': 'user4'},
         ]
         self.base_search_result_executor(query, result, users_factory)
 
@@ -164,30 +164,35 @@ class UserTests(MockTestCase):
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0',
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0'
             },
             {
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 5,
                 'groups': 'No Group',
                 'name': 'user2 Fullname',
                 'login': 'user2',
+                'userid': 'user2'
             },
         ]
         self.base_search_result_executor(query, result)
@@ -205,12 +210,14 @@ class UserTests(MockTestCase):
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0'
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0'
             },
             {'counter': 3, 'groups': '', 'name': '', 'userid': 'user1'},
             {'counter': 4, 'groups': '', 'name': '', 'userid': 'user1'},
@@ -233,12 +240,14 @@ class UserTests(MockTestCase):
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {'counter': 5, 'groups': '', 'name': '', 'userid': 'user2'},
         ]
@@ -257,12 +266,14 @@ class UserTests(MockTestCase):
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
         ]
         self.base_search_result_executor(query, result)
@@ -280,30 +291,35 @@ class UserTests(MockTestCase):
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0'
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0'
             },
             {
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 5,
                 'groups': 'No Group',
                 'name': 'user2 Fullname',
                 'login': 'user2',
+                'userid': 'user2'
             },
         ]
         self.base_search_result_executor(query, result)
@@ -321,30 +337,35 @@ class UserTests(MockTestCase):
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0'
             },
             {
                 'counter': 2,
                 'groups': 'No Group',
                 'name': 'user0 Fullname',
                 'login': 'user0',
+                'userid': 'user0'
             },
             {
                 'counter': 3,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
+                'userid': 'user1'
             },
             {
                 'counter': 5,
                 'groups': 'No Group',
                 'name': 'user2 Fullname',
                 'login': 'user2',
+                'userid': 'user2'
             },
         ]
         self.base_search_result_executor(query, result)
@@ -413,14 +434,16 @@ class UserTests(MockTestCase):
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
-                'email': 'test@test.ch'
+                'email': 'test@test.ch',
+                'userid': 'user1'
             },
             {
                 'counter': 4,
                 'groups': 'No Group',
                 'name': 'user1 Fullname',
                 'login': 'user1',
-                'email': 'test@test.ch'
+                'email': 'test@test.ch',
+                'userid': 'user1'
             },
         ]
 

@@ -288,6 +288,8 @@ class GetUsersTests(MockTestCase):
         # No member, just id
         self.expect(self.mtool.getMemberById('admin')).result(None)
 
+        #We need to return something here, because otherwise this would be handled as broken user.
+        self.expect(self.mtool.getMemberInfo(ANY)).result('Lorem')
         # Member with fullname
         self.expect(
             self.mtool.getMemberById('fullname')).result(self.member_1)
@@ -302,4 +304,4 @@ class GetUsersTests(MockTestCase):
         result = gm.get_users('group_id')
 
         # Sorted list with userids
-        self.assertEquals(result, ['fullname', 'admin', 'no_fullname'])
+        self.assertEquals(result, ['fullname', 'no_fullname', 'admin'])
