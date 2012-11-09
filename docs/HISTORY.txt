@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.8.7 (unreleased)
+1.8.7 (2012-11-09)
 ------------------
 
 - Fix changelog / clean up package
