@@ -30,7 +30,7 @@ setup(name='ftw.usermanagement',
       author='4teamwork GmbH',
       author_email='mailto:info@4teamwork.ch',
       maintainer=maintainer,
-      url='https://github.com/4teamwork/ftw.usermanagement/',
+      url='https://github.com/4teamwork/ftw.usermanagement',
       license='GPL2',
 
       packages=find_packages(exclude=['ez_setup']),
