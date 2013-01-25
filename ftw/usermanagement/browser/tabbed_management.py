@@ -1,9 +1,13 @@
 from ftw.tabbedview.browser.tabbed import TabbedView
 from ftw.usermanagement import user_management_factory as _
+from zope.interface import implements
+from ftw.tabbedview.interfaces import INoExtJS
 
 
 class ManagementTabbedView(TabbedView):
     """TabbedView for User/Groups management"""
+
+    implements(INoExtJS)
 
     def __init__(self, context, request):
         super(ManagementTabbedView, self).__init__(context, request)

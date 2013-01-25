@@ -5,7 +5,8 @@ Changelog
 1.8.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Disbale extJS
+  [mathias.leimgruber]
 
 
 1.8.8 (2013-01-21)

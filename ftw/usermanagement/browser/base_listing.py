@@ -1,9 +1,12 @@
 from ftw.tabbedview.browser.listing import ListingView
 from ftw.table.basesource import BaseTableSource
-
+from zope.interface import implements
+from ftw.tabbedview.interfaces import INoExtJS
 
 class BaseListing(ListingView):
     """BaseListing View for a tab in the tabbedview"""
+
+    implements(INoExtJS)
 
     def __init__(self, context, request):
         super(BaseListing, self).__init__(context, request)
