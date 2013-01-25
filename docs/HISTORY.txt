@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.8.9 (unreleased)
+1.8.9 (2013-01-25)
 ------------------
 
 - Disbale extJS
