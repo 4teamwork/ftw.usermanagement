@@ -70,3 +70,7 @@ Copyright
 This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 
 ``ftw.usermanagement`` is licensed under GNU General Public License, version 2.
+
+.. image:: https://cruel-carlota.pagodabox.com/4126f3516f743ca5a51f6a1e5731b605
+   :alt: githalytics.com
+   :target: http://githalytics.com/4teamwork/ftw.usermanagement
