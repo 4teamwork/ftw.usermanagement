@@ -5,8 +5,11 @@ Changelog
 1.8.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update JS for Plone4.3
+  [tschanzt]
 
+- Rename jq to $.
+  [tschanzt]
 
 1.8.9 (2013-01-25)
 ------------------
@@ -62,7 +65,7 @@ Changelog
 ------------------
 
 - Don't remove local Roles. But remove Memberfolder.
-  [tschanzt] 
+  [tschanzt]
 
 - fix group listing in user overview.
   [tschanzt]
