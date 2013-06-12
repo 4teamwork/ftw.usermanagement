@@ -23,9 +23,9 @@ $(function(){
            subtype:'ajax',
            formselector:'form',
            config:{onBeforeLoad: function(e){
-               var $select = jq('[name=new_groups:list]', e.target.getOverlay());
+               var $select = $('[name="new_groups:list"]', this.getOverlay());
                 $select.multiselect({sortable: false});
-                $multi = $select.data('multiselect');
+                $multi = $select.data('ui-multiselect');
                // It seems that, ui.multiselect has some style problem in a overlay
                $multi.container.css('width','601px');
                $multi.availableActions.css('width','300px');
@@ -43,13 +43,13 @@ $(function(){
                initUserGroupManagement();
                api.close();
            },
-             'closeselector':'[name=form.Cancel]'
+             'closeselector':'[name="form.Cancel"]'
        });
    }
 
 
    function deleteUsers(){
-       jq('[name=delete.users]').bind('click', function(e){
+       $('[name="delete.users"]').bind('click', function(e){
            e.stopPropagation();
            e.preventDefault();
            $form = $(this).closest('form');
@@ -59,21 +59,21 @@ $(function(){
            $(this).after($fakelink);
            $fakelink.prepOverlay({
                subtype:'ajax',
-               'closeselector':'[name=form.Cancel]',
+               'closeselector':'[name="form.Cancel"]',
                config:{onBeforeLoad: function(e){
-                   var $overlay = e.target.getOverlay();
-                   var $list = jq('ul.userList', $overlay);
+                   var $overlay = this.getOverlay();
+                   var $list = $('ul.userList', $overlay);
 
                    $('input:checked', $form).each(function(i, o){
                        $list.append('<li>' + $(o).attr('value') + '</li>');
                    });
 
-                   var $del_button = jq('[name=form.submitted]', $overlay);
+                   var $del_button = $('[name="form.submitted"]', $overlay);
                    $del_button.bind('click', function(e){
                        e.stopPropagation();
                        e.preventDefault();
 
-                       var $form = jq('form[name="tabbedview_form"]').serializeArray();
+                       var $form = $('form[name="tabbedview_form"]').serializeArray();
                        var url = (window.portal_url + "/user_delete/delete");
 
                        $.post(url, $form, function(data){
@@ -95,7 +95,7 @@ $(function(){
        $('[href*=user-information]').prepOverlay({
            subtype:'ajax',
            formselector:'form.edit-form',
-           closeselector:'[name=form.Cancel]',
+           closeselector:'[name="form.Cancel"]',
            filter: '#content > *',
            noform: function(el){
                tabbedview.reload_view();
@@ -149,9 +149,9 @@ $(function(){
            subtype:'ajax',
            formselector:'form',
            config:{onBeforeLoad: function(e){
-               var $select = jq('[name=new_users:list]', e.target.getOverlay());
+               var $select = $('[name="new_users:list"]', this.getOverlay());
                 $select.multiselect({sortable: false});
-                $multi = $select.data('multiselect');
+                $multi = $select.data('ui-multiselect');
                // It seems that, ui.multiselect has some style problem in a overlay
                $multi.container.css('width','601px');
                $multi.availableActions.css('width','300px');
@@ -169,14 +169,14 @@ $(function(){
                initUserGroupManagement();
                api.close();
            },
-             'closeselector':'[name=form.Cancel]'
+             'closeselector':'[name="form.Cancel"]'
        });
    }
 
 
 
    function deleteGroups(){
-      jq('[name=delete.groups]').bind('click', function(e){
+      $('[name="delete.groups"]').bind('click', function(e){
           e.stopPropagation();
           e.preventDefault();
           $form = $(this).closest('form');
@@ -186,16 +186,16 @@ $(function(){
           $(this).after($fakelink);
           $fakelink.prepOverlay({
               subtype:'ajax',
-              'closeselector':'[name=form.Cancel]',
+              'closeselector':'[name="form.Cancel"]',
               config:{onBeforeLoad: function(e){
-                  var $overlay = e.target.getOverlay();
-                  var $list = jq('ul.groupList', $overlay);
+                  var $overlay = this.getOverlay();
+                  var $list = $('ul.groupList', $overlay);
 
                   $('input:checked', $form).each(function(i, o){
                       $list.append('<li>' + $(o).attr('value') + '</li>');
                   });
 
-                  var $del_button = jq('[name=form.submitted]', $overlay);
+                  var $del_button = $('[name="form.submitted"]', $overlay);
                   $del_button.bind('click', function(e){
                       e.stopPropagation();
                       e.preventDefault();
