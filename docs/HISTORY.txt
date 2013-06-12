@@ -8,6 +8,9 @@ Changelog
 - Update JS for Plone4.3
   [tschanzt]
 
+- Remove CSS. Move it to collective.js.ui.multiselect where it belongs.
+  [tschanzt]
+
 - Rename jq to $.
   [tschanzt]
 
