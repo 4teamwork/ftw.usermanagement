@@ -25,7 +25,10 @@ $(function(){
            config:{onBeforeLoad: function(e){
                var $select = $('[name="new_groups:list"]', this.getOverlay());
                 $select.multiselect({sortable: false});
-                $multi = $select.data('ui-multiselect');
+                $multi = $select.data('multiselect');
+                if(!$multi){
+                  $multi = $select.data('ui-multiselect');
+                }
                // It seems that, ui.multiselect has some style problem in a overlay
                $multi.container.css('width','601px');
                $multi.availableActions.css('width','300px');
@@ -151,7 +154,10 @@ $(function(){
            config:{onBeforeLoad: function(e){
                var $select = $('[name="new_users:list"]', this.getOverlay());
                 $select.multiselect({sortable: false});
-                $multi = $select.data('ui-multiselect');
+                $multi = $select.data('multiselect');
+                if(!$multi){
+                  $multi = $select.data('ui-multiselect');
+               }
                // It seems that, ui.multiselect has some style problem in a overlay
                $multi.container.css('width','601px');
                $multi.availableActions.css('width','300px');
@@ -250,7 +256,7 @@ $(function(){
    // Initialize the the management.
    initUserGroupManagement();
 
-   /* 
+   /*
    For extjs compatibility we need this ugly hack.
    The last triggered event is the gridRendered, but on this time the content
    isn't load. So we need a timeout to grant the content is fully loaded.
