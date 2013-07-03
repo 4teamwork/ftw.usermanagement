@@ -20,11 +20,6 @@
         file="js/user_group.js"
         />
 
-    <browser:resource
-        name="ui.multiselect.css"
-        file="css/ui.multiselect.css"
-        />
-
     <!-- mail templates -->
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
