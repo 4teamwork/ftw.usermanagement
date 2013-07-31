@@ -5,6 +5,9 @@ Changelog
 1.8.10 (unreleased)
 -------------------
 
+- Updated wrong and added missing translation.
+  [Julian Infanger]
+
 - Update JS for Plone4.3
   [tschanzt]
 

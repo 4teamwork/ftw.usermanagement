@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-05-11 09:55+0000\n"
+"POT-Creation-Date: 2013-07-31 14:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: ./ftw/usermanagement/browser/group/group_membership.py:56
-#: ./ftw/usermanagement/browser/user/user_membership.py:53
+#: ./ftw/usermanagement/browser/user/user_membership.py:54
 msgid "Changes made."
 msgstr "Änderungen übernommen"
 
@@ -148,6 +148,11 @@ msgstr "Sind Sie sicher, dass Sie die ausgwählte(n) Gruppe(n) löschen möchten
 msgid "label_delete_user"
 msgstr "Sind Sie sicher, dass Sie die ausgwählten Benutzer löschen möchten?"
 
+#. Default: "E-Mail"
+#: ./ftw/usermanagement/browser/user/users.py:70
+msgid "label_email"
+msgstr ""
+
 #. Default: "Id"
 #: ./ftw/usermanagement/browser/group/groups.py:43
 msgid "label_group_id"
@@ -159,33 +164,33 @@ msgid "label_group_title"
 msgstr "Titel"
 
 #. Default: "Groups"
-#: ./ftw/usermanagement/browser/user/users.py:54
+#: ./ftw/usermanagement/browser/user/users.py:64
 msgid "label_groups"
 msgstr "Gruppen"
 
+#. Default: "login"
+#: ./ftw/usermanagement/browser/user/users.py:62
+msgid "label_login"
+msgstr ""
+
 #. Default: "Name"
-#: ./ftw/usermanagement/browser/user/users.py:49
+#: ./ftw/usermanagement/browser/user/users.py:59
 msgid "label_name"
 msgstr "Name"
 
 #. Default: "Nr."
 #: ./ftw/usermanagement/browser/group/groups.py:36
-#: ./ftw/usermanagement/browser/user/users.py:45
+#: ./ftw/usermanagement/browser/user/users.py:55
 msgid "label_nr"
 msgstr "Nr."
 
-#. Default: "Userid"
-#: ./ftw/usermanagement/browser/user/users.py:52
-msgid "label_userid"
-msgstr "Userid"
-
 #. Default: "Groups-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:28
+#: ./ftw/usermanagement/browser/tabbed_management.py:32
 msgid "msg_groupsDescription"
 msgstr "Gruppenverwaltung"
 
 #. Default: "Users-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:23
+#: ./ftw/usermanagement/browser/tabbed_management.py:27
 msgid "msg_usersDescription"
 msgstr "Benutzerverwaltung"
 
@@ -210,7 +215,7 @@ msgstr "Bitte geben Sie den Vornamen ein"
 msgid "text_missing_lastname"
 msgstr "Bitte geben Sie den Nachnamen ein."
 
-#: ./ftw/usermanagement/browser/user/user_delete.py:29
+#: ./ftw/usermanagement/browser/user/user_delete.py:28
 msgid "text_user_deleted"
 msgstr "Benutzer wurde(n) gelöscht"
 
@@ -257,6 +262,7 @@ msgstr "Ihr Benutzername lautet: ${username}"
 #. Default: "You have been registered on the platform ${site_title}."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:13
 msgid "text_usermanagemnt_mail_user_text"
-msgstr "Sie wurde auf der Plattform ${site_title} registriert"
+msgstr "Sie wurden auf der Plattform ${site_title} registriert"
 
-
+msgid "usermanagement_mail_notification_subject"
+msgstr "Wilkommen auf ${title}"
