@@ -5,6 +5,9 @@ Changelog
 1.9.1 (unreleased)
 ------------------
 
+- Reduced generated password length to 8.
+  [lknoepfel]
+
 - Add French translations.
   [eschmutz, tschanzt]
 

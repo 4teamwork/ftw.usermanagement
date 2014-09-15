@@ -106,7 +106,7 @@ class UserNotify(BrowserView):
                     acl_users.getUserById(member.id)))
 
         # Generate new password
-        password = registration.generatePassword()
+        password = registration.getPassword(length=8)
 
         # Update user properties
         acl_users.userFolderEditUser(

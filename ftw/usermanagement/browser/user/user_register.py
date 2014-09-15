@@ -97,7 +97,7 @@ class UserRegister(BrowserView):
         registration = getToolByName(self.context, 'portal_registration')
 
         return self.request.get('password', '') or \
-            registration.generatePassword()
+            registration.getPassword(length=8)
 
     def _get_register_values(self):
         """ Return the required values for a registration
