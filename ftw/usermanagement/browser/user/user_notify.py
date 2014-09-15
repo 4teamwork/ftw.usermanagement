@@ -124,6 +124,8 @@ class UserNotify(BrowserView):
         mtool = getToolByName(self, 'portal_membership')
         member = mtool.getMemberById(userid)
 
+        homefolder = mtool.getHomeFolder(userid)
+
         if not member:
             return False
 
@@ -132,6 +134,7 @@ class UserNotify(BrowserView):
         options['email'] = member.getProperty('email')
         options['username'] = member.id
         options['fullname'] = member.getProperty('fullname', member.id)
+        options['homefolder'] = homefolder.absolute_url()
         options['site_title'] = self._get_site_title()
         options['contact_email'] = self._get_contact_email()
         options['pw'] = reset_pw and self.reset_password(member) or None
