@@ -82,7 +82,7 @@ class UserNotify(BrowserView):
 
         mail = MIMEMultipart('alternative')
         mail['Subject'] = Header(
-             self._get_subject(title.decode('utf-8')), 'utf-8')
+            self._get_subject(title.decode('utf-8')), 'utf-8')
         mail['From'] = '%s<%s>' % (
             self._get_contact_name(), self._get_contact_email())
         mail['To'] = options.get('email')
@@ -159,7 +159,7 @@ class UserNotify(BrowserView):
         """
         properties = getUtility(IPropertiesTool)
         contact_mail = self.request.get('contact.email',
-                properties.email_from_address)
+                                        properties.email_from_address)
 
         return contact_mail
 
