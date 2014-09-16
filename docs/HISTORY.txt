@@ -5,6 +5,9 @@ Changelog
 1.9.1 (unreleased)
 ------------------
 
+- Handle case where homefolder generation is disabled.
+  [lknoepfel]
+
 - Fixed wrong url generation in password reset mail.
   [lknoepfel]
 

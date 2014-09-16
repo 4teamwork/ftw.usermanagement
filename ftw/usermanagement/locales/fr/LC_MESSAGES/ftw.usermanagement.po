@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-20 08:19+0000\n"
+"POT-Creation-Date: 2014-09-16 08:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,7 +10,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
 #: ./ftw/usermanagement/browser/group/groups.pt:16
 msgid "Add a new Group"
@@ -215,6 +214,11 @@ msgstr "S'il vous plaît, entrez un prénom"
 msgid "text_missing_lastname"
 msgstr "S'il vous plaît entrer un nom de famille."
 
+#. Default: "You can request a new password using this direct link:"
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:45
+msgid "text_request_new_password"
+msgstr "Le mot de passe peut être réinitialisé dans le lien suivant:"
+
 #: ./ftw/usermanagement/browser/user/user_delete.py:28
 msgid "text_user_deleted"
 msgstr "Les utilisateurs ont été supprimés"
@@ -235,7 +239,7 @@ msgid "text_usermanagement_after_pw_reset_url"
 msgstr "Ou utilisez ce lien direct ${home_url} à votre \"Mom compte\"  et cliquez sur \"Modifier le mot de passe\""
 
 #. Default: "If you have any questions, please contact: ${contact_email}"
-#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:49
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:54
 msgid "text_usermanagement_mail_comment"
 msgstr "Si vous avez des questions, s'il vous plaît contacter: ${contact_email}"
 
