@@ -29,19 +29,24 @@
     <span tal:content="options/pw"
          i18n:name="pw" />
     </p>
-    <p tal:condition="options/reset_pw">
-        <span i18n:translate="text_usermanagement_after_pw_reset">
-            You can change your password in your "My Account" section after logging in.
-        </span>
-        <br />
-        <span i18n:translate="text_usermanagement_after_pw_reset_url">
-            Or use this direct link
-            <a tal:define="homeid python:options['username'].replace('@', '-40');
-                           url string:${here/portal_url}/Members/${homeid}"
-               tal:attributes="href url" tal:content="url" i18n:name="home_url" />
-            to your "My Account" section and click "Change password".
-        </span>
-
+    <p tal:condition="options/homefolder">
+      <span i18n:translate="text_usermanagement_after_pw_reset">
+          You can change your password in your "My Account" section after logging in.
+      </span>
+      <br />
+      <span i18n:translate="text_usermanagement_after_pw_reset_url">
+          Or use this direct link
+          <a tal:attributes="href options/homefolder"
+             tal:content="options/homefolder" i18n:name="home_url" />
+          to your "My Account" section and click "Change password".
+      </span>
+    </p>
+    <p tal:condition="not:options/homefolder">
+      <span i18n:translate="text_request_new_password">
+        You can request a new password using this direct link:
+      </span>
+      <a tal:attributes="href options/pw_reset_url"
+         tal:content="options/pw_reset_url" />
     </p>
 
     <p i18n:translate="text_usermanagement_mail_comment">

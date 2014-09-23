@@ -30,6 +30,10 @@ class GetOptionsTests(MockTestCase):
 
         self.mtool = self.mocker.mock(count=False)
         self.mock_tool(self.mtool, 'portal_membership')
+        self.mock_tool(self.mtool, 'portal_password_reset')
+        self.expect(self.mtool.getHomeFolder(ANY)).result(self.context)
+        self.expect(self.context.absolute_url()).result('http://nowhere/')
+        self.expect(self.mtool.absolute_url()).result('http://nowhere/')
 
         self.urltool = self.mocker.mock(count=False)
         self.mock_tool(self.urltool, 'portal_url')
@@ -112,7 +116,7 @@ class ResetPasswordTests(MockTestCase):
 
         self.rtool = self.mocker.mock(count=False)
         self.mock_tool(self.rtool, 'portal_registration')
-        self.expect(self.rtool.generatePassword()).result('12345')
+        self.expect(self.rtool.getPassword(length=8)).result('12345678')
 
         self.member = self.mocker.mock(count=False)
         self.expect(self.member.id).result('user_id_1')
@@ -124,10 +128,10 @@ class ResetPasswordTests(MockTestCase):
 
         result = self.notify.reset_password(self.member)
 
-        self.assertEquals(result, '12345')
+        self.assertEquals(result, '12345678')
         self.assertEquals(len(self.acl_user_folder), 1)
         self.assertEquals(self.acl_user_folder[0]['member'], 'user_id_1')
-        self.assertEquals(self.acl_user_folder[0]['password'], '12345')
+        self.assertEquals(self.acl_user_folder[0]['password'], '12345678')
         self.assertEquals(self.acl_user_folder[0]['roles'], ['role'])
 
 

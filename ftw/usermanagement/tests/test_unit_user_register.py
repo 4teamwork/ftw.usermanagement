@@ -167,7 +167,7 @@ class RegisterTests(MockTestCase):
 
         self.rtool = self.mocker.mock(count=False)
         self.mock_tool(self.rtool, 'portal_registration')
-        self.expect(self.rtool.generatePassword()).result('12345')
+        self.expect(self.rtool.getPassword(length=8)).result('12345678')
         self.expect(self.rtool.addMember(
             'attribute_error',
             ANY,

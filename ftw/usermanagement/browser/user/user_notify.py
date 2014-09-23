@@ -82,7 +82,7 @@ class UserNotify(BrowserView):
 
         mail = MIMEMultipart('alternative')
         mail['Subject'] = Header(
-             self._get_subject(title.decode('utf-8')), 'utf-8')
+            self._get_subject(title.decode('utf-8')), 'utf-8')
         mail['From'] = '%s<%s>' % (
             self._get_contact_name(), self._get_contact_email())
         mail['To'] = options.get('email')
@@ -106,7 +106,7 @@ class UserNotify(BrowserView):
                     acl_users.getUserById(member.id)))
 
         # Generate new password
-        password = registration.generatePassword()
+        password = registration.getPassword(length=8)
 
         # Update user properties
         acl_users.userFolderEditUser(
@@ -122,7 +122,10 @@ class UserNotify(BrowserView):
         """ Return a map with all required infos for the mail template
         """
         mtool = getToolByName(self, 'portal_membership')
+        pwresettool = getToolByName(self, 'portal_password_reset')
         member = mtool.getMemberById(userid)
+
+        homefolder = mtool.getHomeFolder(userid)
 
         if not member:
             return False
@@ -132,6 +135,9 @@ class UserNotify(BrowserView):
         options['email'] = member.getProperty('email')
         options['username'] = member.id
         options['fullname'] = member.getProperty('fullname', member.id)
+        options['homefolder'] = \
+            homefolder.absolute_url() if homefolder else None
+        options['pw_reset_url'] = pwresettool.absolute_url()
         options['site_title'] = self._get_site_title()
         options['contact_email'] = self._get_contact_email()
         options['pw'] = reset_pw and self.reset_password(member) or None
@@ -153,7 +159,7 @@ class UserNotify(BrowserView):
         """
         properties = getUtility(IPropertiesTool)
         contact_mail = self.request.get('contact.email',
-                properties.email_from_address)
+                                        properties.email_from_address)
 
         return contact_mail
 

@@ -54,7 +54,10 @@ class MemberIntegrationTests(TestCase):
         for i in range(5):
             groups_tool.addGroup('group_%s' % i)
 
-    def test_add_user(self):
+    def test_add_user_with_homefolder(self):
+        # Setup Members Folder
+        self.mtool.setMemberareaCreationFlag()
+        self.portal.invokeFactory('Folder',id='Members')
 
         self.request['firstname'] = 'Jämes'
         self.request['lastname'] = 'Bönd'
@@ -65,6 +68,8 @@ class MemberIntegrationTests(TestCase):
         info = self.mtool.getMemberInfo('james@bond.ch')
 
         self.assertEquals(info.get('fullname'), 'Bönd Jämes')
+
+        self.assertTrue(self.mtool.getHomeFolder('james@bond.ch'))
 
     def test_add_group(self):
 
