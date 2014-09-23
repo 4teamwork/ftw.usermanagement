@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.9.1 (unreleased)
+1.9.1 (2014-09-23)
 ------------------
 
 - Handle case where homefolder generation is disabled.
