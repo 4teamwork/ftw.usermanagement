@@ -1,20 +1,22 @@
 <?xml version="1.0"?>
 <object name="portal_actions" meta_type="Plone Actions Tool"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-   <object name="user" meta_type="CMF Action Category">
-    <object name="user_management" meta_type="CMF Action"
-       i18n:domain="plone">
-     <property name="title" i18n:translate="">Benutzerverwaltung</property>
-     <property name="description" i18n:translate=""></property>
-     <property
-        name="url_expr">string:${globals_view/navigationRootUrl}/user_management</property>
-     <property name="link_target"></property>
-     <property name="icon_expr"></property>
-     <property name="available_expr"></property>
-     <property name="permissions">
-      <element value="Manage users"/>
-     </property>
-     <property name="visible">True</property>
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    <object name="user" meta_type="CMF Action Category">
+        <object name="user_management" meta_type="CMF Action"
+                i18n:domain="ftw.usermanagement">
+            <property name="title" i18n:translate="users_management">Users Management</property>
+            <property name="description" i18n:translate=""></property>
+            <property
+                name="url_expr">
+                string:${globals_view/navigationRootUrl}/user_management
+            </property>
+            <property name="link_target"></property>
+            <property name="icon_expr"></property>
+            <property name="available_expr"></property>
+            <property name="permissions">
+                <element value="Manage users"/>
+            </property>
+            <property name="visible">True</property>
+        </object>
     </object>
-   </object>
 </object>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-09-16 08:10+0000\n"
+"POT-Creation-Date: 2015-04-30 07:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,5 +270,11 @@ msgstr "Sie wurden auf der Plattform ${site_title} registriert"
 
 msgid "usermanagement_mail_notification_subject"
 msgstr "Wilkommen auf ${title}"
+
+#. Default: "Users Management"
+#: ./ftw/usermanagement/profiles/default/actions.xml
+#: ./ftw/usermanagement/upgrades/20150430094932_translate_actions_menu_item/actions.xml
+msgid "users_management"
+msgstr "Benutzerverwaltung"
 
 
