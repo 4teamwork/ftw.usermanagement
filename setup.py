@@ -4,30 +4,30 @@ import os
 version = '1.9.2.dev0'
 maintainer = 'Mathias Leimgruber'
 tests_require = [
-    'ftw.testing',
     'ftw.tabbedview',
     'ftw.table',
-    'plone.testing',
+    'ftw.testing',
     'plone.app.testing',
+    'plone.testing',
     ]
 
 setup(name='ftw.usermanagement',
       version=version,
       description='An advanced view for managing users in plone.',
       long_description=open('README.rst').read() + '\n' + \
-          open(os.path.join('docs', 'HISTORY.txt')).read(),
+                       open(os.path.join('docs', 'HISTORY.txt')).read(),
 
       # Get more strings from
       # http://www.python.org/pypi?%3Aaction=list_classifiers
 
       classifiers=[
-        'Framework :: Plone',
-        'Framework :: Plone :: 4.1',
-        'Framework :: Plone :: 4.2',
-        'Framework :: Plone :: 4.3',
-        'Programming Language :: Python',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        ],
+          'Framework :: Plone',
+          'Framework :: Plone :: 4.1',
+          'Framework :: Plone :: 4.2',
+          'Framework :: Plone :: 4.3',
+          'Programming Language :: Python',
+          'Topic :: Software Development :: Libraries :: Python Modules',
+          ],
 
       keywords='ftw usermanagement user management view plone',
       author='4teamwork GmbH',
@@ -42,14 +42,14 @@ setup(name='ftw.usermanagement',
       zip_safe=False,
 
       install_requires=[
-        'setuptools',
-        'ftw.table',
-        'ftw.tabbedview',
-        'plone.principalsource',
-        'collective.js.jqueryui',
-        'collective.js.ui.multiselect',
-        # -*- Extra requirements: -*-
-        ],
+          'collective.js.jqueryui',
+          'collective.js.ui.multiselect',
+          'ftw.tabbedview',
+          'ftw.table',
+          'ftw.upgrade',
+          'plone.principalsource',
+          'setuptools',
+          ],
 
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),

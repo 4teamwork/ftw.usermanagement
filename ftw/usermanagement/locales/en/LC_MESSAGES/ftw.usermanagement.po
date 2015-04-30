@@ -1,3 +1,6 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -13,139 +16,139 @@ msgstr ""
 
 #: ./ftw/usermanagement/browser/group/groups.pt:16
 msgid "Add a new Group"
-msgstr "Neue Gruppe hinzufügen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:15
 msgid "Add a new Member"
-msgstr "Neuen Benutzer hinzufügen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/groups.pt:30
 msgid "Add group"
-msgstr "Hinzufügen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:34
 msgid "Add member"
-msgstr "Hinzufügen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_delete.pt:10
 #: ./ftw/usermanagement/browser/group/group_membership.pt:14
 #: ./ftw/usermanagement/browser/user/user_delete.pt:10
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_membership.py:56
 #: ./ftw/usermanagement/browser/user/user_membership.py:54
 msgid "Changes made."
-msgstr "Änderungen übernommen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_delete.pt:9
 msgid "Delete group(s)"
-msgstr "Gruppe(n) löschen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/groups.pt:72
 msgid "Delete groups"
-msgstr "Gruppe(n) löschen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:76
 msgid "Delete user"
-msgstr "Benutzer löschen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_delete.pt:9
 msgid "Delete user(s)"
-msgstr "Benutzer löschen"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:25
 msgid "Email"
-msgstr "E-Mail"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:23
 msgid "Firstname"
-msgstr "Vorname"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_delete.py:30
 msgid "Group(s) deleted."
-msgstr "Gruppe(n) wurden gelöscht"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/groups.pt:23
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:24
 msgid "Lastname"
-msgstr "Nachname"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_notify.py:63
 msgid "No mailhost defined. contact site Administrator."
-msgstr "Email-Konfiguration fehlerhaft, bitte kontaktieren Sie den Administrator"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:74
 msgid "Notify user"
-msgstr "Benutzerinformationen senden (ohne Passwort)"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:75
 msgid "Notify user and reset password"
-msgstr "Benutzerinformationen senden (mit neuem Passwort)"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/users.pt:26
 msgid "Password"
-msgstr "Passwort"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_membership.pt:12
 #: ./ftw/usermanagement/browser/user/user_membership.pt:12
 msgid "Save"
-msgstr "Speichern"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_add.py:39
 msgid "The group id you selected is alreadyin use or is not valid. Please choose another."
-msgstr "Die Gruppen ID ist ungültig oder wird bereits verwendet"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_register.py:14
 msgid "The login name you selected is alreadyin use or is not valid. Please choose another."
-msgstr "Der Benutzername (E-Mail) ist ungültig oder wird bereits verwendet"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_notify.py:56
 msgid "There was an error to look up a user"
-msgstr "Beim Auflösen einer Userid ist ein Fehler aufgetreten"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_delete.py:26
 msgid "There was an error while deleting a group."
-msgstr "Beim löschen einer Gruppe ist ein Fehler aufgetreten"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_register.py:12
 msgid "This username is reserved. Please choose a different name."
-msgstr "Dieser Benutzname ist ungültig"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/groups.pt:24
 msgid "Title"
-msgstr "Titel"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_register.py:51
 msgid "User added."
-msgstr "Benutzer hinzugefügt"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_register.py:16
 msgid "You must enter a valid email address."
-msgstr "Sie müssen eine gültige E-Mail Adresse eingeben."
+msgstr ""
 
 #. Default: "ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed"
 #: ./ftw/usermanagement/browser/group/groups.pt:17
 msgid "help_add_group"
-msgstr "Die Gruppen ID sollte nur aus a-z, A-Z, 0-9 und '_' bestehen."
+msgstr ""
 
 #. Default: "If no password is provided, plone will generate one for you"
 #: ./ftw/usermanagement/browser/user/users.pt:16
 msgid "help_add_member"
-msgstr "Sie müssen kein Passwort angeben, Sie können jederzeit ein Neues versenden."
+msgstr ""
 
 #. Default: "Are you sure, that you want to delete the selected group(s)?"
 #: ./ftw/usermanagement/browser/group/group_delete.pt:3
 msgid "label_delete_groups"
-msgstr "Sind Sie sicher, dass Sie die ausgwählte(n) Gruppe(n) löschen möchten?"
+msgstr ""
 
 #. Default: "Are you sure, that you want to delete the selected user(s)?"
 #: ./ftw/usermanagement/browser/user/user_delete.pt:3
 msgid "label_delete_user"
-msgstr "Sind Sie sicher, dass Sie die ausgwählten Benutzer löschen möchten?"
+msgstr ""
 
 #. Default: "E-Mail"
 #: ./ftw/usermanagement/browser/user/users.py:70
@@ -155,17 +158,17 @@ msgstr ""
 #. Default: "Id"
 #: ./ftw/usermanagement/browser/group/groups.py:43
 msgid "label_group_id"
-msgstr "Id"
+msgstr ""
 
 #. Default: "Title"
 #: ./ftw/usermanagement/browser/group/groups.py:40
 msgid "label_group_title"
-msgstr "Titel"
+msgstr ""
 
 #. Default: "Groups"
 #: ./ftw/usermanagement/browser/user/users.py:64
 msgid "label_groups"
-msgstr "Gruppen"
+msgstr ""
 
 #. Default: "login"
 #: ./ftw/usermanagement/browser/user/users.py:62
@@ -175,106 +178,106 @@ msgstr ""
 #. Default: "Name"
 #: ./ftw/usermanagement/browser/user/users.py:59
 msgid "label_name"
-msgstr "Name"
+msgstr ""
 
 #. Default: "Nr."
 #: ./ftw/usermanagement/browser/group/groups.py:36
 #: ./ftw/usermanagement/browser/user/users.py:55
 msgid "label_nr"
-msgstr "Nr."
+msgstr ""
 
 #. Default: "Groups-management"
 #: ./ftw/usermanagement/browser/tabbed_management.py:32
 msgid "msg_groupsDescription"
-msgstr "Gruppenverwaltung"
+msgstr ""
 
 #. Default: "Users-management"
 #: ./ftw/usermanagement/browser/tabbed_management.py:27
 msgid "msg_usersDescription"
-msgstr "Benutzerverwaltung"
+msgstr ""
 
 #. Default: "For the user ${user} exist no email address"
 #: ./ftw/usermanagement/browser/user/user_notify.py:68
 msgid "no_email_for_user"
-msgstr "Für den Benutzer ${user} existiert keine Email-Adresse"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/group/group_add.py:27
 msgid "text_group_created"
-msgstr "Gruppe wurde erstellt"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_register.py:11
 msgid "text_missing_email"
-msgstr "Bitte geben Sie eine E-Mail Adresse ein."
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_register.py:9
 msgid "text_missing_firstname"
-msgstr "Bitte geben Sie den Vornamen ein"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_register.py:10
 msgid "text_missing_lastname"
-msgstr "Bitte geben Sie den Nachnamen ein."
+msgstr ""
 
 #. Default: "You can request a new password using this direct link:"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:45
 msgid "text_request_new_password"
-msgstr "Das Passwort kann unter folgendem Link zurückgesetzt werden:"
+msgstr ""
 
 #: ./ftw/usermanagement/browser/user/user_delete.py:28
 msgid "text_user_deleted"
-msgstr "Benutzer wurde(n) gelöscht"
+msgstr ""
 
 #. Default: "User ${fullname} (${email}) has been notified"
 #: ./ftw/usermanagement/browser/user/user_notify.py:44
 msgid "text_usermanagament_user_notified"
-msgstr "Der Benutzer ${fullname} (${email}) wurde benachrichtigt."
+msgstr ""
 
 #. Default: "You can change your password in your \"My Account\" section after logging in."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:33
 msgid "text_usermanagement_after_pw_reset"
-msgstr "Sie können Ihr Passwort unter \"Mein Konto\" nach dem Anmelden ändern."
+msgstr ""
 
 #. Default: "Or use this direct link ${home_url} to your \"My Account\" section and click \"Change password\"."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:39
 msgid "text_usermanagement_after_pw_reset_url"
-msgstr "Oder Sie benutzen den folgenden Link ${home_url}, um direkt in Ihren \"Mein Konto\" Bereich zu gelangen, dort finden Sie den Link \"Passwort ändern\"."
+msgstr ""
 
 #. Default: "If you have any questions, please contact: ${contact_email}"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:54
 msgid "text_usermanagement_mail_comment"
-msgstr "Ihr Kontakt bei Fragen lautet: ${contact_email}"
+msgstr ""
 
 #. Default: "Welcome ${fullname}"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:9
 msgid "text_usermanagement_mail_head_text"
-msgstr "Willkommen ${fullname}"
+msgstr ""
 
 #. Default: "You should have received or will receive your password in a separate mail"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:23
 msgid "text_usermanagement_mail_info"
-msgstr "Ihr Passwort sollten Sie bereits erhalten haben"
+msgstr ""
 
 #. Default: "Your password is: ${pw}"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:29
 msgid "text_usermanagement_mail_info_reset_pw"
-msgstr "Ihr Passwort lautet: ${pw}"
+msgstr ""
 
 #. Default: "Your username is: ${username}"
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:19
 msgid "text_usermanagement_mail_username"
-msgstr "Ihr Benutzername lautet: ${username}"
+msgstr ""
 
 #. Default: "You have been registered on the platform ${site_title}."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:13
 msgid "text_usermanagemnt_mail_user_text"
-msgstr "Sie wurden auf der Plattform ${site_title} registriert"
+msgstr ""
 
 msgid "usermanagement_mail_notification_subject"
-msgstr "Wilkommen auf ${title}"
+msgstr ""
 
 #. Default: "Users Management"
 #: ./ftw/usermanagement/profiles/default/actions.xml
 #: ./ftw/usermanagement/upgrades/20150430094932_translate_actions_menu_item/actions.xml
 msgid "users_management"
-msgstr "Benutzerverwaltung"
+msgstr "Users Management"
 
 
