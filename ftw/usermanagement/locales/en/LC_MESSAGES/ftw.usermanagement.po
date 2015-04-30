@@ -1,0 +1,277 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-04-30 06:46+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Preferred-Encodings: utf-8 latin1\n"
+
+#: ./ftw/usermanagement/browser/group/groups.pt:16
+msgid "Add a new Group"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:15
+msgid "Add a new Member"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/groups.pt:30
+msgid "Add group"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:34
+msgid "Add member"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_delete.pt:10
+#: ./ftw/usermanagement/browser/group/group_membership.pt:14
+#: ./ftw/usermanagement/browser/user/user_delete.pt:10
+msgid "Cancel"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_membership.py:56
+#: ./ftw/usermanagement/browser/user/user_membership.py:54
+msgid "Changes made."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_delete.pt:9
+msgid "Delete group(s)"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/groups.pt:72
+msgid "Delete groups"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:76
+msgid "Delete user"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_delete.pt:9
+msgid "Delete user(s)"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:25
+msgid "Email"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:23
+msgid "Firstname"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_delete.py:30
+msgid "Group(s) deleted."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/groups.pt:23
+msgid "ID"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:24
+msgid "Lastname"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_notify.py:63
+msgid "No mailhost defined. contact site Administrator."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:74
+msgid "Notify user"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:75
+msgid "Notify user and reset password"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/users.pt:26
+msgid "Password"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_membership.pt:12
+#: ./ftw/usermanagement/browser/user/user_membership.pt:12
+msgid "Save"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_add.py:39
+msgid "The group id you selected is alreadyin use or is not valid. Please choose another."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_register.py:14
+msgid "The login name you selected is alreadyin use or is not valid. Please choose another."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_notify.py:56
+msgid "There was an error to look up a user"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_delete.py:26
+msgid "There was an error while deleting a group."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_register.py:12
+msgid "This username is reserved. Please choose a different name."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/groups.pt:24
+msgid "Title"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_register.py:51
+msgid "User added."
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_register.py:16
+msgid "You must enter a valid email address."
+msgstr ""
+
+#. Default: "ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed"
+#: ./ftw/usermanagement/browser/group/groups.pt:17
+msgid "help_add_group"
+msgstr ""
+
+#. Default: "If no password is provided, plone will generate one for you"
+#: ./ftw/usermanagement/browser/user/users.pt:16
+msgid "help_add_member"
+msgstr ""
+
+#. Default: "Are you sure, that you want to delete the selected group(s)?"
+#: ./ftw/usermanagement/browser/group/group_delete.pt:3
+msgid "label_delete_groups"
+msgstr ""
+
+#. Default: "Are you sure, that you want to delete the selected user(s)?"
+#: ./ftw/usermanagement/browser/user/user_delete.pt:3
+msgid "label_delete_user"
+msgstr ""
+
+#. Default: "E-Mail"
+#: ./ftw/usermanagement/browser/user/users.py:70
+msgid "label_email"
+msgstr ""
+
+#. Default: "Id"
+#: ./ftw/usermanagement/browser/group/groups.py:43
+msgid "label_group_id"
+msgstr ""
+
+#. Default: "Title"
+#: ./ftw/usermanagement/browser/group/groups.py:40
+msgid "label_group_title"
+msgstr ""
+
+#. Default: "Groups"
+#: ./ftw/usermanagement/browser/user/users.py:64
+msgid "label_groups"
+msgstr ""
+
+#. Default: "login"
+#: ./ftw/usermanagement/browser/user/users.py:62
+msgid "label_login"
+msgstr ""
+
+#. Default: "Name"
+#: ./ftw/usermanagement/browser/user/users.py:59
+msgid "label_name"
+msgstr ""
+
+#. Default: "Nr."
+#: ./ftw/usermanagement/browser/group/groups.py:36
+#: ./ftw/usermanagement/browser/user/users.py:55
+msgid "label_nr"
+msgstr ""
+
+#. Default: "Groups-management"
+#: ./ftw/usermanagement/browser/tabbed_management.py:32
+msgid "msg_groupsDescription"
+msgstr ""
+
+#. Default: "Users-management"
+#: ./ftw/usermanagement/browser/tabbed_management.py:27
+msgid "msg_usersDescription"
+msgstr ""
+
+#. Default: "For the user ${user} exist no email address"
+#: ./ftw/usermanagement/browser/user/user_notify.py:68
+msgid "no_email_for_user"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/group/group_add.py:27
+msgid "text_group_created"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_register.py:11
+msgid "text_missing_email"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_register.py:9
+msgid "text_missing_firstname"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_register.py:10
+msgid "text_missing_lastname"
+msgstr ""
+
+#. Default: "You can request a new password using this direct link:"
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:45
+msgid "text_request_new_password"
+msgstr ""
+
+#: ./ftw/usermanagement/browser/user/user_delete.py:28
+msgid "text_user_deleted"
+msgstr ""
+
+#. Default: "User ${fullname} (${email}) has been notified"
+#: ./ftw/usermanagement/browser/user/user_notify.py:44
+msgid "text_usermanagament_user_notified"
+msgstr ""
+
+#. Default: "You can change your password in your \"My Account\" section after logging in."
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:33
+msgid "text_usermanagement_after_pw_reset"
+msgstr ""
+
+#. Default: "Or use this direct link ${home_url} to your \"My Account\" section and click \"Change password\"."
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:39
+msgid "text_usermanagement_after_pw_reset_url"
+msgstr ""
+
+#. Default: "If you have any questions, please contact: ${contact_email}"
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:54
+msgid "text_usermanagement_mail_comment"
+msgstr ""
+
+#. Default: "Welcome ${fullname}"
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:9
+msgid "text_usermanagement_mail_head_text"
+msgstr ""
+
+#. Default: "You should have received or will receive your password in a separate mail"
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:23
+msgid "text_usermanagement_mail_info"
+msgstr ""
+
+#. Default: "Your password is: ${pw}"
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:29
+msgid "text_usermanagement_mail_info_reset_pw"
+msgstr ""
+
+#. Default: "Your username is: ${username}"
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:19
+msgid "text_usermanagement_mail_username"
+msgstr ""
+
+#. Default: "You have been registered on the platform ${site_title}."
+#: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:13
+msgid "text_usermanagemnt_mail_user_text"
+msgstr ""
+
+msgid "usermanagement_mail_notification_subject"
+msgstr ""
+
+
