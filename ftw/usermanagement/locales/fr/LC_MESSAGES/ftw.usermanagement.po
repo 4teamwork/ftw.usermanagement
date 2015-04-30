@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-09-16 08:10+0000\n"
+"POT-Creation-Date: 2015-04-30 06:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,7 +231,7 @@ msgstr "L'utilisateur $ {fullname} ($ {email}) a été notifié"
 #. Default: "You can change your password in your \"My Account\" section after logging in."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:33
 msgid "text_usermanagement_after_pw_reset"
-msgstr "Vous pouvez changer votre mot de passe dans votre section \ "Mon compte \" après s'être connecté"
+msgstr "Vous pouvez changer votre mot de passe dans votre section \"Mon compte\" après s'être connecté"
 
 #. Default: "Or use this direct link ${home_url} to your \"My Account\" section and click \"Change password\"."
 #: ./ftw/usermanagement/browser/mail_templates/notify_user_html.pt:39
