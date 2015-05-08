@@ -76,9 +76,9 @@ Plone 4.3
 Links
 =====
 
-- Main github project repository: https://github.com/4teamwork/ftw.usermanagement
-- Issue tracker: https://github.com/4teamwork/ftw.usermanagement/issues
-- Package on pypi: http://pypi.python.org/pypi/ftw.usermanagement
+- Github: https://github.com/4teamwork/ftw.usermanagement
+- Issues: https://github.com/4teamwork/ftw.usermanagement/issues
+- Pypi: http://pypi.python.org/pypi/ftw.usermanagement
 - Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.usermanagement
 
 
