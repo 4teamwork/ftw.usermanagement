@@ -269,7 +269,7 @@ msgid "text_usermanagemnt_mail_user_text"
 msgstr "Sie wurden auf der Plattform ${site_title} registriert"
 
 msgid "usermanagement_mail_notification_subject"
-msgstr "Wilkommen auf ${title}"
+msgstr "Willkommen auf ${title}"
 
 #. Default: "Users Management"
 #: ./ftw/usermanagement/profiles/default/actions.xml

@@ -5,6 +5,9 @@ Changelog
 1.9.2 (unreleased)
 ------------------
 
+- Fix Translation in Welcome mail.
+  [tschanzt]
+
 - Improve translations.
   [mbaechtold]
 
