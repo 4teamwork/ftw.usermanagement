@@ -135,7 +135,7 @@ Changelog
   [eschmutz]
 
 - Remove ability to sort on title of users or groups.
- [eschmutz]
+  [eschmutz]
 
 1.7.2 (2012-05-07)
 ------------------
