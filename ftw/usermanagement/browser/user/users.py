@@ -50,7 +50,7 @@ class UserManagement(BaseListing):
 
     @property
     def columns(self):
-        base_columns =  (
+        base_columns = (
             {'column': 'counter',
              'column_title': _(u'label_nr', default='Nr.'),
              },
@@ -76,6 +76,7 @@ class UserManagement(BaseListing):
     def is_email_login(self):
         prop_tool = getToolByName(self.context, 'portal_properties')
         return prop_tool.site_properties.getProperty('use_email_as_login')
+
 
 class UsersTableSource(BaseManagementTableSource):
 
@@ -136,8 +137,8 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
                 # we continue with the next user
                 continue
 
-            #We need to use the login name to get the group because a plone function
-            # is decleared wrong
+            # We need to use the login name to get the group because a plone
+            # function is decleared wrong
             if self.is_email_login:
                 users_map.append(dict(
                     counter=i + 1,
@@ -233,8 +234,8 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
         # If we have nothing in the filter and the item is in the visible
         # area of the batch, then we load the userdata
         if not self.query.get('filter_text', '') and \
-            (not self.query['batching'] or \
-            (position >= self.batch_start and position < self.batch_end)):
+           (not self.query['batching'] or (
+               position >= self.batch_start and position < self.batch_end)):
             return True
 
         # If we have anything in the textfilter, we have to load the
@@ -255,7 +256,7 @@ class UsersSearchResultExecutor(BaseSearchResultExecutor):
         """ Return all groupobjects of a given user
         """
 
-        #This Function requires the login name and not the userid
+        # This Function requires the login name and not the userid
         groups = self.gtool.getGroupsByUserId(loginname)
 
         groups = self._cleanup_groups(groups)

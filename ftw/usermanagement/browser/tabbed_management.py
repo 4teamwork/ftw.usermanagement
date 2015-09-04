@@ -22,13 +22,19 @@ class ManagementTabbedView(TabbedView):
         """Returns a list of dicts containing the tabs definitions"""
 
         translate = self.context.translate
-        return [{'id':'users_management', 'class':'',
+        return [
+            {
+                'id': 'users_management',
+                'class': '',
                 'description': translate(
-                    _(
-                        'msg_usersDescription',
-                         default='Users-management')), },
-                {'id':'groups_management', 'class':'',
+                    _('msg_usersDescription',
+                      default='Users-management')),
+            },
+
+            {
+                'id': 'groups_management',
+                'class': '',
                 'description': translate(
-                    _(
-                        'msg_groupsDescription',
-                        default='Groups-management')), }, ]
+                    _('msg_groupsDescription',
+                      default='Groups-management')),
+            }]

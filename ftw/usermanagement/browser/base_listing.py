@@ -3,6 +3,7 @@ from ftw.table.basesource import BaseTableSource
 from zope.interface import implements
 from ftw.tabbedview.interfaces import INoExtJS
 
+
 class BaseListing(ListingView):
     """BaseListing View for a tab in the tabbedview"""
 
@@ -23,8 +24,8 @@ class BaseManagementTableSource(BaseTableSource):
         """Validates and fixes the base query. Returns the query object.
         """
         if not isinstance(query, dict):
-            raise ValueError('Expected a dict from get_base_query() of ' + \
-                                 str(self.config))
+            raise ValueError('Expected a dict from get_base_query() of ' +
+                             str(self.config))
 
         return query
 
