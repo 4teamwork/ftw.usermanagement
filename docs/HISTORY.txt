@@ -5,6 +5,9 @@ Changelog
 1.9.3 (unreleased)
 ------------------
 
+- Remove includeDependencies statement.
+  [jone]
+
 - Add constraint to ftw.upgrade dependency.
   We require at least the version where ftw.upgrade has added the
   upgrade-step:directory directive.
@@ -180,8 +183,6 @@ Changelog
 
 - It's no possible to change the group memberships.
    [mathias.leimgruber]
-
-- Nothing changed yet.
 
 
 1.5.2 (2012-02-06)
