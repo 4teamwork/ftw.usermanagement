@@ -46,7 +46,7 @@ setup(name='ftw.usermanagement',
           'collective.js.ui.multiselect',
           'ftw.tabbedview',
           'ftw.table',
-          'ftw.upgrade',
+          'ftw.upgrade >= 1.11.0',  # upgrade-step:directory support
           'plone.principalsource',
           'setuptools',
           ],

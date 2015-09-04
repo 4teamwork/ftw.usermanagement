@@ -5,8 +5,10 @@ Changelog
 1.9.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add constraint to ftw.upgrade dependency.
+  We require at least the version where ftw.upgrade has added the
+  upgrade-step:directory directive.
+  [jone]
 
 1.9.2 (2015-09-02)
 ------------------
