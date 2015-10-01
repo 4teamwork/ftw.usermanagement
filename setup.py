@@ -42,6 +42,7 @@ setup(name='ftw.usermanagement',
       zip_safe=False,
 
       install_requires=[
+          'Plone',
           'collective.js.jqueryui',
           'collective.js.ui.multiselect',
           'ftw.tabbedview',
