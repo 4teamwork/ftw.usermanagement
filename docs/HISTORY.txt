@@ -5,7 +5,7 @@ Changelog
 1.9.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix change-password url in mails to point to Plone's form. [jone]
 
 
 1.9.3 (2015-09-04)
