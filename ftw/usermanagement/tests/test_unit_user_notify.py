@@ -30,13 +30,13 @@ class GetOptionsTests(MockTestCase):
 
         self.mtool = self.mocker.mock(count=False)
         self.mock_tool(self.mtool, 'portal_membership')
-        self.mock_tool(self.mtool, 'portal_password_reset')
         self.expect(self.mtool.getHomeFolder(ANY)).result(self.context)
         self.expect(self.context.absolute_url()).result('http://nowhere/')
         self.expect(self.mtool.absolute_url()).result('http://nowhere/')
 
         self.urltool = self.mocker.mock(count=False)
         self.mock_tool(self.urltool, 'portal_url')
+        self.expect(self.urltool()).result('http://nohost/plone')
         self.expect(
             self.urltool.getPortalObject().Title()).result('Pörtal Title')
 
@@ -69,6 +69,7 @@ class GetOptionsTests(MockTestCase):
         self.assertEquals(result['contact_email'], 'contact@test.ch')
         self.assertEquals(result['pw'], None)
         self.assertEquals(result['reset_pw'], False)
+        self.assertEquals(result['pw_reset_url'], 'http://nohost/plone/@@change-password')
 
     def test_with_member_and_pw_reset(self):
 
@@ -85,6 +86,7 @@ class GetOptionsTests(MockTestCase):
         self.assertEquals(result['contact_email'], 'contact@test.ch')
         self.assertEquals(result['pw'], '12345')
         self.assertEquals(result['reset_pw'], True)
+        self.assertEquals(result['pw_reset_url'], 'http://nohost/plone/@@change-password')
 
 
 class ResetPasswordTests(MockTestCase):

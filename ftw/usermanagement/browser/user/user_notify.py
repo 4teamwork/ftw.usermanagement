@@ -122,9 +122,8 @@ class UserNotify(BrowserView):
         """ Return a map with all required infos for the mail template
         """
         mtool = getToolByName(self, 'portal_membership')
-        pwresettool = getToolByName(self, 'portal_password_reset')
+        portal_url = getToolByName(self, 'portal_url')
         member = mtool.getMemberById(userid)
-
         homefolder = mtool.getHomeFolder(userid)
 
         if not member:
@@ -137,7 +136,7 @@ class UserNotify(BrowserView):
         options['fullname'] = member.getProperty('fullname', member.id)
         options['homefolder'] = \
             homefolder.absolute_url() if homefolder else None
-        options['pw_reset_url'] = pwresettool.absolute_url()
+        options['pw_reset_url'] = portal_url() + '/@@change-password'
         options['site_title'] = self._get_site_title()
         options['contact_email'] = self._get_contact_email()
         options['pw'] = reset_pw and self.reset_password(member) or None
