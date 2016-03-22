@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-04-30 07:54+0000\n"
+"POT-Creation-Date: 2016-03-22 11:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,6 +127,14 @@ msgstr "Utilisateur ajouté"
 msgid "You must enter a valid email address."
 msgstr "Vous devez saisir une adresse courriel valide."
 
+#: ./ftw/usermanagement/configure.zcml:21
+msgid "easy to use user management"
+msgstr ""
+
+#: ./ftw/usermanagement/configure.zcml:21
+msgid "ftw.usermanagement"
+msgstr ""
+
 #. Default: "ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed"
 #: ./ftw/usermanagement/browser/group/groups.pt:17
 msgid "help_add_group"
@@ -184,12 +192,12 @@ msgid "label_nr"
 msgstr "Non."
 
 #. Default: "Groups-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:32
+#: ./ftw/usermanagement/browser/tabbed_management.py:38
 msgid "msg_groupsDescription"
 msgstr "Administration des groupes"
 
 #. Default: "Users-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:27
+#: ./ftw/usermanagement/browser/tabbed_management.py:30
 msgid "msg_usersDescription"
 msgstr "Administration des utilisateurs"
 
@@ -276,5 +284,4 @@ msgstr "Bienvenue à ${title}"
 #: ./ftw/usermanagement/upgrades/20150430094932_translate_actions_menu_item/actions.xml
 msgid "users_management"
 msgstr "Administration des utilisateurs"
-
 
