@@ -4,7 +4,7 @@
     <object name="user" meta_type="CMF Action Category">
         <object name="user_management" meta_type="CMF Action"
                 i18n:domain="ftw.usermanagement">
-            <property name="title" i18n:translate="users_management">Users Management</property>
+            <property name="title" i18n:translate="">Users Management</property>
             <property name="description" i18n:translate=""></property>
             <property
                 name="url_expr">

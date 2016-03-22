@@ -5,6 +5,8 @@ Changelog
 1.9.5 (unreleased)
 ------------------
 
+- Fix translation of users management action. [jone]
+
 - Drop support for Plone 4.1 because the dependency `ftw.tabbedview` has
   dropped support for Plone 4.1 too. [mbaechtold]
 

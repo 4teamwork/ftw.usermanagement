@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-22 11:11+0000\n"
+"POT-Creation-Date: 2016-03-22 11:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,6 +122,12 @@ msgstr "Titre"
 #: ./ftw/usermanagement/browser/user/user_register.py:51
 msgid "User added."
 msgstr "Utilisateur ajouté"
+
+#: ./ftw/usermanagement/profiles/default/actions.xml
+#: ./ftw/usermanagement/upgrades/20150430094932_translate_actions_menu_item/actions.xml
+#: ./ftw/usermanagement/upgrades/20160322121432_fix_user_management_action_translation/actions.xml
+msgid "Users Management"
+msgstr "Administration des utilisateurs"
 
 #: ./ftw/usermanagement/browser/user/user_register.py:16
 msgid "You must enter a valid email address."
@@ -278,10 +284,3 @@ msgstr "Vous avez été inscrit sur ​​la plate-forme ${site_title}"
 
 msgid "usermanagement_mail_notification_subject"
 msgstr "Bienvenue à ${title}"
-
-#. Default: "Users Management"
-#: ./ftw/usermanagement/profiles/default/actions.xml
-#: ./ftw/usermanagement/upgrades/20150430094932_translate_actions_menu_item/actions.xml
-msgid "users_management"
-msgstr "Administration des utilisateurs"
-
