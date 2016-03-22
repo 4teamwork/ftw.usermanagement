@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rolemap>
+
+    <roles>
+        <role name="User Manager" />
+    </roles>
+
+    <permissions>
+        <permission name="Manage users" acquire="False">
+            <role name="Manager"/>
+            <role name="Site Administrator"/>
+            <role name="User Manager"/>
+        </permission>
+    </permissions>
+
+</rolemap>

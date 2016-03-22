@@ -12,5 +12,4 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 
 msgid "User Manager"
-msgstr "Administrateur de l'utilisateur"
-
+msgstr ""

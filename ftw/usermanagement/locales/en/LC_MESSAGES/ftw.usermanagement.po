@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-22 11:15+0000\n"
+"POT-Creation-Date: 2016-03-22 11:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,11 +136,11 @@ msgstr "Users Management"
 msgid "You must enter a valid email address."
 msgstr ""
 
-#: ./ftw/usermanagement/configure.zcml:21
+#: ./ftw/usermanagement/configure.zcml:23
 msgid "easy to use user management"
 msgstr ""
 
-#: ./ftw/usermanagement/configure.zcml:21
+#: ./ftw/usermanagement/configure.zcml:23
 msgid "ftw.usermanagement"
 msgstr ""
 
@@ -287,3 +287,4 @@ msgstr ""
 
 msgid "usermanagement_mail_notification_subject"
 msgstr ""
+
