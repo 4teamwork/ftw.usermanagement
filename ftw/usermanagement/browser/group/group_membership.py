@@ -1,8 +1,9 @@
-from Products.CMFCore.utils import getToolByName
 from ftw.usermanagement import user_management_factory as _
+from plone.app.controlpanel.usergroups import UsersGroupsControlPanelView
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
-from plone.app.controlpanel.usergroups import UsersGroupsControlPanelView
+from zExceptions import BadRequest
 
 
 class GroupMembership(UsersGroupsControlPanelView):
@@ -20,8 +21,7 @@ class GroupMembership(UsersGroupsControlPanelView):
         users = form.get('new_users', [])
 
         if not group_id:
-            # Fallback
-            return 'No group selected'
+            raise BadRequest('Missing parameter group_id.')
 
         if not form.get('form.submitted', False):
             return self.render(group_id)

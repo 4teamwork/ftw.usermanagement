@@ -196,17 +196,6 @@ class CallTests(MockTestCase):
         self.context = self.stub()
         self.expect(self.context.REQUEST).result(self.request)
 
-    def test_no_group_id(self):
-
-        request = self.mocker.proxy(self.request)
-        self.expect(request.form).result({})
-
-        self.replay()
-
-        result = GroupMembership(self.context, request)()
-
-        self.assertEquals(result, 'No group selected')
-
     def test_form_submitted(self):
 
         self.request['group_id'] = "Group_1"
