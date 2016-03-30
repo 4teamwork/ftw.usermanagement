@@ -23,12 +23,13 @@ $(function(){
            subtype:'ajax',
            formselector:'form',
            config:{onBeforeLoad: function(e){
-               var $select = $('[name="new_groups:list"]', this.getOverlay());
-                $select.multiselect({sortable: false});
-                $multi = $select.data('multiselect');
-                if(!$multi){
-                  $multi = $select.data('ui-multiselect');
-                }
+             var $select = $('[name="new_groups:list"]', this.getOverlay());
+             if($select.length) {
+               $select.multiselect({sortable: false});
+               $multi = $select.data('multiselect');
+               if(!$multi){
+                 $multi = $select.data('ui-multiselect');
+               }
                // It seems that, ui.multiselect has some style problem in a overlay
                $multi.container.css('width','601px');
                $multi.availableActions.css('width','300px');
@@ -37,6 +38,7 @@ $(function(){
                $multi.selectedContainer.css('width','300px');
                $multi.availableList.css('height','250px');
                $multi.selectedList.css('height','250px');
+             }
            }},
            afterpost: function(el, overlay){
                var api = overlay.data('overlay');
@@ -152,11 +154,12 @@ $(function(){
            subtype:'ajax',
            formselector:'form',
            config:{onBeforeLoad: function(e){
-               var $select = $('[name="new_users:list"]', this.getOverlay());
-                $select.multiselect({sortable: false});
-                $multi = $select.data('multiselect');
-                if(!$multi){
-                  $multi = $select.data('ui-multiselect');
+             var $select = $('[name="new_users:list"]', this.getOverlay());
+             if($select.length) {
+               $select.multiselect({sortable: false});
+               $multi = $select.data('multiselect');
+               if(!$multi){
+                 $multi = $select.data('ui-multiselect');
                }
                // It seems that, ui.multiselect has some style problem in a overlay
                $multi.container.css('width','601px');
@@ -166,6 +169,7 @@ $(function(){
                $multi.selectedContainer.css('width','300px');
                $multi.availableList.css('height','250px');
                $multi.selectedList.css('height','250px');
+             }
            }},
            afterpost: function(el, overlay){
                var api = overlay.data('overlay');
