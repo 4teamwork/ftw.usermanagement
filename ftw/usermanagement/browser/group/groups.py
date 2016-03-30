@@ -5,6 +5,7 @@ from ftw.usermanagement.browser.base_listing import \
     BaseListing, BaseManagementTableSource, BaseSearchResultExecutor
 from ftw.table.interfaces import ITableSourceConfig
 from zope.interface import implements
+import urllib
 
 
 class IGroupsSourceConfig(ITableSourceConfig):
@@ -19,7 +20,7 @@ def checkbox(item, value):
 def link_group(item, value):
 
     group_link = '<a href="./group_membership?group_id=%s">%s</a>' % \
-                       (item['group_id'], value)
+                       (urllib.quote(item['group_id']), value)
 
     return group_link
 

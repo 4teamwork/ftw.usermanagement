@@ -5,6 +5,8 @@ Changelog
 1.9.5 (unreleased)
 ------------------
 
+- Fix bug causing that the "Site Administrators" group causes errors. [jone]
+
 - Add "User Manager" role. [jone]
 
 - Fix translation of users management action. [jone]
