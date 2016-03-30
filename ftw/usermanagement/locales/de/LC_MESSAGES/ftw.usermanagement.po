@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-22 11:23+0000\n"
+"POT-Creation-Date: 2016-03-30 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr "Hinzufügen"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ./ftw/usermanagement/browser/group/group_membership.py:56
+#: ./ftw/usermanagement/browser/group/group_membership.py:81
 #: ./ftw/usermanagement/browser/user/user_membership.py:54
 msgid "Changes made."
 msgstr "Änderungen übernommen"
@@ -137,6 +137,12 @@ msgstr "Sie müssen eine gültige E-Mail Adresse eingeben."
 msgid "easy to use user management"
 msgstr "Einfache Benutzer- und Gruppenverwaltung für Plone."
 
+#. Default: "For modifying the membership of this group you require the roles: ${roles}."
+#: ./ftw/usermanagement/browser/group/error_roles_required.pt:7
+#, fuzzy
+msgid "err_roles_required_for_membership_modification"
+msgstr "Um diese Gruppe zu bearbeiten benötigen Sie mindestens folgende Rollen: ${roles}."
+
 #: ./ftw/usermanagement/configure.zcml:23
 msgid "ftw.usermanagement"
 msgstr "ftw.usermanagement"
@@ -167,12 +173,12 @@ msgid "label_email"
 msgstr ""
 
 #. Default: "Id"
-#: ./ftw/usermanagement/browser/group/groups.py:43
+#: ./ftw/usermanagement/browser/group/groups.py:44
 msgid "label_group_id"
 msgstr "Id"
 
 #. Default: "Title"
-#: ./ftw/usermanagement/browser/group/groups.py:40
+#: ./ftw/usermanagement/browser/group/groups.py:41
 msgid "label_group_title"
 msgstr "Titel"
 
@@ -192,7 +198,7 @@ msgid "label_name"
 msgstr "Name"
 
 #. Default: "Nr."
-#: ./ftw/usermanagement/browser/group/groups.py:36
+#: ./ftw/usermanagement/browser/group/groups.py:37
 #: ./ftw/usermanagement/browser/user/users.py:55
 msgid "label_nr"
 msgstr "Nr."

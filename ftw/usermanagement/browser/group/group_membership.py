@@ -1,9 +1,11 @@
+from AccessControl import getSecurityManager
 from ftw.usermanagement import user_management_factory as _
 from plone.app.controlpanel.usergroups import UsersGroupsControlPanelView
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from zExceptions import BadRequest
+from zExceptions import Unauthorized
 
 
 class GroupMembership(UsersGroupsControlPanelView):
@@ -11,6 +13,8 @@ class GroupMembership(UsersGroupsControlPanelView):
     """
 
     template = ViewPageTemplateFile('group_membership.pt')
+    roles_required_template = ViewPageTemplateFile('error_roles_required.pt')
+    admin_roles = set(('Site Administrator', 'Manager'))
 
     def __call__(self):
         """ Check the given request parameters and call the
@@ -23,10 +27,31 @@ class GroupMembership(UsersGroupsControlPanelView):
         if not group_id:
             raise BadRequest('Missing parameter group_id.')
 
-        if not form.get('form.submitted', False):
+        required_roles = self.missing_roles_for_management(group_id)
+
+        if form.get('form.submitted'):
+            if required_roles:
+                raise Unauthorized()
+            else:
+                return self.replace_group_members(group_id, users)
+
+        if required_roles:
+            return self.roles_required_template(required_roles=required_roles)
+        else:
             return self.render(group_id)
 
-        return self.replace_group_members(group_id, users)
+    def missing_roles_for_management(self, group_id):
+        """Returns a list of roles which the user requires for
+        changing the membership of this group.
+        When the returned list is empty, the user is allowed to edit.
+        """
+        gtool = getToolByName(self.context, 'portal_groups')
+        group_roles = set(gtool.getGroupById(group_id).getRoles())
+        current_user_roles = set(getSecurityManager().getUser().getRoles())
+
+        required_roles = group_roles & self.admin_roles
+        missing_roles = required_roles - current_user_roles
+        return tuple(missing_roles)
 
     def render(self, group_id):
         """ Renders the popup to assign new users
