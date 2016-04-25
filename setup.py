@@ -4,8 +4,10 @@ import os
 version = '1.9.5.dev0'
 maintainer = 'Mathias Leimgruber'
 tests_require = [
+    'ftw.builder',
     'ftw.tabbedview',
     'ftw.table',
+    'ftw.testbrowser',
     'ftw.testing',
     'plone.app.testing',
     'plone.testing',

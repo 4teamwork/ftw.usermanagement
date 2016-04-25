@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-22 11:15+0000\n"
+"POT-Creation-Date: 2016-03-30 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ./ftw/usermanagement/browser/group/group_membership.py:56
+#: ./ftw/usermanagement/browser/group/group_membership.py:81
 #: ./ftw/usermanagement/browser/user/user_membership.py:54
 msgid "Changes made."
 msgstr ""
@@ -136,11 +136,16 @@ msgstr "Users Management"
 msgid "You must enter a valid email address."
 msgstr ""
 
-#: ./ftw/usermanagement/configure.zcml:21
+#: ./ftw/usermanagement/configure.zcml:23
 msgid "easy to use user management"
 msgstr ""
 
-#: ./ftw/usermanagement/configure.zcml:21
+#. Default: "For modifying the membership of this group you require the roles: ${roles}."
+#: ./ftw/usermanagement/browser/group/error_roles_required.pt:7
+msgid "err_roles_required_for_membership_modification"
+msgstr ""
+
+#: ./ftw/usermanagement/configure.zcml:23
 msgid "ftw.usermanagement"
 msgstr ""
 
@@ -170,12 +175,12 @@ msgid "label_email"
 msgstr ""
 
 #. Default: "Id"
-#: ./ftw/usermanagement/browser/group/groups.py:43
+#: ./ftw/usermanagement/browser/group/groups.py:44
 msgid "label_group_id"
 msgstr ""
 
 #. Default: "Title"
-#: ./ftw/usermanagement/browser/group/groups.py:40
+#: ./ftw/usermanagement/browser/group/groups.py:41
 msgid "label_group_title"
 msgstr ""
 
@@ -195,7 +200,7 @@ msgid "label_name"
 msgstr ""
 
 #. Default: "Nr."
-#: ./ftw/usermanagement/browser/group/groups.py:36
+#: ./ftw/usermanagement/browser/group/groups.py:37
 #: ./ftw/usermanagement/browser/user/users.py:55
 msgid "label_nr"
 msgstr ""
@@ -287,3 +292,4 @@ msgstr ""
 
 msgid "usermanagement_mail_notification_subject"
 msgstr ""
+

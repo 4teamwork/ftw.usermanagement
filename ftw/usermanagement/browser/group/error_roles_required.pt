@@ -1,0 +1,18 @@
+<dl class="portalMessage error" i18n:domain="ftw.usermanagement"
+    tal:define="roles options/required_roles">
+    <dt i18n:translate="" i18n:domain="plone">Error</dt>
+
+    <dd i18n:translate="err_roles_required_for_membership_modification">
+        For modifying the membership of this group you require the roles:
+        <i18n:roles i18n:name="roles">
+            <tal:roles repeat="role roles" >
+                <em i18n:translate=""
+                    i18n:domain="plone"
+                    tal:content="role">
+                    </em><tal:not_last condition="not:repeat/role/end">,
+                </tal:not_last>
+            </tal:roles>
+            </i18n:roles>.
+    </dd>
+
+</dl>

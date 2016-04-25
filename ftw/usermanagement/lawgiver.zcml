@@ -1,0 +1,8 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:lawgiver="http://namespaces.zope.org/lawgiver">
+
+    <include package="ftw.lawgiver" file="meta.zcml" />
+
+    <lawgiver:role name="User Manager" />
+</configure>

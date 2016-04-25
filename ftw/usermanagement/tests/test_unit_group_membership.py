@@ -184,64 +184,6 @@ class ReplaceGroupMembersTests(MockTestCase):
         self.assertTrue(len(self.added_users) == 0)
 
 
-class CallTests(MockTestCase):
-
-    layer = USERMANAGEMENT_ZCML_LAYER
-
-    def setUp(self):
-        super(CallTests, self).setUp()
-
-        self.request = {}
-
-        self.context = self.stub()
-        self.expect(self.context.REQUEST).result(self.request)
-
-    def test_no_group_id(self):
-
-        request = self.mocker.proxy(self.request)
-        self.expect(request.form).result({})
-
-        self.replay()
-
-        result = GroupMembership(self.context, request)()
-
-        self.assertEquals(result, 'No group selected')
-
-    def test_form_submitted(self):
-
-        self.request['group_id'] = "Group_1"
-        request = self.mocker.proxy(self.request)
-        self.expect(request.form).result({'form.submitted': True})
-
-        group_membership = self.mocker.patch(
-            GroupMembership(self.context, request))
-        self.expect(
-            group_membership.replace_group_members(ANY, ANY)).result('replace')
-
-        self.replay()
-
-        result = group_membership()
-
-        self.assertEquals(result, 'replace')
-
-    def test_form_not_submitted(self):
-
-        self.request['group_id'] = "Group_1"
-        request = self.mocker.proxy(self.request)
-        self.expect(request.form).result({'form.submitted': False})
-
-        group_membership = self.mocker.patch(
-            GroupMembership(self.context, request))
-        self.expect(
-            group_membership.render(ANY)).result('render')
-
-        self.replay()
-
-        result = group_membership()
-
-        self.assertEquals(result, 'render')
-
-
 class GetUsersTests(MockTestCase):
 
     layer = USERMANAGEMENT_ZCML_LAYER
