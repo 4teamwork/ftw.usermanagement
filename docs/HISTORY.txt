@@ -5,7 +5,9 @@ Changelog
 1.9.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add a basic user export to the @@user_management`-view.
+  It exports all member properties and the assigned groups of the users.
+  [elioschmutz]
 
 
 1.9.5 (2016-10-20)
