@@ -5,6 +5,7 @@ $(function(){
           initUserOverlay();
           editUser();
           deleteUsers();
+          exportUsers();
           notifyUsers();
           notifyUsersPassword();
           addUser();
@@ -118,6 +119,15 @@ $(function(){
             var $form = $('form[name="add_member_form"]').serializeArray();
             var url = (window.portal_url + "/user_register");
             jquery_post_request(url, $form);
+       });
+   }
+
+   function exportUsers(){
+       $('div#users_management_overview input[name="export.users"]').bind('click', function(e,o){
+           // add a new user
+            e.preventDefault();
+            var url = (window.portal_url + "/users_export");
+            window.location.replace(url);
        });
    }
 

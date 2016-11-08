@@ -10,6 +10,7 @@ class FunctionalTestCase(TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
 
     def grant(self, *roles):
         setRoles(self.portal, TEST_USER_ID, list(roles))

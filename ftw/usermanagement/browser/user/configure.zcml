@@ -49,5 +49,12 @@
         permission="zope2.ManageUsers"
         />
 
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="users_export"
+        class=".user_export.UserExport"
+        permission="zope2.ManageUsers"
+        />
+
 
 </configure>

@@ -74,6 +74,7 @@
           <input type="submit" name="notify.users" value="Notify user" i18n:attributes="value" />
           <input type="submit" name="notify.users.password" value="Notify user and reset password" i18n:attributes="value" />
           <input class="allowMultiSubmit" type="submit" name="delete.users" value="Delete user" i18n:attributes="value" />
+          <input type="submit" name="export.users" value="Export users" i18n:attributes="value" />
         </div>
         <tal:END_CUSTOM_____________________________________ />
 

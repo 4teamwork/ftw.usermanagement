@@ -9,6 +9,7 @@ tests_require = [
     'ftw.table',
     'ftw.testbrowser',
     'ftw.testing',
+    'openpyxl',
     'plone.app.testing',
     'plone.testing',
     ]
@@ -50,7 +51,9 @@ setup(name='ftw.usermanagement',
           'ftw.table',
           'ftw.upgrade >= 1.11.0',  # upgrade-step:directory support
           'plone.principalsource',
+          'plone.api',
           'setuptools',
+          'xlsxwriter',
           ],
 
       tests_require=tests_require,
