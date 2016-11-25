@@ -71,10 +71,11 @@ class TestExportUsers(FunctionalTestCase):
 
         wb = load_workbook(StringIO(view.export()), read_only=True)
         ws = wb.get_active_sheet()
+        rows_iterator = ws.iter_rows()
 
         self.assertEqual(
             [u'description', u'home_page', u'location', u'groups', u'fullname', u'email', u'login_time'],
-            [cell.value for cell in ws.rows.next()],
+            [cell.value for cell in rows_iterator.next()],
             "Some header rows are incorrect. Please check the output."
             )
 
@@ -86,5 +87,5 @@ class TestExportUsers(FunctionalTestCase):
              u'Norris Chuck',
              u'chuck.norris@test.ch',
              datetime(2016, 12, 30, 16, 30)],
-            [cell.value for cell in ws.rows.next()],
+            [cell.value for cell in rows_iterator.next()],
             "Some user values are incorrect. Please check the output")
