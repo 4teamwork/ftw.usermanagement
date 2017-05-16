@@ -23,6 +23,7 @@
                     <th i18n:translate="">Firstname</th>
                     <th i18n:translate="">Lastname</th>
                     <th i18n:translate="">Email</th>
+                    <th i18n:translate="">Username</th>
                     <th i18n:translate="">Password</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -30,6 +31,7 @@
                     <td><input type="text" name="firstname" tal:attributes="value context/REQUEST/firstname|nothing"/></td>
                     <td><input type="text" name="lastname" tal:attributes="value context/REQUEST/lastname|nothing"/></td>
                     <td><input type="text" name="email" tal:attributes="value context/REQUEST/email|nothing"/></td>
+                    <td><input type="text" name="username" tal:attributes="value context/REQUEST/username|nothing"/></td>
                     <td><input type="text" name="password" /></td>
                     <td><input type="submit" name="submit.add" value="Add member" i18n:attributes="value" /></td>
                 </tr>

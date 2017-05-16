@@ -10,12 +10,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
-
-msgid "users_management"
-msgstr "Administration des utilisateurs"
 
 msgid "groups_management"
 msgstr "Administration des groupes"
 
+msgid "users_management"
+msgstr "Administration des utilisateurs"
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-04-30 07:54+0000\n"
+"POT-Creation-Date: 2017-05-16 13:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Add group"
 msgstr ""
 
-#: ./ftw/usermanagement/browser/user/users.pt:34
+#: ./ftw/usermanagement/browser/user/users.pt:36
 msgid "Add member"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Delete groups"
 msgstr ""
 
-#: ./ftw/usermanagement/browser/user/users.pt:76
+#: ./ftw/usermanagement/browser/user/users.pt:78
 msgid "Delete user"
 msgstr ""
 
@@ -81,15 +81,15 @@ msgstr ""
 msgid "No mailhost defined. contact site Administrator."
 msgstr ""
 
-#: ./ftw/usermanagement/browser/user/users.pt:74
+#: ./ftw/usermanagement/browser/user/users.pt:76
 msgid "Notify user"
 msgstr ""
 
-#: ./ftw/usermanagement/browser/user/users.pt:75
+#: ./ftw/usermanagement/browser/user/users.pt:77
 msgid "Notify user and reset password"
 msgstr ""
 
-#: ./ftw/usermanagement/browser/user/users.pt:26
+#: ./ftw/usermanagement/browser/user/users.pt:27
 msgid "Password"
 msgstr ""
 
@@ -126,8 +126,20 @@ msgstr ""
 msgid "User added."
 msgstr ""
 
+#: ./ftw/usermanagement/browser/user/users.pt:26
+msgid "Username"
+msgstr ""
+
 #: ./ftw/usermanagement/browser/user/user_register.py:16
 msgid "You must enter a valid email address."
+msgstr ""
+
+#: ./ftw/usermanagement/configure.zcml:21
+msgid "easy to use user management"
+msgstr ""
+
+#: ./ftw/usermanagement/configure.zcml:21
+msgid "ftw.usermanagement"
 msgstr ""
 
 #. Default: "ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed"
@@ -187,12 +199,12 @@ msgid "label_nr"
 msgstr ""
 
 #. Default: "Groups-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:32
+#: ./ftw/usermanagement/browser/tabbed_management.py:38
 msgid "msg_groupsDescription"
 msgstr ""
 
 #. Default: "Users-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:27
+#: ./ftw/usermanagement/browser/tabbed_management.py:30
 msgid "msg_usersDescription"
 msgstr ""
 
@@ -279,5 +291,4 @@ msgstr ""
 #: ./ftw/usermanagement/upgrades/20150430094932_translate_actions_menu_item/actions.xml
 msgid "users_management"
 msgstr "Users Management"
-
 

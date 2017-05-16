@@ -105,7 +105,7 @@ class UserRegister(BrowserView):
         firstname = self.request.get('firstname', '')
         lastname = self.request.get('lastname', '')
         email = self.request.get('email', '')
-        username = email
+        username = self.request.get('username', '') or email
 
         data = dict(
             username=username,

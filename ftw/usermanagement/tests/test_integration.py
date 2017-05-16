@@ -71,6 +71,22 @@ class MemberIntegrationTests(TestCase):
 
         self.assertTrue(self.mtool.getHomeFolder('james@bond.ch'))
 
+    def test_add_user_with_custom_username(self):
+        # Setup Members Folder
+        self.mtool.setMemberareaCreationFlag()
+        self.portal.invokeFactory('Folder',id='Members')
+
+        self.request['firstname'] = 'Jämes'
+        self.request['lastname'] = 'Bönd'
+        self.request['email'] = 'james@bond.ch'
+        self.request['username'] = 'james.bond'
+
+        UserRegister(self.portal, self.request)()
+
+        member = self.mtool.getMemberById('james.bond')
+
+        self.assertEqual('james@bond.ch', member.getProperty('email'))
+
     def test_add_group(self):
 
         self.request['group_id'] = 'test_group'

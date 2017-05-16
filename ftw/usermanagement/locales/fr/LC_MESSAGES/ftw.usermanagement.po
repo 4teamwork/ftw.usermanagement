@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-04-30 07:54+0000\n"
+"POT-Creation-Date: 2017-05-16 13:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr "Ajouter un nouveau membre"
 msgid "Add group"
 msgstr "Ajouter un groupe"
 
-#: ./ftw/usermanagement/browser/user/users.pt:34
+#: ./ftw/usermanagement/browser/user/users.pt:36
 msgid "Add member"
 msgstr "Ajouter un membre"
 
@@ -46,7 +46,7 @@ msgstr "Supprimer groupe(s)"
 msgid "Delete groups"
 msgstr "Supprimer groupes"
 
-#: ./ftw/usermanagement/browser/user/users.pt:76
+#: ./ftw/usermanagement/browser/user/users.pt:78
 msgid "Delete user"
 msgstr "Supprimer utilisateur"
 
@@ -78,15 +78,15 @@ msgstr "Nom"
 msgid "No mailhost defined. contact site Administrator."
 msgstr "Aucun serveur de courrier défini. Contactez l'administrateur du site."
 
-#: ./ftw/usermanagement/browser/user/users.pt:74
+#: ./ftw/usermanagement/browser/user/users.pt:76
 msgid "Notify user"
 msgstr "Notifier utilisateur"
 
-#: ./ftw/usermanagement/browser/user/users.pt:75
+#: ./ftw/usermanagement/browser/user/users.pt:77
 msgid "Notify user and reset password"
 msgstr "Notifier utilisateur et réinitialiser le mot de passe"
 
-#: ./ftw/usermanagement/browser/user/users.pt:26
+#: ./ftw/usermanagement/browser/user/users.pt:27
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -123,9 +123,21 @@ msgstr "Titre"
 msgid "User added."
 msgstr "Utilisateur ajouté"
 
+#: ./ftw/usermanagement/browser/user/users.pt:26
+msgid "Username"
+msgstr ""
+
 #: ./ftw/usermanagement/browser/user/user_register.py:16
 msgid "You must enter a valid email address."
 msgstr "Vous devez saisir une adresse courriel valide."
+
+#: ./ftw/usermanagement/configure.zcml:21
+msgid "easy to use user management"
+msgstr ""
+
+#: ./ftw/usermanagement/configure.zcml:21
+msgid "ftw.usermanagement"
+msgstr ""
 
 #. Default: "ID should only contain a-z, A-Z 0-9 and '_'. No spaces are allowed"
 #: ./ftw/usermanagement/browser/group/groups.pt:17
@@ -184,12 +196,12 @@ msgid "label_nr"
 msgstr "Non."
 
 #. Default: "Groups-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:32
+#: ./ftw/usermanagement/browser/tabbed_management.py:38
 msgid "msg_groupsDescription"
 msgstr "Administration des groupes"
 
 #. Default: "Users-management"
-#: ./ftw/usermanagement/browser/tabbed_management.py:27
+#: ./ftw/usermanagement/browser/tabbed_management.py:30
 msgid "msg_usersDescription"
 msgstr "Administration des utilisateurs"
 
@@ -276,5 +288,4 @@ msgstr "Bienvenue à ${title}"
 #: ./ftw/usermanagement/upgrades/20150430094932_translate_actions_menu_item/actions.xml
 msgid "users_management"
 msgstr "Administration des utilisateurs"
-
 
