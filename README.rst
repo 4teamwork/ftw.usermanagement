@@ -3,7 +3,7 @@ ftw.usermanagement
 
 This package allows users to easily manage users and groups through
 a new view without having plone's manage portal permission. This is useful
-when the person who manages users and groups should have full manager access
+when the person who manages users and groups should not have full manager access
 to the site.
 
 If the user has the permission "Manage users", a new action is displayed in
