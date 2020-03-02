@@ -7,9 +7,9 @@ tests_require = [
     'ftw.builder < 2a',
     'ftw.tabbedview',
     'ftw.table',
-    'openpyxl',
     'ftw.testbrowser < 2a',
     'ftw.testing < 2a',
+    'openpyxl < 3a',
     'plone.app.testing',
     'plone.testing',
     ]
