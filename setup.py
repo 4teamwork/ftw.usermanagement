@@ -4,12 +4,12 @@ import os
 version = '1.10.1.dev0'
 maintainer = 'Mathias Leimgruber'
 tests_require = [
-    'ftw.builder',
+    'ftw.builder < 2a',
     'ftw.tabbedview',
     'ftw.table',
-    'ftw.testbrowser',
-    'ftw.testing',
-    'openpyxl',
+    'ftw.testbrowser < 2a',
+    'ftw.testing < 2a',
+    'openpyxl < 3a',
     'plone.app.testing',
     'plone.testing',
     ]
