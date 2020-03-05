@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.10.1 (unreleased)
+1.11.0 (2020-03-05)
 -------------------
 
 - Save emails with lower case letters when creating a new user. [tinagerber]
